@@ -1,0 +1,273 @@
+.chal-ttile{
+    text-align: center !important;
+    font-family: 'Raleway', 'RalewayOffline', sans-serif;
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-size: 2rem;
+    line-height: 1.2;
+    color: black;
+    margin-bottom: .5rem;
+
+    /*外边距*/
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.chal-point{
+    text-align: center !important;
+    font-size: 1.75rem;
+    /*标题公共部分*/
+    margin-bottom: .5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: black;
+    margin-top: 0;
+    pointer-events: auto;
+
+    /*外边距*/
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.chal-description{
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 14px;
+    pointer-events: auto;
+    font-family: 'Lato', 'LatoOffline', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+
+}
+.link{
+    margin-bottom: 30px;
+
+    /*外边距*/
+    padding-left: 20px;
+    /*padding-right: 20px;*/
+}
+#link-font{
+    color:#5B7290;
+    font-weight: 600;
+    font-size: 14px;
+}
+.submit-row{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    box-sizing: border-box;
+    pointer-events: auto;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+}
+.flag-form{
+    margin-bottom: 1rem;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 75%;
+    flex: 0 0 75%;
+    max-width: 75%;
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 35px;
+    box-sizing: border-box;
+
+
+}
+.flag-submit{
+    margin-bottom: 1rem;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 35px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    pointer-events: auto;
+
+}
+.flag-submit-control{
+    height: 51px;
+    color: #868e96;
+    background-color: transparent;
+    opacity: .65;
+    letter-spacing: 1px;
+    text-decoration: none;
+    -moz-user-select: none;
+    border-radius: 0;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    padding: 8px 20px;
+    float: right !important;
+    background-image: none;
+    border-color: #868e96;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.flag-control {
+    display:block;
+    position: relative;
+    width:100%;
+    padding:0.8em;
+    font-size:1rem;
+    line-height:1.5;
+    color:#495057;
+    box-sizing: border-box;
+    background-color:#fff;
+    background-clip:padding-box;
+    border:1px solid #ced4da;
+    transition:background-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out 0s;
+}
+.flag-control::-ms-expand {
+    background-color:transparent;
+    border:0
+}
+/*focus选择器*/
+.flag-control:focus {
+    color:#495057;
+    background-color:#fff;
+    border-color:#A3D39C;
+    outline:0;
+    box-shadow:0 0 0 .2rem rgba(163,211,156,1)
+}
+.flag-control::-webkit-input-placeholder {
+    color:#868e96;
+    opacity:1
+}
+.flag-control::-moz-placeholder {
+    color:#868e96;
+    opacity:1
+}
+.flag-control:-ms-input-placeholder {
+    color:#868e96;
+    opacity:1
+}
+.flag-control::placeholder {
+    color:#868e96;
+    opacity:1
+}
+.flag-control:disabled,.flag-control[readonly] {
+    background-color:#e9ecef;
+    opacity:1
+}
+select.flag-control:not([size]):not([multiple]) {
+    height:calc(2.25rem + 2px)
+}
+select.flag-control:focus::-ms-value {
+    color:#495057;
+    background-color:#fff
+}
+.flag-control-file,.flag-control-range {
+    display:block;
+    width:100%
+}
+
+.flag-submit-control {
+    display:inline-block;
+    font-weight:400;
+    text-align:center;
+    white-space:nowrap;
+    vertical-align:middle;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    border:1px solid transparent;
+    padding: 0.8em;
+    font-size:1rem;
+    line-height:1.5;
+    transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    float:right!important
+}
+
+.flag-submit-control-secondary {
+    color:#868e96;
+    background-color:transparent;
+    background-image:none;
+    border-color:#868e96
+}
+.flag-submit-control-secondary:hover {
+    color:#fff;
+    background-color:#868e96;
+    border-color:#868e96
+}
+.flag-submit-control-secondary.focus,.flag-submit-control-secondary:focus {
+    /*box-shadow:0 0 0 .2rem rgba(134,142,150,.5)*/
+}
+.flag-submit-control-secondary.disabled,.flag-submit-control-secondary:disabled {
+    color:#868e96;
+    background-color:transparent
+}
+.flag-submit-control-secondary:not([disabled]):not(.disabled).active,.flag-submit-control-secondary:not([disabled]):not(.disabled):active,.show>.flag-submit-control-secondary.dropdown-toggle {
+    color:#212529;
+    background-color:#868e96;
+    border-color:#868e96;
+    box-shadow:0 0 0 .2rem rgba(134,142,150,.5)
+}
+
+
+
+.row {
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -ms-flex-wrap:wrap;
+    flex-wrap:wrap;
+    background-color: white;
+
+}
+.col-md-12{
+    /*position:relative;*/
+    width:100%!important;
+    min-height:1px;
+    padding-right:20px;
+    padding-left:20px;
+    padding-bottom: 20px;
+
+}
+.alert-normal{
+    text-align:center!important;
+    width:100%!important;
+    position:relative;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.alert-normal-correct{
+    background-color: #D4EDDA;
+}
+.alert-normal-incorrect{
+    background-color: #F8D7DA;
+}
+.alert-normal-solved{
+    background-color: #D1ECF1;
+}
+.result-message-correct{
+    font-weight: bold;
+    color: #155724;
+}
+.result-message-incorrect{
+    font-weight: bold;
+    color: #721c24;
+}
+.result-message-solved{
+    font-weight: bold;
+    color: #0C5477;
+}
