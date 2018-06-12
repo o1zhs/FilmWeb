@@ -80,6 +80,14 @@
         <servlet-name>actorQueryServlet</servlet-name>
         <url-pattern>/actorQuery</url-pattern>
     </servlet-mapping>
-    
+
+    <servlet>
+        <servlet-name>directorQueryServlet</servlet-name>
+        <servlet-class>Servlet.film.directorQueryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>directorQueryServlet</servlet-name>
+        <url-pattern>/directorQuery</url-pattern>
+    </servlet-mapping>
 
 </web-app>

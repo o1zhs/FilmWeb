@@ -1,49 +1,49 @@
 package Servlet.film;
 
+import Bean.ActorQuery;
+import database.DB;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.transform.Result;
 import java.io.IOException;
-import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import Bean.ActorQuery;
-import Bean.Film;
-import database.DB;
+import Bean.DirectorQuery;
+import user.User;
 
-@WebServlet(name = "actorQueryServlet")
-public class actorQueryServlet extends HttpServlet {
-
+@WebServlet(name = "directorQueryServlet")
+public class directorQueryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
-        String name = request.getParameter("actorName");
+        String name = request.getParameter("directorname");
         System.out.println(name);
-        String sql = "SELECT actor.Role, film.FilmName, person.PersonName, person.PersonBirth FROM actor JOIN film USING (FilmID) JOIN person USING (PersonID) WHERE person.PersonName = ?";
+        String sql = "SELECT person.PersonName, person.PersonBirth, film.FilmName  FROM person JOIN director USING (PersonID) JOIN film USING (FilmID) WHERE person.PersonName = ?";
         try {
             DB db = new DB();
 //            System.out.println(sql);
             PreparedStatement result = db.getpreparedstatement(sql);
             result.setString(1,name);
             ResultSet rs = result.executeQuery();
-            List<ActorQuery> information = new ArrayList<>();
+            List<DirectorQuery> information = new ArrayList<>();
             while(rs.next())
             {
-                ActorQuery actorQuery = new ActorQuery(rs.getString("Role"),
-                        rs.getString("FilmName"),
-                        rs.getString("PersonName"),
-                        rs.getString("PersonBirth"));
+                DirectorQuery directorQuery = new DirectorQuery(rs.getString("PersonName"),
+                        rs.getString("PersonBirth"),
+                        rs.getString("FilmName"));
 
-                information.add(actorQuery);
+                information.add(directorQuery);
+                System.out.println(rs.getString("PersonName"));
             }
             request.setAttribute("information", information);
-            request.getRequestDispatcher("film/actorQueryResult.jsp").forward(request,response);
+            request.getRequestDispatcher("film/directorQueryResult.jsp").forward(request,response);
 
         } catch (SQLException e) {
             e.printStackTrace();
