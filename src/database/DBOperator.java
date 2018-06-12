@@ -29,6 +29,7 @@ public class DBOperator {
     private List<Person> personList = new ArrayList<>();
     private List<Film> filmList = new ArrayList<>();
     private List<Firm> firmList = new ArrayList<>();
+    private List<String> categoryList = new ArrayList<>();
     private Firm firm;
     private int queryID;
 
@@ -143,6 +144,13 @@ public class DBOperator {
                     filmList.add(film);
                 }
             }
+            //类别列表查询
+            else  if(this.operateObject.equals("categoryList")){
+                while(resultSet.next()){
+                    String category = resultSet.getString("DYLB_LB");
+                    this.categoryList.add(category);
+                }
+            }
             //ID预查询
             else if(this.operateObject.equals("queryID")){
                 this.queryID = resultSet.getInt("max(IntID)");
@@ -160,6 +168,16 @@ public class DBOperator {
                     Film film = new Film(filmID,filmName,filmYear,firmName,filmLength,null,null,
                             null,null,filmPlot);
                     this.filmList.add(film);
+                }
+            }
+            //查询人列表
+            else if(this.operateObject.equals("Person")){
+                while (resultSet.next()){
+                    String PersonID = resultSet.getString("PersonID");
+                    String PersonName = resultSet.getString("PersonName");
+                    String PersonBirth = resultSet.getString("PersonBirth");
+                    Person person = new Person(PersonID,PersonName,PersonBirth,null,null,null);
+                    this.personList.add(person);
                 }
             }
             //查询出品公司
@@ -274,5 +292,9 @@ public class DBOperator {
 
     public int getQueryID() {
         return queryID;
+    }
+
+    public List<String> getCategoryList() {
+        return categoryList;
     }
 }
