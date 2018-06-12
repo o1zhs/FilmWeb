@@ -24,7 +24,6 @@ public class directorQueryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         String name = request.getParameter("directorname");
-        System.out.println(name);
         String sql = "SELECT person.PersonName, person.PersonBirth, film.FilmName  FROM person JOIN director USING (PersonID) JOIN film USING (FilmID) WHERE person.PersonName = ?";
         try {
             DB db = new DB();
@@ -40,7 +39,6 @@ public class directorQueryServlet extends HttpServlet {
                         rs.getString("FilmName"));
 
                 information.add(directorQuery);
-                System.out.println(rs.getString("PersonName"));
             }
             request.setAttribute("information", information);
             request.getRequestDispatcher("film/directorQueryResult.jsp").forward(request,response);

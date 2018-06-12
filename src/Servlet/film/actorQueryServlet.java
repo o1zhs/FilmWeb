@@ -24,7 +24,6 @@ public class actorQueryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         String name = request.getParameter("actorName");
-        System.out.println(name);
         String sql = "SELECT actor.Role, film.FilmName, person.PersonName, person.PersonBirth FROM actor JOIN film USING (FilmID) JOIN person USING (PersonID) WHERE person.PersonName = ?";
         try {
             DB db = new DB();
