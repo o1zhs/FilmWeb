@@ -71,7 +71,15 @@
         <url-pattern>/FirmInsert</url-pattern>
     </servlet-mapping>
 
-
+    <!-- 所以这个应该actorQueryServlet放到哪并不知道 -->
+    <servlet>
+        <servlet-name>actorQueryServlet</servlet-name>
+        <servlet-class>Servlet.film.actorQueryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>actorQueryServlet</servlet-name>
+        <url-pattern>/actorQuery</url-pattern>
+    </servlet-mapping>
     
 
 </web-app>
