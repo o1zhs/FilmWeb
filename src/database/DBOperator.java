@@ -248,13 +248,13 @@ public class DBOperator {
      * @param sql
      * @return preString
      */
-    public String preQuery(String sql){
+    public String preQuery(String sql,String object){
         Statement statement = getStatement();
         String preString = null;
         try {
             ResultSet resultSet = statement.executeQuery(sql);
             while(resultSet.next()){
-                preString = resultSet.getString("FirmID");
+                preString = resultSet.getString(object);
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -20,7 +20,7 @@ public class DeleteDirector {
     public void executeDelete(){
         //预查询要删除导演的PersonID
         String sql0 = "select PersonID from Person where PersonName='" + this.directorName + "' ;";
-        this.directorID = this.dbOperator.preQuery(sql0);
+        this.directorID = this.dbOperator.preQuery(sql0,"PersonID");
 
         //执行删除
         String sql1 = "delete from Director where PersonID='" + this.directorID + "' and FilmID='"

@@ -21,7 +21,7 @@ public class InsertDirector {
         //假设导演Person已存在
         //先预查询导演的PersonID
         String sql0 = "select PersonID from Person where PersonName='" + this.directorName + "' ;";
-        this.directorID = this.dbOperator.preQuery(sql0);
+        this.directorID = this.dbOperator.preQuery(sql0,"PersonID");
 
         //插入导演关系表
         String sql1 = "Insert into Director (PersonID,FilmID) values ('" + this.directorID + "', '"

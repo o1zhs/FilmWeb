@@ -22,8 +22,8 @@ public class UpdateFilmDirector {
         String sql0 = "select PersonID from Person where PersonName='" + this.directorName0 + "' ;";
         String sql1 = "select PersonID from Person where PersonName='" + this.directorName1 + "' ;";
 
-        String directorID0 = this.dbOperator.preQuery(sql0);    //旧的导演PersonID
-        String directorID1 = this.dbOperator.preQuery(sql1);    //新的导演PersonID
+        String directorID0 = this.dbOperator.preQuery(sql0,"PersonID");    //旧的导演PersonID
+        String directorID1 = this.dbOperator.preQuery(sql1,"PersonID");    //新的导演PersonID
 
         String sql = "update Director set PersonID='" + directorID1 + "' where FilmID='" + this.filmID
                 + "' and PersonID='" + directorID0 + "' ;" ;
