@@ -53,6 +53,14 @@
         <servlet-name>FilmInsertServlet</servlet-name>
         <url-pattern>/FilmInsert</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>FilmDirectorChangeServlet</servlet-name>
+        <servlet-class>Servlet.film.FilmDiretorChangeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilmDirectorChangeServlet</servlet-name>
+        <url-pattern>/FilmDirectorChange</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>FirmQueryServlet</servlet-name>
@@ -70,6 +78,7 @@
         <servlet-name>FirmInsertServlet</servlet-name>
         <url-pattern>/FirmInsert</url-pattern>
     </servlet-mapping>
+
 
     <!-- 所以这个应该actorQueryServlet放到哪并不知道 -->
     <servlet>

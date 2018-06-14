@@ -82,14 +82,14 @@ public class DBOperator {
         if(conn == null){
             conn = getSqlConnection();
         }
-        if(statement == null){
+        if(this.statement == null){
             try {
-                statement = conn.createStatement();
+                this.statement = conn.createStatement();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return statement;
+        return this.statement;
     }
 
     /**
@@ -98,7 +98,7 @@ public class DBOperator {
      */
     public void query(String sql){
         ResultSet resultSet = null;
-        Statement statement = getStatement();
+        this.statement = getStatement();
         try {
             resultSet = statement.executeQuery(sql);
             //查询电影，返回结果为电影基本信息和出品公司名称，然后再查对应的类别、演员、导演、旁白
@@ -197,6 +197,16 @@ public class DBOperator {
                     this.firm = new Firm(firmID,firmName,firmCity,filmNameList);
                 }
             }
+            //粗略查询所有公司
+            else if(this.operateObject.equals("firmIndex")){
+                while (resultSet.next()){
+                    String firmID = resultSet.getString("FirmID");
+                    String firmName = resultSet.getString("FirmName");
+                    String firmCity = resultSet.getString("FirmCity");
+                    Firm firm = new Firm(firmID,firmName,firmCity,null);
+                    this.firmList.add(firm);
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -210,31 +220,33 @@ public class DBOperator {
     public int update(String sql) {
         int result = 0;
         try {
-            Statement statement = getStatement();
+            this.statement = getStatement();
             result = statement.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        this.close();
         return result;
     }
 
     /**
-     * 更新电影前的预查询函数
+     * 表的预查询函数
+     * 在执行操作前预先获取ID对应的Name或Name对应的ID
      * @param sql
-     * @return
+     * @return preString
      */
-    public String preQueryFirmID(String sql){
+    public String preQuery(String sql){
         Statement statement = getStatement();
-        String firmID = null;
+        String preString = null;
         try {
             ResultSet resultSet = statement.executeQuery(sql);
             while(resultSet.next()){
-                firmID = resultSet.getString("FirmID");
+                preString = resultSet.getString("FirmID");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return firmID;
+        return preString;
     }
 
     /**
