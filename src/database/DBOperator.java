@@ -139,6 +139,19 @@ public class DBOperator {
                     actorList = getResultPerson(resultSet2);
                     directorList = getResultPerson(resultSet3);
                     voiceList = getResultPerson(resultSet4);
+
+                    ResultSet resultSet5;
+                    for(Person person:actorList){
+                        String sql5 = "select Role from Actor where PersonID='" + person.getPersonID()
+                                + "' and FilmID='" + filmID + "' ;";
+                        resultSet5 = statement.executeQuery(sql5);
+                        List<String> role = new ArrayList<>();
+                        while(resultSet5.next()){
+                            role.add(resultSet5.getString("Role"));
+                        }
+                        Actor actor = new Actor(person.getName(),filmName,role);
+                        person.setActor(actor);
+                    }
                     Film film = new Film(filmID,filmName,filmYear,firmName,filmLength,
                             categoryList,directorList,actorList,voiceList,filmPlot);
                     filmList.add(film);

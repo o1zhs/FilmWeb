@@ -61,6 +61,32 @@
         <servlet-name>FilmDirectorChangeServlet</servlet-name>
         <url-pattern>/FilmDirectorChange</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>UpdateFilmDirectorServlet</servlet-name>
+        <servlet-class>Servlet.film.UpdateFilmDirectorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateFilmDirectorServlet</servlet-name>
+        <url-pattern>/FilmDirectorUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FilmCategoryChangeServlet</servlet-name>
+        <servlet-class>Servlet.film.FilmCategoryChangeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilmCategoryChangeServlet</servlet-name>
+        <url-pattern>/FilmCategoryChange</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FilmCategoryUpdateServlet</servlet-name>
+        <servlet-class>Servlet.film.FilmCategoryUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilmCategoryUpdateServlet</servlet-name>
+        <url-pattern>/FilmCategoryUpdate</url-pattern>
+    </servlet-mapping>
+
+
 
     <servlet>
         <servlet-name>FirmQueryServlet</servlet-name>
