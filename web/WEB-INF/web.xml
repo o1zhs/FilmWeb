@@ -93,6 +93,14 @@
         <servlet-name>FilmVoiceChangeServlet</servlet-name>
         <url-pattern>/FilmVoiceChange</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>FilmVoiceUpdateServlet</servlet-name>
+        <servlet-class>Servlet.film.FilmVoiceUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilmVoiceUpdateServlet</servlet-name>
+        <url-pattern>/FilmVoiceUpdate</url-pattern>
+    </servlet-mapping>
 
 
 
