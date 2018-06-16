@@ -101,6 +101,23 @@
         <servlet-name>FilmVoiceUpdateServlet</servlet-name>
         <url-pattern>/FilmVoiceUpdate</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>FilmActorChangeServlet</servlet-name>
+        <servlet-class>Servlet.film.FilmActorChangeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilmActorChangeServlet</servlet-name>
+        <url-pattern>/FilmActorChange</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FilmActorUpdateServlet</servlet-name>
+        <servlet-class>Servlet.film.FilmActorUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilmActorUpdateServlet</servlet-name>
+        <url-pattern>/FilmActorUpdate</url-pattern>
+    </servlet-mapping>
+    
 
 
 
