@@ -120,6 +120,22 @@
         <servlet-name>FirmInsertServlet</servlet-name>
         <url-pattern>/FirmInsert</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>FirmDeleteServlet</servlet-name>
+        <servlet-class>Servlet.firm.FirmDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FirmDeleteServlet</servlet-name>
+        <url-pattern>/FirmDelete</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FirmUpdateServlet</servlet-name>
+        <servlet-class>Servlet.firm.FirmUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FirmUpdateServlet</servlet-name>
+        <url-pattern>/FirmUpdate</url-pattern>
+    </servlet-mapping>
 
 
     <!-- 所以这个应该actorQueryServlet放到哪并不知道 -->
@@ -140,5 +156,29 @@
         <servlet-name>directorQueryServlet</servlet-name>
         <url-pattern>/directorQuery</url-pattern>
     </servlet-mapping>
-
+    
+    <servlet>
+        <servlet-name>CategoryInsertServlet</servlet-name>
+        <servlet-class>Servlet.category.CategoryInsertServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CategoryInsertServlet</servlet-name>
+        <url-pattern>/CategoryInsert</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CategoryUpdateServlet</servlet-name>
+        <servlet-class>Servlet.category.CategoryUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CategoryUpdateServlet</servlet-name>
+        <url-pattern>/CategoryUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CategoryDeleteServlet</servlet-name>
+        <servlet-class>Servlet.category.CategoryDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CategoryDeleteServlet</servlet-name>
+        <url-pattern>/CategoryDelete</url-pattern>
+    </servlet-mapping>
 </web-app>

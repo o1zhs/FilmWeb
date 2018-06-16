@@ -22,7 +22,7 @@ public class UpdateFilm {
         String password = "L90efcad1";
         int affectRows;
         DBOperator dbOperator = new DBOperator(username,password);
-        String firmID = dbOperator.preQuery(this.preSql);
+        String firmID = dbOperator.preQuery(this.preSql,"FirmID");
         this.sql = this.sql + firmID + "' where FilmID='" + film.getFilmID() + "' ;";
         affectRows = dbOperator.update(this.sql);
         return affectRows;

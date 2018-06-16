@@ -16,8 +16,8 @@ public class FirmUpdateServlet extends HttpServlet {
     private int affectRows;
     private String updateInfo;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String firmID = request.getParameter("FirmID");
-        String firmName = request.getParameter("FirmName");
+        String firmID = request.getParameter("firm_num_upn");
+        String firmName = request.getParameter("firm_name_up");
         String city = request.getParameter("city");
         Firm firm = new Firm(firmID,firmName,city,null);
         UpdateFirm updateFirm = new UpdateFirm(firm);

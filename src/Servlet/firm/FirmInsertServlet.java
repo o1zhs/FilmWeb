@@ -18,13 +18,15 @@ public class FirmInsertServlet extends HttpServlet {
     private String insertInfo;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         IDGenerator idGenerator = new IDGenerator("Firm");
+        idGenerator.getIntID();
 
-        String firmID = request.getParameter("FirmID");
+        int IntID = idGenerator.getIntID();
+        String firmID = idGenerator.getRealID();
         String firmName = request.getParameter("FirmName");
         String city = request.getParameter("city");
         if(!firmID.equals("")){
             Firm firm = new Firm(firmID,firmName,city,null);
-            InsertFirm insertFirm = new InsertFirm(firm);
+            InsertFirm insertFirm = new InsertFirm(firm,IntID);
             this.affectRows = insertFirm.executeInsert();
             if(this.affectRows>0)
                 this.insertInfo = "Insert successfully!";
