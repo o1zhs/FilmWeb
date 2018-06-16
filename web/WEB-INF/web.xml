@@ -89,5 +89,44 @@
         <servlet-name>directorQueryServlet</servlet-name>
         <url-pattern>/directorQuery</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>PersonDeleteServlet</servlet-name>
+        <servlet-class>Servlet.film.PersonDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PersonDeleteServlet</servlet-name>
+        <url-pattern>/PersonDelete</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>personInsertServlet</servlet-name>
+        <servlet-class>Servlet.film.personInsertServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>personInsertServlet</servlet-name>
+        <url-pattern>/personInsert</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PersonUpdateBirthServlet</servlet-name>
+        <servlet-class>Servlet.film.PersonUpdateBirthServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PersonUpdateBirthServlet</servlet-name>
+        <url-pattern>/PersonUpdateBirth</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PersonUpdateNameServlet</servlet-name>
+        <servlet-class>Servlet.film.PersonUpdateNameServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PersonUpdateNameServlet</servlet-name>
+        <url-pattern>/PersonUpdateName</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>voiceQueryServlet</servlet-name>
+        <servlet-class>Servlet.film.voiceQueryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>voiceQueryServlet</servlet-name>
+        <url-pattern>/voiceQuery</url-pattern>
+    </servlet-mapping>
 </web-app>
