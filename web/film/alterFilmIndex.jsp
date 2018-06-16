@@ -1,6 +1,7 @@
 <%@ page import="database.DBOperator" %>
 <%@ page import="java.util.List" %>
-<%@ page import="Bean.Film" %><%--
+<%@ page import="Bean.Film" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: zhang
   Date: 2018/6/10
@@ -123,8 +124,9 @@ layui.use('table', function(){
                 </thead>
                 <tbody>
                     <%
+
                         for(Film film:filmList){
-                            String filmID = film.getFlimID();
+                            String filmID = film.getFilmID();
                             String firmName = film.getPublishFirm();
                             String filmName = film.getFilmName();
                             String filmYear = film.getPublishYear();

@@ -41,7 +41,7 @@ public class FilmDeleteServlet extends HttpServlet {
                 this.resultInfo = filmID + " " + filmName + " doesn't exists!";
             request.setAttribute("affectRows", affectRows);
             request.setAttribute("resultInfo",this.resultInfo);
-            request.getRequestDispatcher("film/film_delete.jsp").forward(request,response);
+            request.getRequestDispatcher("film/alterFilmIndex.jsp").forward(request,response);
         }
 
     }

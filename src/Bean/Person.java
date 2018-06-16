@@ -1,5 +1,7 @@
 package Bean;
 
+import java.util.List;
+
 public class Person {
 
     private String personID;
@@ -8,9 +10,10 @@ public class Person {
 
     private String[] director;
     private String[] voice;
-    private Actor[] actors;
+    private List<Actor> actors; //用于查询一个演员演过的所有电影及角色
+    private Actor actor;        //用于查询某一部电影内的演员所有角色
 
-    public Person(String personID,String name,String birth,String[] director,String[] voice,Actor[] actors){
+    public Person(String personID,String name,String birth,String[] director,String[] voice,List<Actor> actors){
         this.personID = personID;
         this.name = name;
         this.birth = birth;
@@ -39,7 +42,19 @@ public class Person {
         return voice;
     }
 
-    public Actor[] getActors() {
+    public List<Actor> getActors() {
         return actors;
+    }
+
+    public void setActors(List<Actor> actors) {
+        this.actors = actors;
+    }
+
+    public Actor getActor() {
+        return actor;
+    }
+
+    public void setActor(Actor actor) {
+        this.actor = actor;
     }
 }

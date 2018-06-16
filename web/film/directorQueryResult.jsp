@@ -74,18 +74,7 @@
         </div>
     </div>
 </div>
-<%
-    List<DirectorQuery> information = (List)request.getAttribute("information");
-    for(int i=0;i<information.size();i++) {
-        DirectorQuery directorQuery = information.get(i);
 
-%>
-<tr>
-    <td><%=directorQuery.getPersonName() %></td>
-</tr>
-<%
-    }
-%>
 <div class="layui-container">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
         <legend style="text-align: center;">导演查询结果</legend>

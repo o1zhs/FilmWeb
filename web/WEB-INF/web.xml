@@ -53,6 +53,73 @@
         <servlet-name>FilmInsertServlet</servlet-name>
         <url-pattern>/FilmInsert</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>FilmDirectorChangeServlet</servlet-name>
+        <servlet-class>Servlet.film.FilmDiretorChangeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilmDirectorChangeServlet</servlet-name>
+        <url-pattern>/FilmDirectorChange</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UpdateFilmDirectorServlet</servlet-name>
+        <servlet-class>Servlet.film.UpdateFilmDirectorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateFilmDirectorServlet</servlet-name>
+        <url-pattern>/FilmDirectorUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FilmCategoryChangeServlet</servlet-name>
+        <servlet-class>Servlet.film.FilmCategoryChangeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilmCategoryChangeServlet</servlet-name>
+        <url-pattern>/FilmCategoryChange</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FilmCategoryUpdateServlet</servlet-name>
+        <servlet-class>Servlet.film.FilmCategoryUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilmCategoryUpdateServlet</servlet-name>
+        <url-pattern>/FilmCategoryUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FilmVoiceChangeServlet</servlet-name>
+        <servlet-class>Servlet.film.FilmVoiceChangeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilmVoiceChangeServlet</servlet-name>
+        <url-pattern>/FilmVoiceChange</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FilmVoiceUpdateServlet</servlet-name>
+        <servlet-class>Servlet.film.FilmVoiceUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilmVoiceUpdateServlet</servlet-name>
+        <url-pattern>/FilmVoiceUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FilmActorChangeServlet</servlet-name>
+        <servlet-class>Servlet.film.FilmActorChangeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilmActorChangeServlet</servlet-name>
+        <url-pattern>/FilmActorChange</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FilmActorUpdateServlet</servlet-name>
+        <servlet-class>Servlet.film.FilmActorUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilmActorUpdateServlet</servlet-name>
+        <url-pattern>/FilmActorUpdate</url-pattern>
+    </servlet-mapping>
+    
+
+
 
     <servlet>
         <servlet-name>FirmQueryServlet</servlet-name>
@@ -70,6 +137,23 @@
         <servlet-name>FirmInsertServlet</servlet-name>
         <url-pattern>/FirmInsert</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>FirmDeleteServlet</servlet-name>
+        <servlet-class>Servlet.firm.FirmDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FirmDeleteServlet</servlet-name>
+        <url-pattern>/FirmDelete</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FirmUpdateServlet</servlet-name>
+        <servlet-class>Servlet.firm.FirmUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FirmUpdateServlet</servlet-name>
+        <url-pattern>/FirmUpdate</url-pattern>
+    </servlet-mapping>
+
 
     <!-- 所以这个应该actorQueryServlet放到哪并不知道 -->
     <servlet>
@@ -128,5 +212,29 @@
     <servlet-mapping>
         <servlet-name>voiceQueryServlet</servlet-name>
         <url-pattern>/voiceQuery</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CategoryInsertServlet</servlet-name>
+        <servlet-class>Servlet.category.CategoryInsertServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CategoryInsertServlet</servlet-name>
+        <url-pattern>/CategoryInsert</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CategoryUpdateServlet</servlet-name>
+        <servlet-class>Servlet.category.CategoryUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CategoryUpdateServlet</servlet-name>
+        <url-pattern>/CategoryUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CategoryDeleteServlet</servlet-name>
+        <servlet-class>Servlet.category.CategoryDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CategoryDeleteServlet</servlet-name>
+        <url-pattern>/CategoryDelete</url-pattern>
     </servlet-mapping>
 </web-app>

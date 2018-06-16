@@ -37,10 +37,9 @@ public class FilmInsertServlet extends HttpServlet {
             this.insertInfo = "Insert successfully!";
         else
             this.insertInfo = "Insert failed;";
-
-
-
-
+        request.setAttribute("affectRows",this.affectRows);
+        request.setAttribute("insertInfo",this.insertInfo);
+        request.getRequestDispatcher("/film/alterFilmIndex.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
