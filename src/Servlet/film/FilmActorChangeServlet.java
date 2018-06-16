@@ -1,7 +1,6 @@
 package Servlet.film;
 
-import utils.DeleteDirector;
-import utils.InsertDirector;
+import utils.InsertFilmActor;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,23 +9,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * 电影导演增删服务servlet
- */
-@WebServlet(name = "FilmDiretorChangeServlet")
-public class FilmDiretorChangeServlet extends HttpServlet {
 
+/**
+ * 电影演员增删服务Servlet
+ *
+ */
+@WebServlet(name = "FilmActorChangeServlet")
+public class FilmActorChangeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
         String filmID = request.getParameter("FilmID");
-        String directorName = request.getParameter("Filmdirector");
+        String actorName = request.getParameter("Filmactor");
+        String actorRole = request.getParameter("FilmRole");
+
+
 
         String resultInfo;
         int affectRows;
-        if(id.equals("1")){         //添加导演
-            InsertDirector insertDirector = new InsertDirector(filmID,directorName);
-            insertDirector.executeInsert();
-            affectRows = insertDirector.getAffectRows();
+        if(id.equals("1")){         //1、添加演员
+            InsertFilmActor insertFilmActor = new InsertFilmActor(filmID,actorName,actorRole);
+            insertFilmActor.executeInsert();
+            affectRows = insertFilmActor.getAffectRows();
             if(affectRows >0)
                 resultInfo = "Insert Successfully!";
             else
@@ -35,10 +38,10 @@ public class FilmDiretorChangeServlet extends HttpServlet {
             request.setAttribute("resultInfo", resultInfo);
             request.getRequestDispatcher("/film/FilmOtherChangeQuery.jsp").forward(request,response);
         }
-        else if(id.equals("2")){    //删除导演
-            DeleteDirector deleteDirector = new DeleteDirector(filmID,directorName);
-            deleteDirector.executeDelete();
-            affectRows = deleteDirector.getAffectRows();
+        else if(id.equals("2")){    //2、删除演员
+            DeleteFilmActor deleteFilmActor = new DeleteFilmActor(filmID,actorName,actorRole);
+            deleteFilmActor.executeDelete();
+            affectRows = deleteFilmActor.getAffectRows();
             if(affectRows >0)
                 resultInfo = "Delete Successfully!";
             else
@@ -47,7 +50,6 @@ public class FilmDiretorChangeServlet extends HttpServlet {
             request.setAttribute("resultInfo", resultInfo);
             request.getRequestDispatcher("/film/FilmOtherChangeQuery.jsp").forward(request,response);
         }
-
 
     }
 
