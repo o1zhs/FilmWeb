@@ -20,21 +20,18 @@ public class FilmQueryServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         String filmName = request.getParameter("FilmName");
         String filmCategory = request.getParameter("kind");
-        Boolean isName = false;
-        List<Film> filmList = new ArrayList<>();
+
         if(filmName != null) {
-            isName = true;
             QueryFilm queryFilm = new QueryFilm(filmName, true);
             queryFilm.executeQuery();
-            filmList = queryFilm.getFilmList();
+            List<Film> filmList = queryFilm.getFilmList();
             request.setAttribute("filmList", filmList);
             request.getRequestDispatcher("/film/filmNameQueryResult.jsp").forward(request,response);
         }
         else if(filmCategory != null){
-            isName = false;
             QueryFilm queryFilm = new QueryFilm(filmCategory,false);
             queryFilm.executeQuery();
-            filmList = queryFilm.getFilmList();
+            List<Film> filmList = queryFilm.getFilmList();
             request.setAttribute("filmList", filmList);
             request.getRequestDispatcher("/film/filmCategoryQueryResult.jsp").forward(request,response);
         }
