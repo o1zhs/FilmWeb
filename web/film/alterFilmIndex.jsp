@@ -98,8 +98,8 @@ layui.use('table', function(){
         <div class="layui-col-xs6">
             <div style="margin:20px 0;"></div>
             <%
-                String username = "user1";
-                String password = "abcD.1234";
+                String username = "root1";
+                String password = "L90efcad1";
                 String operateObject = "filmIndex";
                 String sql = "select Film.*,Firm.FirmName from Film,Firm where Film.FirmID=Firm.FirmID order by Film.IntId;";
 
