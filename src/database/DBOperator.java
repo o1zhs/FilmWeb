@@ -65,7 +65,7 @@ public class DBOperator {
         }
 
         try {
-            String url = "jdbc:mysql://localhost:3306/film?useSSL=false&useUnicode=true&amp;characterEncoding=UTF-8";
+            String url = "jdbc:mysql://localhost:3306/film??useSSL=false&useUnicode=true&characterEncoding=UTF-8&useServerPrepStmts=true";
             sqlConnection = DriverManager.getConnection(url,this.user,this.password);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,15 +79,14 @@ public class DBOperator {
      * @throws SQLException
      */
     public Statement getStatement(){
+        Statement statement = null;
         if(conn == null){
             conn = getSqlConnection();
         }
-        if(statement == null){
-            try {
-                statement = conn.createStatement();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            statement = conn.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return statement;
     }
@@ -98,107 +97,151 @@ public class DBOperator {
      */
     public void query(String sql){
         ResultSet resultSet = null;
-        Statement statement = getStatement();
+        this.statement = getStatement();
+
+        Statement stmt = getStatement();        //新建独立的stmt，方便在一次获取查询结果内再进行其他查询
         try {
-            resultSet = statement.executeQuery(sql);
+            resultSet = this.statement.executeQuery(sql);
             //查询电影，返回结果为电影基本信息和出品公司名称，然后再查对应的类别、演员、导演、旁白
-            if(this.operateObject.equals("film")){
-                while(resultSet.next()){
-                    String filmID = resultSet.getString("FilmID");
-                    String firmName = resultSet.getString("FirmName");
-                    String filmName = resultSet.getString("FilmName");
-                    String filmYear = resultSet.getString("FilmYear");
-                    String filmLength = resultSet.getString("FilmLength");
-                    String filmPlot = resultSet.getString("FilmPlot");
+            if(resultSet == null){
+                System.out.println("执行查询结果集为空");
+            }
+            switch (this.operateObject) {
+                case "film":
+                    while (resultSet.next()) {
+                        String filmID = resultSet.getString("FilmID");
+                        String firmName = resultSet.getString("FirmName");
+                        String filmName = resultSet.getString("FilmName");
+                        String filmYear = resultSet.getString("FilmYear");
+                        String filmLength = resultSet.getString("FilmLength");
+                        String filmPlot = resultSet.getString("FilmPlot");
 
+                        System.out.println("名称：" + filmName);
+                        System.out.println("时长：" + filmLength + " min");
+                        System.out.println("发行年份：" + filmYear);
+                        System.out.println("情节：" + filmPlot);
 
-                    String sql1 = "select DYLB_LB from Category where FilmID=" + filmID + " ;";
-                    String sql2 = "select Person.* from Film,Actor,Person " +
-                            "where FilmID=" + filmID + " and Film.FilmID=Actor.FilmID and Actor.PersonID=Person.PersonID ;";
-                    String sql3 = "select Person.* from Film,Director,Person " +
-                            "where FilmID=" + filmID + " and Film.FilmID=Director.FilmID and Director.PersonID=Person.PersonID ;";
-                    String sql4 = "select Person.* from Film,Voice,Person " +
-                            "where FilmID=" + filmID + " and Film.FilmID=Voice.FilmID and Voice.PersonID=Person.PersonID ;";
+                        String sql1 = "select DYLB_LB from Category where FilmID='" + filmID + "' ;";
+                        String sql2 = "select Person.* from Film,Actor,Person " +
+                                "where Film.FilmID='" + filmID + "' and Film.FilmID=Actor.FilmID and Actor.PersonID=Person.PersonID ;";
+                        String sql3 = "select Person.* from Film,Director,Person " +
+                                "where Film.FilmID='" + filmID + "' and Film.FilmID=Director.FilmID and Director.PersonID=Person.PersonID ;";
+                        String sql4 = "select Person.* from Film,Voice,Person " +
+                                "where Film.FilmID='" + filmID + "' and Film.FilmID=Voice.FilmID and Voice.PersonID=Person.PersonID ;";
 
+                        System.out.println(sql1);
+                        System.out.println(sql2);
+                        System.out.println(sql3);
+                        System.out.println(sql4);
 
+                        List<String> categoryList = new ArrayList<>();
+                        ResultSet resultSet1 = stmt.executeQuery(sql1);
+                        while (resultSet1.next()) {
+                            String category = resultSet1.getString("DYLB_LB");
+                            categoryList.add(category);
+                        }
+                        List<Person> actorList;
+                        ResultSet resultSet2 = stmt.executeQuery(sql2);
+                        actorList = getResultPerson(resultSet2);
 
-                    ResultSet resultSet1 = statement.executeQuery(sql1);
-                    ResultSet resultSet2 = statement.executeQuery(sql2);
-                    ResultSet resultSet3 = statement.executeQuery(sql3);
-                    ResultSet resultSet4 = statement.executeQuery(sql4);
+                        List<Person> directorList;
+                        ResultSet resultSet3 = stmt.executeQuery(sql3);
+                        directorList = getResultPerson(resultSet3);
 
-                    List<String> categoryList = new ArrayList<>();
-                    List<Person> actorList;
-                    List<Person> directorList;
-                    List<Person> voiceList;
+                        List<Person> voiceList;
+                        ResultSet resultSet4 = stmt.executeQuery(sql4);
+                        voiceList = getResultPerson(resultSet4);
 
-                    while(resultSet1.next()){
-                        String category = resultSet1.getString("DYLB_LB");
-                        categoryList.add(category);
+                        ResultSet resultSet5;
+                        for (Person person : actorList) {
+                            String sql5 = "select Role from Actor where PersonID='" + person.getPersonID()
+                                    + "' and FilmID='" + filmID + "' ;";
+                            resultSet5 = stmt.executeQuery(sql5);
+                            List<String> role = new ArrayList<>();
+                            while (resultSet5.next()) {
+                                role.add(resultSet5.getString("Role"));
+                            }
+                            Actor actor = new Actor(person.getName(), filmName, role);
+                            person.setActor(actor);
+                        }
+                        Film film = new Film(filmID, filmName, filmYear, firmName, filmLength,
+                                categoryList, directorList, actorList, voiceList, filmPlot);
+                        this.filmList.add(film);
                     }
-                    actorList = getResultPerson(resultSet2);
-                    directorList = getResultPerson(resultSet3);
-                    voiceList = getResultPerson(resultSet4);
-                    Film film = new Film(filmID,filmName,filmYear,firmName,filmLength,
-                            categoryList,directorList,actorList,voiceList,filmPlot);
-                    filmList.add(film);
-                }
-            }
-            //类别列表查询
-            else  if(this.operateObject.equals("categoryList")){
-                while(resultSet.next()){
-                    String category = resultSet.getString("DYLB_LB");
-                    this.categoryList.add(category);
-                }
-            }
-            //ID预查询
-            else if(this.operateObject.equals("queryID")){
-                this.queryID = resultSet.getInt("max(IntID)");
-            }
-            //粗略查询电影信息
-            else if(this.operateObject.equals("filmIndex")){
-                while(resultSet.next()){
-                    String filmID = resultSet.getString("FilmID");
-                    String firmName = resultSet.getString("FirmName");
-                    String filmName = resultSet.getString("FilmName");
-                    String filmYear = resultSet.getString("FilmYear");
-                    String filmLength = resultSet.getString("FilmLength");
-                    String filmPlot = resultSet.getString("FilmPlot");
-
-                    Film film = new Film(filmID,filmName,filmYear,firmName,filmLength,null,null,
-                            null,null,filmPlot);
-                    this.filmList.add(film);
-                }
-            }
-            //查询人列表
-            else if(this.operateObject.equals("Person")){
-                while (resultSet.next()){
-                    String PersonID = resultSet.getString("PersonID");
-                    String PersonName = resultSet.getString("PersonName");
-                    String PersonBirth = resultSet.getString("PersonBirth");
-                    Person person = new Person(PersonID,PersonName,PersonBirth,null,null,null);
-                    this.personList.add(person);
-                }
-            }
-            //查询出品公司
-            else if(this.operateObject.equals("firm")){
-                while(resultSet.next()){
-                    String firmID = resultSet.getString("FirmID");
-                    String firmName = resultSet.getString("FirmName");
-                    String firmCity = resultSet.getString("FirmCity");
-
-                    List<String> filmNameList = new ArrayList<>();
-                    String sql1 = "select FilmName from Film where FirmID='" + firmID + "' ;";
-                    ResultSet resultSet1 = statement.executeQuery(sql1);
-                    while(resultSet1.next()){
-                        String filmName = resultSet1.getString("FilmName");
-                        filmNameList.add(filmName);
+                    break;
+                //类别列表查询
+                case "categoryList":
+                    while (resultSet.next()) {
+                        String category = resultSet.getString("DYLB_LB");
+                        this.categoryList.add(category);
                     }
-                    this.firm = new Firm(firmID,firmName,firmCity,filmNameList);
-                }
+                    break;
+                //ID预查询
+                case "queryID":
+                    this.queryID = resultSet.getInt("max(IntID)");
+                    break;
+                //粗略查询电影信息
+                case "filmIndex":
+                    while (resultSet.next()) {
+                        String filmID = resultSet.getString("FilmID");
+                        String firmName = resultSet.getString("FirmName");
+                        String filmName = resultSet.getString("FilmName");
+                        String filmYear = resultSet.getString("FilmYear");
+                        String filmLength = resultSet.getString("FilmLength");
+                        String filmPlot = resultSet.getString("FilmPlot");
+
+                        Film film = new Film(filmID, filmName, filmYear, firmName, filmLength, null, null,
+                                null, null, filmPlot);
+                        this.filmList.add(film);
+                    }
+                    break;
+                //查询人列表
+                case "Person":
+                    while (resultSet.next()) {
+                        String PersonID = resultSet.getString("PersonID");
+                        String PersonName = resultSet.getString("PersonName");
+                        String PersonBirth = resultSet.getString("PersonBirth");
+                        Person person = new Person(PersonID, PersonName, PersonBirth, null, null, null);
+                        this.personList.add(person);
+                    }
+                    break;
+                //查询出品公司
+                case "firm":
+                    while (resultSet.next()) {
+                        String firmID = resultSet.getString("FirmID");
+                        String firmName = resultSet.getString("FirmName");
+                        String firmCity = resultSet.getString("FirmCity");
+
+                        List<String> filmNameList = new ArrayList<>();
+                        String sql1 = "select FilmName from Film where FirmID='" + firmID + "' ;";
+                        ResultSet resultSet1 = stmt.executeQuery(sql1);
+                        while (resultSet1.next()) {
+                            String filmName = resultSet1.getString("FilmName");
+                            filmNameList.add(filmName);
+                        }
+                        this.firm = new Firm(firmID, firmName, firmCity, filmNameList);
+                    }
+                    break;
+                //粗略查询所有公司
+                case "firmIndex":
+                    while (resultSet.next()) {
+                        String firmID = resultSet.getString("FirmID");
+                        String firmName = resultSet.getString("FirmName");
+                        String firmCity = resultSet.getString("FirmCity");
+                        Firm firm = new Firm(firmID, firmName, firmCity, null);
+                        this.firmList.add(firm);
+                    }
+                    break;
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        if(stmt != null){       //单独关闭stmt
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         this.close();
     }
@@ -210,31 +253,34 @@ public class DBOperator {
     public int update(String sql) {
         int result = 0;
         try {
-            Statement statement = getStatement();
+            this.statement = getStatement();
             result = statement.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        this.close();
         return result;
     }
 
     /**
-     * 更新电影前的预查询函数
+     * 表的预查询函数
+     * 在执行操作前预先获取ID对应的Name或Name对应的ID
      * @param sql
-     * @return
+     * @return preString
      */
-    public String preQueryFirmID(String sql){
-        Statement statement = getStatement();
-        String firmID = null;
+    public String preQuery(String sql,String object){
+        this.statement = getStatement();
+        String preString = null;
         try {
             ResultSet resultSet = statement.executeQuery(sql);
             while(resultSet.next()){
-                firmID = resultSet.getString("FirmID");
+                preString = resultSet.getString(object);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return firmID;
+        close();
+        return preString;
     }
 
     /**

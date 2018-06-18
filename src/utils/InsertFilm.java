@@ -22,7 +22,7 @@ public class InsertFilm {
         String username = "root1";
         String password = "L90efcad1";
         DBOperator dbOperator = new DBOperator(username,password);
-        String firmID = dbOperator.preQueryFirmID(this.preSql);
+        String firmID = dbOperator.preQuery(this.preSql,"FirmID");
         this.setSql(firmID);
         affectRows = dbOperator.update(this.sql);
         return affectRows;
