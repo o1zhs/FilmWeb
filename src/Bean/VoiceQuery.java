@@ -5,6 +5,7 @@ public class VoiceQuery {
     private String PersonBirth;
     private String FilmName;
 
+
     public VoiceQuery(String PersonName, String PersonBirth, String FilmName) {
         this.PersonName = PersonName;
         this.PersonBirth = PersonBirth;
@@ -13,5 +14,13 @@ public class VoiceQuery {
 
     public String getPersonName() {
         return this.PersonName;
+    }
+
+    public String getPersonBirth() {
+        return PersonBirth;
+    }
+
+    public String getFilmName() {
+        return FilmName;
     }
 }
