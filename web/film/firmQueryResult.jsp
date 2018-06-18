@@ -83,8 +83,14 @@
     if(object instanceof Firm){
         FirmQuery = (Firm) object;
     }
+    if(object == null){
+        %>
+<h1>对不起没有此公司</h1>
+<%
+    }
+    else {
     String Firm_City = "";
-    String Firm_Name = request.getParameter("FirmName");
+    String Firm_Name = request.getParameter("firmname");
     Firm_City = FirmQuery.getCity();
 
 %>
@@ -117,13 +123,13 @@
                 <p></p>
                 <%
                     }
-
+                    }
                 %>
             </div>
         </li>
     </ul>
     <div style="text-align: center;">
-        <button id="" type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/queryindex.jsp'">返回</button>
+        <button id="" type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/firmQuery.jsp'">返回</button>
     </div>
 </div>
 

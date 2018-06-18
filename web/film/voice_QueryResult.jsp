@@ -79,10 +79,16 @@
 </div>
 <%
     Object object = request.getAttribute("information");
-    List<VoiceQuery> voicequery = new ArrayList<>();
+    List<VoiceQuery> voicequery = null;
     if(object instanceof List){
         voicequery = (List<VoiceQuery>) object;
     }
+    if(voicequery.isEmpty()){
+        %>
+<h1>对不起没有此旁白</h1>
+<%
+    }
+    else {
     String Person_Name = request.getParameter("voicename");
     String Person_Birth = "";
     for (VoiceQuery voice:voicequery){
@@ -118,12 +124,13 @@
                 <p></p>
                 <%
                     }
+                    }
                 %>
             </div>
         </li>
     </ul>
     <div style="text-align: center;">
-        <button id="" type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/queryindex.jsp'">返回</button>
+        <button id="" type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/voice_Query.jsp'">返回</button>
     </div>
 </div>
 <div class="maincontainer">
