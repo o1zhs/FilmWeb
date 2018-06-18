@@ -178,6 +178,7 @@ public class DBOperator {
                     break;
                 //ID预查询
                 case "queryID":
+                    resultSet.next();
                     this.queryID = resultSet.getInt("max(IntID)");
                     break;
                 //粗略查询电影信息
