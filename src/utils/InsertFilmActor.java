@@ -16,7 +16,7 @@ public class InsertFilmActor {
         this.actorName = actorName;
         this.filmID = filmID;
         this.role = role;
-        this.dbOperator = new DBOperator("root1","L90efcad1");
+        this.dbOperator = new DBOperator("film","123456");
     }
 
     public void executeInsert(){

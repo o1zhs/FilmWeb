@@ -20,7 +20,7 @@ public class UpdateFilmActor {
         this.actorName1 = actorName1;
         this.role0 = role0;
         this.role1 = role1;
-        this.dbOperator = new DBOperator("root1","L90efcad1");
+        this.dbOperator = new DBOperator("film","123456");
     }
 
     public void executeUpdate(){

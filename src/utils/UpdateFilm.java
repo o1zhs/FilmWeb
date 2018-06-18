@@ -18,8 +18,8 @@ public class UpdateFilm {
     }
 
     public int executeUpdate(){
-        String username = "root1";
-        String password = "L90efcad1";
+        String username = "film";
+        String password = "123456";
         int affectRows;
         DBOperator dbOperator = new DBOperator(username,password);
         String firmID = dbOperator.preQuery(this.preSql,"FirmID");

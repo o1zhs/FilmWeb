@@ -16,8 +16,8 @@ public class InsertFirm {
     }
 
     public int executeInsert(){
-        String username = "root1";
-        String password = "L90efcad1";
+        String username = "film";
+        String password = "123456";
         int affectRows;
         DBOperator dbOperator = new DBOperator(username,password);
         affectRows = dbOperator.update(this.sql);
