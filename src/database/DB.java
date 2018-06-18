@@ -3,10 +3,10 @@ package database;
 import java.sql.*;
 
 public class DB {
-    private static String url = "jdbc:mysql://localhost:3306/film?useSSL=false&useUnicode=true&characterEncoding=UTF-8&useServerPrepStmts=true";
+    private static String url = "jdbc:mysql://wulasite.me:3306/film?useSSL=false&useUnicode=true&characterEncoding=UTF-8&useServerPrepStmts=true";
     private static String driverName = "com.mysql.jdbc.Driver";
-    private static String DBusername1 = "user1";
-    private static String DBpassword1 = "i9Gauf58Ol";
+    private static String DBusername1 = "film";
+    private static String DBpassword1 = "123456";
     private Connection conn;
     private Statement statement;
 

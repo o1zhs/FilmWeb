@@ -39,6 +39,9 @@ public class directorQueryServlet extends HttpServlet {
                         rs.getString("FilmName"));
 
                 information.add(directorQuery);
+                System.out.println(rs.getString("PersonName"));
+                System.out.println(rs.getString("PersonBirth"));
+                System.out.println(rs.getString("FilmName"));
             }
             request.setAttribute("information", information);
             request.getRequestDispatcher("film/directorQueryResult.jsp").forward(request,response);
