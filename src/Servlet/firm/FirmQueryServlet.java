@@ -15,7 +15,7 @@ public class FirmQueryServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
-        String firmName = request.getParameter("FirmName");
+        String firmName = request.getParameter("firmname");
         QueryFirm queryFirm = new QueryFirm(firmName);
         queryFirm.executeQuery();
         Firm firm = queryFirm.getFirm();

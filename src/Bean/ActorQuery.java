@@ -18,6 +18,7 @@ public class ActorQuery {
     public String getRole() {
         return Role;
     }
+
     public String getFilmName() {
         return FilmName;
     }

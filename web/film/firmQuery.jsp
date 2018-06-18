@@ -69,7 +69,8 @@
 </div>
 <div class="div-right2">
 
-    <form class="layui-form layui-form-pane" action="/FirmQuery" method="post">
+
+    <form class="layui-form layui-form-pane" method="post" action="${pageContext.request.contextPath}/FirmQuery">
         <tr >
             <td >
                 <div class="layui-form-item">
