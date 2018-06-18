@@ -14,8 +14,8 @@ public class CategoryDeleteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String category = request.getParameter("kind_delete");
 
-        String username = "root1";
-        String password = "L90efcad1";
+        String username = "root";
+        String password = "reku3in5";
         DBOperator dbOperator = new DBOperator(username,password);
         String sql = "delete from CategoryList where DYLB_LB='" + category + "' ;";
         int affectRows;

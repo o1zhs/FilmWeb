@@ -68,7 +68,7 @@
     </ul>
 </div>
 <div class="div-right2">
-    <form class="layui-form layui-form-pane">
+    <form class="layui-form layui-form-pane" action="/directorQuery" method="get">
         <tr >
             <td >
                 <div class="layui-form-item">
@@ -76,7 +76,7 @@
                         <font color="gray">导演姓名</font>
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="directorname" name="directorname" required lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                        <input name="directorname" required lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </td>

@@ -1,3 +1,12 @@
+<%@ page import="database.DBOperator" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Servlet.film.FilmQueryServlet" %>
+<%@ page import="Bean.Film" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="Bean.Person" %>
+<%@ page import="Bean.Actor" %>
+<%@ page import="com.sun.jdi.event.StepEvent" %>
+<%@ page import="Bean.DirectorQuery" %>
 <%--
   Created by IntelliJ IDEA.
   User: liu
@@ -6,10 +15,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.lang.Object" %>
-<%@ page import="Bean.DirectorQuery" %>
-<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,18 +24,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>电影信息管理系统</title>
     <script type="application/javascript" src="layui/layui.all.js"></script>
-    <link href="../layui/css/layui.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="../afctf/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="../afctf/css/reser.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="../afctf/css/countdown.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="../afctf/css/challenge.css" rel="stylesheet" type="text/css" media="all" />
-    <script src="../afctf/js/jquery-3.3.1.min.js"></script>
-    <script src="../afctf/js/layer/layer.js"></script>
-    <script src="../afctf/js/echarts.min.js"></script>
-    <script src="../afctf/js/utils.js"></script>
-    <script src="../afctf/js/challenge.js"></script>
-    <script src="../afctf/js/inputLimit.js"></script>
-    <script type="text/javascript" src="../value_js/jquery.min.2.0.js"></script>
+    <link href="layui/css/layui.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="afctf/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="afctf/css/reser.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="afctf/css/countdown.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="afctf/css/challenge.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="afctf/js/jquery-3.3.1.min.js"></script>
+    <script src="afctf/js/layer/layer.js"></script>
+    <script src="afctf/js/echarts.min.js"></script>
+    <script src="afctf/js/utils.js"></script>
+    <script src="afctf/js/challenge.js"></script>
+    <script src="afctf/js/inputLimit.js"></script>
+    <script type="text/javascript" src="value_js/jquery.min.2.0.js"></script>
     <style>
         .window{
             text-align: center;
@@ -51,7 +56,7 @@
 <div class="bh">
     <div class="header">
         <div class="logo">
-            <h1><a href=""><img src="../img/logo.png" alt=""></a></h1>
+            <h1><a href=""><img src="img/logo.png" alt=""></a></h1>
         </div>
         <div class='cssmenu' style="margin-left: 0;flex: 0 0 70%;max-width: 50%;display: block;width: 100%">
             <div class="title">
@@ -64,46 +69,64 @@
                 <li id="username"><span style="margin-right:20px;max-width:120px;display:block;overflow:hidden;">用户昵称</span>
                 </li>
                 <li><span>/</span></li>
-                <li id="logout"><a href="../login.jsp>退出登录</a></li>
+                <li id="logout"><a href="login.jsp" style="">退出登录</a></li>
             </ul>
         </div>
         <div class='cssmenu' style="margin-left: 0;flex: 0 0 4.5%;max-width: 10%;display: block;width: 100%">
             <ul>
-                <li><a href="" style="border-bottom: 0px"><img src="user.png" alt=""></a></li>
+                <li><a href="" style="border-bottom: 0px"><img src="/film/user.png" alt=""></a></li>
             </ul>
         </div>
     </div>
 </div>
+<%
+    Object object = request.getAttribute("information");
+    List<DirectorQuery> Directorquery = new ArrayList<>();
+    if(object instanceof List) {
+        Directorquery = (List<DirectorQuery>) object;
+    }
+    String Person_name = request.getParameter("directorname");
+    String Director_Birth = "";
+    for (DirectorQuery director: Directorquery){
+        Director_Birth = director.getPersonBirth();
+    }
 
+%>
 <div class="layui-container">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-        <legend style="text-align: center;">导演查询结果</legend>
+        <legend style="margin-left: 500px;">导演查询结果</legend>
     </fieldset>
     <ul class="layui-timeline" style="margin-left: 120px;">
         <li class="layui-timeline-item">
             <i class="layui-icon layui-timeline-axis"></i>
             <div class="layui-timeline-content layui-text">
-                <div class="layui-timeline-title">导演姓名：张浩森</div>
+                <div class="layui-timeline-title">导演姓名：<%=Person_name%></div>
             </div>
         </li>
         <li class="layui-timeline-item">
             <i class="layui-icon layui-timeline-axis"></i>
             <div class="layui-timeline-content layui-text">
-                <div class="layui-timeline-title">出生日期：1997年9月20日</div>
+                <div class="layui-timeline-title">出生日期：<%=Director_Birth%></div>
             </div>
         </li>
         <li class="layui-timeline-item">
             <i class="layui-icon layui-timeline-axis"></i>
             <div class="layui-timeline-content layui-text">
                 <div class="layui-timeline-title">导演电影：</div>
-                邱轶昊的大学生活
+                <%
+                    for (DirectorQuery director:Directorquery){
+                        String Director_Film = director.getFilmName();
+                %>
+                <%=Director_Film%>
                 <p></p>
-                邱轶昊的大学生活
+                <%
+                    }
+                %>
             </div>
         </li>
     </ul>
     <div style="text-align: center;">
-        <button id="" type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='queryindex.jsp'">返回</button>
+        <button id="" type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/queryindex.jsp'">返回</button>
     </div>
 </div>
 
@@ -124,7 +147,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" color="0,0,139" count="175" opacity="0.5" src="../canvas-nest.min.js"></script>
+<script type="text/javascript" color="0,0,139" count="175" opacity="0.5" src="canvas-nest.min.js"></script>
 <script type="text/javascript">
     /* 鼠标特效 */
     var a_idx = 0;

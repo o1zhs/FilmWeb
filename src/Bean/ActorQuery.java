@@ -1,5 +1,7 @@
 package Bean;
 
+import java.util.List;
+
 public class ActorQuery {
     private String Role;
     private String FilmName;
@@ -16,7 +18,6 @@ public class ActorQuery {
     public String getRole() {
         return Role;
     }
-
 
     public String getFilmName() {
         return FilmName;
@@ -46,3 +47,4 @@ public class ActorQuery {
         PersonName = personName;
     }
 }
+

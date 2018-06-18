@@ -34,7 +34,8 @@ public class actorQueryServlet extends HttpServlet {
             List<ActorQuery> information = new ArrayList<>();
             while(rs.next())
             {
-                ActorQuery actorQuery = new ActorQuery(rs.getString("Role"),
+                ActorQuery actorQuery = new ActorQuery(
+                        rs.getString("Role"),
                         rs.getString("FilmName"),
                         rs.getString("PersonName"),
                         rs.getString("PersonBirth"));
@@ -42,7 +43,7 @@ public class actorQueryServlet extends HttpServlet {
                 information.add(actorQuery);
             }
             request.setAttribute("information", information);
-            request.getRequestDispatcher("film/actorQueryResult.jsp").forward(request,response);
+            request.getRequestDispatcher("/film/actorQueryResult.jsp").forward(request,response);
 
         } catch (SQLException e) {
             e.printStackTrace();

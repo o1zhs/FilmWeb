@@ -1,3 +1,6 @@
+<%@ page import="database.DBOperator" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Bean.Film" %>
 <%--
   Created by IntelliJ IDEA.
   User: liu
@@ -94,139 +97,53 @@ layui.use('table', function(){
     <div class="layui-row">
         <div class="layui-col-xs6">
             <div style="margin:20px 0;"></div>
+            <%
+                String username = "root";
+                String password = "reku3in5";
+                String operateObject = "filmIndex";
+                String sql = "select Film.*,Firm.FirmName from Film,Firm where Film.FirmID=Firm.FirmID order by Film.IntId;";
+
+                DBOperator dbOperator = new DBOperator(username,password,operateObject);
+                dbOperator.query(sql);
+
+                List<Film> filmList = dbOperator.getFilmList();
+
+
+            %>
             <table class="easyui-datagrid" title="电影信息" style="width:650px;height:480px"
                    data-options="singleSelect:true,collapsible:true,method:'get'">
                 <thead>
                 <tr>
                     <th data-options="field:'itemid',width:80,align:'center'">电影编号</th>
-                    <th data-options="field:'productid',width:120,align:'center'">电影名称</th>
-                    <th data-options="field:'listprice',width:80">出品日期</th>
+                    <th data-options="field:'productid',width:160,align:'center'">电影名称</th>
+                    <th data-options="field:'listprice',width:80,align:'center'">出品日期</th>
                     <th data-options="field:'unitcost',width:70,align:'center'">电影时长</th>
                     <th data-options="field:'attr1',width:200,align:'center'">出品公司</th>
-                    <th data-options="field:'status',width:500">电影简介</th>
+                    <th data-options="field:'status',width:1000">电影简介</th>
                 </tr>
                 </thead>
                 <tbody>
+                <%
+                    for(Film film:filmList){
+                        String filmID = film.getFilmID();
+                        String firmName = film.getPublishFirm();
+                        String filmName = film.getFilmName();
+                        String filmYear = film.getPublishYear();
+                        String filmLength = film.getLength();
+                        String filmPlot =  film.getPlot();
+
+                %>
                 <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                    <td>120分钟</td>
-                    <td>湖南大学信息科学与工程学院</td>
-                    <td>张浩森和薛芸菲</td>
+                    <td><%= filmID%></td>
+                    <td><%= filmName%></td>
+                    <td><%= filmYear%></td>
+                    <td><%= filmLength%></td>
+                    <td><%= firmName%></td>
+                    <td><%= filmPlot%></td>
                 </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                    <td>120分钟</td>
-                    <td>湖南大学信息科学与工程学院</td>
-                    <td>张浩森和薛芸菲</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                    <td>120分钟</td>
-                    <td>湖南大学信息科学与工程学院</td>
-                    <td>张浩森和薛芸菲的点点滴滴多多多多多多多多多多多多多多多多多多多多多多多多多</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                    <td>120分钟</td>
-                    <td>湖南大学信息科学与工程学院</td>
-                    <td>张浩森和薛芸菲</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                    <td>120分钟</td>
-                    <td>湖南大学信息科学与工程学院</td>
-                    <td>张浩森和薛芸菲</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                    <td>120分钟</td>
-                    <td>湖南大学信息科学与工程学院</td>
-                    <td>张浩森和薛芸菲</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                    <td>120分钟</td>
-                    <td>湖南大学信息科学与工程学院</td>
-                    <td>张浩森和薛芸菲</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                    <td>120分钟</td>
-                    <td>湖南大学信息科学与工程学院</td>
-                    <td>张浩森和薛芸菲</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                    <td>120分钟</td>
-                    <td>湖南大学信息科学与工程学院</td>
-                    <td>张浩森和薛芸菲</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                    <td>120分钟</td>
-                    <td>湖南大学信息科学与工程学院</td>
-                    <td>张浩森和薛芸菲</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                    <td>120分钟</td>
-                    <td>湖南大学信息科学与工程学院</td>
-                    <td>张浩森和薛芸菲</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                    <td>120分钟</td>
-                    <td>湖南大学信息科学与工程学院</td>
-                    <td>张浩森和薛芸菲</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                    <td>120分钟</td>
-                    <td>湖南大学信息科学与工程学院</td>
-                    <td>张浩森和薛芸菲</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997-05-17</td>
-                    <td>120分钟</td>
-                    <td>湖南大学信息科学与工程学院</td>
-                    <td>张浩森和薛芸菲</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                    <td>120分钟</td>
-                    <td>湖南大学信息科学与工程学院</td>
-                    <td>张浩森和薛芸菲</td>
-                </tr>
+                <%
+                    }
+                %>
                 </tbody>
             </table>
         </div>

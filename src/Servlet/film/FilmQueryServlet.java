@@ -18,11 +18,11 @@ public class FilmQueryServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
-        String filmName = request.getParameter("Filmname");
+        String filmName = request.getParameter("FilmName");
         String filmCategory = request.getParameter("kind");
         System.out.println("查询电影了！************************************");
 
-        if(!filmName.equals("")) {
+        if(filmName != null) {
             System.out.println("按照名称查询电影");
             QueryFilm queryFilm = new QueryFilm(filmName, true);
             queryFilm.executeQuery();
@@ -37,7 +37,7 @@ public class FilmQueryServlet extends HttpServlet {
             System.out.println("输出结束");
             request.getRequestDispatcher("/film/filmNameQueryResult.jsp").forward(request,response);
         }
-        else if(!filmCategory.equals("")){
+        else if(filmCategory != null) {
             System.out.println("按照类别查询电影");
             QueryFilm queryFilm = new QueryFilm(filmCategory,false);
             queryFilm.executeQuery();

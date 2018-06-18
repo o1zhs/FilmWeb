@@ -94,39 +94,46 @@
         </li>
     </ul>
     <div style="text-align: center;">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend style="text-align: center;">添加类别或删除类别</legend>
+        </fieldset>
         <form class="layui-form layui-form-pane" action="" onsubmit="">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">输入类别</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmkind" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input type="tel" name="Filmkind" placeholder="请输入类别" required lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>
             <div align="center">
-                <input type="hidden" id="abc" name="abc" value="1">
-                <button id="1" type="submit" value="01" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='1'">添加类别</button>
-                <button id="2" type="submit" value="02" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='2'">删除类别</button>
+                <input type="hidden" id="abc" name="abc">
+                <input type="hidden" id="FilmID1" name="FilmID">
+                <button id="1" type="submit" value="01" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='1';this.form.FilmID.value=''">添加类别</button>
+                <button id="2" type="submit" value="02" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='2';this.form.FilmID.value=''">删除类别</button>
             </div>
         </form>
-        </br>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend style="text-align: center;">添加类别</legend>
+        </fieldset>
         <form id="filmform" class="layui-form layui-form-pane" action="" onsubmit="">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">输入类别</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmkind_cpre" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input type="tel" name="Filmkind_cpre" placeholder="请输入修改前的类别" required lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">修改类别</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmkind_clate" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input type="tel" name="Filmkind_clate" placeholder="请输入修改后的类别" required lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>
             <div align="center">
-                <button id="3" type="submit" value="03" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='3'">修改类别</button>
+                <input type="hidden" id="FilmID2" name="FilmID">
+                <button id="3" type="submit" value="03" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='3';this.form.FilmID.value=''">修改类别</button>
             </div>
         </form>
     </div>

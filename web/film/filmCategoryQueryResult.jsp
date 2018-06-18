@@ -1,3 +1,11 @@
+<%@ page import="database.DBOperator" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Servlet.film.FilmQueryServlet" %>
+<%@ page import="Bean.Film" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="Bean.Person" %>
+<%@ page import="Bean.Actor" %>
+<%@ page import="com.sun.jdi.event.StepEvent" %>
 <%--
   Created by IntelliJ IDEA.
   User: liu
@@ -43,11 +51,12 @@
         }
     </style>
 </head>
-<!--<body style="background: #f1f1f1;">-->
+<body>
+
 <div class="bh">
     <div class="header">
         <div class="logo">
-            <h1><a href=""><img src="../img/logo.png" alt=""></a></h1>
+            <h1><a href=""><img src="img/logo.png" alt=""></a></h1>
         </div>
         <div class='cssmenu' style="margin-left: 0;flex: 0 0 70%;max-width: 50%;display: block;width: 100%">
             <div class="title">
@@ -60,35 +69,47 @@
                 <li id="username"><span style="margin-right:20px;max-width:120px;display:block;overflow:hidden;">用户昵称</span>
                 </li>
                 <li><span>/</span></li>
-                <li id="logout"><a href="../login.jsp" style="">退出登录</a></li>
+                <li id="logout"><a href="login.jsp" style="">退出登录</a></li>
             </ul>
         </div>
         <div class='cssmenu' style="margin-left: 0;flex: 0 0 4.5%;max-width: 10%;display: block;width: 100%">
             <ul>
-                <li><a href="" style="border-bottom: 0px"><img src="user.png" alt=""></a></li>
+                <li><a href="" style="border-bottom: 0px"><img src="/film/user.png" alt=""></a></li>
             </ul>
         </div>
     </div>
 </div>
+<%
+    Object object = request.getAttribute("filmList");
+    List<Film> filmList = new ArrayList<>();
+    if(object instanceof List) {
+        filmList = (List<Film>) object;
+    }
+    String kind = request.getParameter("kind");
+
+%>
 <div class="layui-container">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-        <legend style="text-align: center;">电影查询结果</legend>
+        <legend style="margin-left: 500px;">电影查询结果</legend>
     </fieldset>
     <ul class="layui-timeline" style="margin-left: 120px;">
         <li class="layui-timeline-item">
             <i class="layui-icon layui-timeline-axis"></i>
             <div class="layui-timeline-content layui-text">
-                <div class="layui-timeline-title">动作片：</div>
-                邱轶昊的大学生活
+                <div class="layui-timeline-title"><%=kind%>片：</div>
+                <%
+                    for (Film film :filmList){
+                        String filmname = film.getFilmName();
+                %>
+                <%=filmname%>
                 <p></p>
-                邱轶昊的大学生活
-                <p></p>
-                邱轶昊的大学生活
-                <p></p>
+                <%
+                    }
+                %>
             </div>
     </ul>
     <div style="text-align: center;">
-        <button id="" type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='queryindex.jsp'">返回</button>
+        <button id="" type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/queryindex.jsp'">返回</button>
     </div>
 </div>
 
