@@ -93,67 +93,70 @@
         </li>
     </ul>
     <div style="text-align: center;">
-        <form id="filmform" class="layui-form layui-form-pane" action="" onsubmit="">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend style="text-align: center;">添加记录或删除记录</legend>
+        </fieldset>
+        <form class="layui-form layui-form-pane" action="" onsubmit="">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">输入演员</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmactor" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input type="tel" name="Filmactor" placeholder="请输入演员" required lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">输入角色</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="Filmrole" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input type="text" name="Filmrole" placeholder="请输入角色" required lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>
             <div align="center">
+                <input type="hidden" id="FilmID1" name="FilmID" value="1">
                 <input type="hidden" id="abc" name="abc" value="1">
-                <button id="1" type="submit" value="01" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='1'">添加</button>
-                <button id="2" type="submit" value="02" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='2'">删除</button>
+                <button id="1" type="submit" value="01" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='1';this.form.FilmID.value=''">添加</button>
+                <button id="2" type="submit" value="02" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='2';this.form.FilmID.value=''">删除</button>
             </div>
         </form>
-    <br>
+        </br>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend style="text-align: center;">修改演员或角色</legend>
+        </fieldset>
         <form class="layui-form layui-form-pane" action="" onsubmit="">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">输入演员</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmactor" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input type="tel" name="Filmactor0" required lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入原始的演员">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">输入角色</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="Filmrole" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input type="text" name="Filmrole0" required lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入原始的角色">
                     </div>
                 </div>
             </div>
-            <div align="center">
-                <button type="submit" value="03" class="layui-btn layui-btn-radius" style="margin-top: 30px;">修改角色</button>
-            </div>
-        </form>
-        <br>
-        <form class="layui-form layui-form-pane" action="" onsubmit="">
             <div class="layui-form-item">
-                <div class="layui-inline">
-                    <label class="layui-form-label">输入角色</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="Filmrole" required lay-verify="required" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">输入演员</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmactor" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input type="tel" name="Filmactor1" required lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入修改后的演员">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">输入角色</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="Filmrole1" required lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入修改后的角色">
                     </div>
                 </div>
             </div>
             <div align="center">
-                <button id="3" type="submit" value="03" class="layui-btn layui-btn-radius" style="margin-top: 30px;">修改演员</button>
+                <input type="hidden" id="FilmID2" name="FilmID" value="1">
+                <button id="3" type="submit" value="01" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='';this.form.FilmID.value=''">添加</button>
             </div>
         </form>
+        </br>
         </br>
         <button id="" class="layui-btn layui-btn-radius" onclick="window.location.href='FilmOtherChangeQuery.jsp'">返回</button>
     </div>

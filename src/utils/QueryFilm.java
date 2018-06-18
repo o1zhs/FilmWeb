@@ -29,8 +29,8 @@ public class QueryFilm {
     }
 
     public void executeQuery(){
-        String username = "root1";
-        String password = "L90efcad1";
+        String username = "root";
+        String password = "reku3in5";
         DBOperator dbOperator = new DBOperator(username, password,"film");
         dbOperator.query(this.sql);
         System.out.println(this.sql);

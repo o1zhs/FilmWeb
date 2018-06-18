@@ -15,8 +15,8 @@ public class DBLogin {
 
     private static String url="jdbc:mysql://localhost:3306/FilmSystemUser?useSSL=false&useUnicode=true&amp;characterEncoding=UTF-8";
     private static String driverName = "com.mysql.jdbc.Driver";
-    private static String DBusername1 = "user1";
-    private static String DBpassword1 = "i9Gauf58Ol";
+    private static String DBusername1 = "root";
+    private static String DBpassword1 = "reku3in5";
 
     private String tableName;
     private Connection conn;

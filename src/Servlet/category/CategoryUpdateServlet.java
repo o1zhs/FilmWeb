@@ -14,8 +14,8 @@ public class CategoryUpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String category0 = request.getParameter("kindc_pre");
         String category1 = request.getParameter("kindc_late");
-        String username = "root1";
-        String password = "L90efcad1";
+        String username = "root";
+        String password = "reku3in5";
         DBOperator dbOperator = new DBOperator(username,password);
         String sql = "update CategoryList set DYLB_LB='" + category1 + "' where DYLB_LB='" + category0 + "';";
         int affectRows;

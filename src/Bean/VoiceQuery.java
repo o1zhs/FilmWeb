@@ -14,4 +14,21 @@ public class VoiceQuery {
     public String getPersonName() {
         return this.PersonName;
     }
+    public String getPersonBirth() {
+        return this.PersonBirth;
+    }
+    public String getFilmName() {
+        return this.FilmName;
+    }
+    public void setPersonName(String personName) {
+        PersonName = personName;
+    }
+    public void setPersonBirth(String personBirth) {
+        PersonBirth = personBirth;
+    }
+
+    public void setFilmName(String filmName) {
+        FilmName = filmName;
+    }
+
 }

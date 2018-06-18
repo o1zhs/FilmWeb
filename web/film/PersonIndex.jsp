@@ -1,3 +1,7 @@
+<%@ page import="database.DBOperator" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Bean.Film" %>
+<%@ page import="Bean.Person" %>
 <%--
   Created by IntelliJ IDEA.
   User: zhang
@@ -90,11 +94,22 @@ layui.use('table', function(){
 });
 </script>
 </div>-->
+<%
+    String username = "root";
+    String password = "reku3in5";
+    String operateObject = "Person";
+    String sql = "select * from Person order by PersonID + 0";
+
+    DBOperator dbOperator = new DBOperator(username,password,operateObject);
+    dbOperator.query(sql);
+
+    List<Person> personList = dbOperator.getPersonList();
+%>
 <div class="maincontainer" style="margin-left: 120px;margin-right: 20px">
     <div class="layui-row">
         <div class="layui-col-xs6">
             </br>
-            <table class="easyui-datagrid" title="人物信息" style="width:600px;height:800px;"
+            <table class="easyui-datagrid" title="人物信息" style="width:600px;height:600px;"
                    data-options="singleSelect:true,collapsible:true,method:'get'">
                 <thead>
                 <tr>
@@ -104,31 +119,20 @@ layui.use('table', function(){
                 </tr>
                 </thead>
                 <tbody>
+                <%
+                    for (Person person:personList){
+                        String PersonID = person.getPersonID();
+                        String PersonName = person.getName();
+                        String PersonBirth = person.getBirth();
+                %>
                 <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
+                    <td><%=PersonID%></td>
+                    <td><%=PersonName%></td>
+                    <td><%=PersonBirth%></td>
                 </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                </tr>
+                <%
+                    }
+                %>
                 </tbody>
             </table>
         </div>
@@ -157,7 +161,7 @@ layui.use('table', function(){
 
             <form class="layui-form layui-form-pane" action="" onsubmit="">
                 <fieldset class="layui-elem-field layui-field-title">
-                    <legend>修改姓名</legend>
+                    <legend>修改信息</legend>
                 </fieldset>
                 <div class="layui-form-item">
                     <label class="layui-form-label">人物编号</label>
@@ -171,24 +175,10 @@ layui.use('table', function(){
                         <input type="text" name="person_name_up" required lay-verify="required" placeholder="请输入人物姓名" autocomplete="off" class="layui-input">
                     </div>
                 </div>
-                <div align="" style="margin-left: 100px;">
-                    <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius">修改记录</button>
-                </div>
-            </form>
-            <form class="layui-form layui-form-pane" action="" onsubmit="">
-                <fieldset class="layui-elem-field layui-field-title">
-                    <legend>修改生日</legend>
-                </fieldset>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">人物编号</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="person_num_upb" required lay-verify="required" placeholder="请输入人物编号" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">出生日期</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="person_date_up" required lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                        <input type="text" name="person_date_up" id="date1" required lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div align="" style="margin-left: 100px;">
@@ -202,13 +192,13 @@ layui.use('table', function(){
                 <div class="layui-form-item">
                     <label class="layui-form-label">人物编号</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="person_num_delete" lay-verify="required" placeholder="请输入人物编号" autocomplete="off" class="layui-input">
+                        <input type="text" name="person_num_delete" required lay-verify="required" placeholder="请输入人物编号" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">人物姓名</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="person_name_delete" lay-verify="required" placeholder="请输入人物姓名" autocomplete="off" class="layui-input">
+                        <input type="text" name="person_name_delete" required lay-verify="required" placeholder="请输入人物姓名" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div align="" style="margin-left: 100px;">

@@ -17,9 +17,7 @@ public class Actor {
         return actFilm;
     }
 
-    public List<String> getRole() {
-        return role;
-    }
+    public List<String> getRole() { return role; }
 
     public String getName() {
         return name;

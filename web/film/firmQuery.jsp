@@ -69,7 +69,7 @@
 </div>
 <div class="div-right2">
 
-    <form class="layui-form layui-form-pane">
+    <form class="layui-form layui-form-pane" action="/FirmQuery" method="post">
         <tr >
             <td >
                 <div class="layui-form-item">
@@ -77,7 +77,7 @@
                         <font color="gray">公司名称</font>
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="firmname" name="firmname" required lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+                        <input name="FirmName" required lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </td>

@@ -1,3 +1,7 @@
+<%@ page import="database.DBOperator" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Bean.Film" %>
+<%@ page import="Bean.Firm" %>
 <%--
   Created by IntelliJ IDEA.
   User: zhang
@@ -63,7 +67,6 @@
         </div>
     </div>
 </div>
-
 <!--<div class="layui-container">
 <table class="layui-hide" id="test"></table>
 <script src="../layui/layui.js" charset="utf-8"></script>
@@ -89,6 +92,17 @@ layui.use('table', function(){
 });
 </script>
 </div>-->
+<%
+    String username = "root";
+    String password = "reku3in5";
+    String operateObject = "categoryList";
+    String sql = "select * from CategoryList";
+
+    DBOperator dbOperator = new DBOperator(username,password,operateObject);
+    dbOperator.query(sql);
+
+    List<String> category = dbOperator.getCategoryList();
+%>
 <div class="maincontainer" style="margin-left: 120px;margin-right: 20px">
     <div class="layui-row">
         <div class="layui-col-xs6">
@@ -101,30 +115,15 @@ layui.use('table', function(){
                 </tr>
                 </thead>
                 <tbody>
+                <%
+                    for (String kind:category ){
+                %>
                 <tr>
-                    <td>动作片</td>
+                    <td><%=kind%></td>
                 </tr>
-                <tr>
-                    <td>动作片</td>
-                </tr>
-                <tr>
-                    <td>动作片</td>
-                </tr>
-                <tr>
-                    <td>动作片</td>
-                </tr>
-                <tr>
-                    <td>动作片</td>
-                </tr>
-                <tr>
-                    <td>动作片</td>
-                </tr>
-                <tr>
-                    <td>动作片</td>
-                </tr>
-                <tr>
-                    <td>动作片</td>
-                </tr>
+                <%
+                    }
+                %>
                 </tbody>
             </table>
         </div>
@@ -136,13 +135,15 @@ layui.use('table', function(){
                 <div class="layui-form-item">
                     <label class="layui-form-label">电影类别</label>
                     <div class="layui-input-inline">
-                        <select name="kindc_pre" required lay-filter="aihao">
+                        <select name="kindc_pre" required lay-verify="required">
                             <option value="" selected=""></option>
-                            <option value="0">万达</option>
-                            <option value="1">动作片</option>
-                            <option value="2">爱情片</option>
-                            <option value="3">喜剧片</option>
-                            <option value="4">恐怖片</option>
+                            <%
+                                for (String kind:category){
+                            %>
+                            <option value="<%=kind%>"><%=kind%></option>
+                            <%
+                                }
+                            %>
                         </select>
                     </div>
                 </div>
@@ -178,13 +179,15 @@ layui.use('table', function(){
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择类别</label>
                     <div class="layui-input-inline">
-                        <select name="kind_delete" lay-filter="" required>
+                        <select name="kind_delete" required lay-verify="required">
                             <option value="" selected=""></option>
-                            <option value="0">万达</option>
-                            <option value="1">动作片</option>
-                            <option value="2">爱情片</option>
-                            <option value="3">喜剧片</option>
-                            <option value="4">恐怖片</option>
+                            <%
+                                for (String kind:category){
+                            %>
+                            <option value="<%=kind%>"><%=kind%></option>
+                            <%
+                                }
+                            %>
                         </select>
                     </div>
                 </div>

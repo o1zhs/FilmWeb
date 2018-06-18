@@ -94,39 +94,46 @@
         </li>
     </ul>
     <div style="text-align: center;">
-        <form id="filmform" class="layui-form layui-form-pane" action="" onsubmit="">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend style="text-align: center;">添加旁白或删除旁白</legend>
+        </fieldset>
+        <form class="layui-form layui-form-pane" action="" onsubmit="">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">输入旁白</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmvoice" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input type="tel" name="Filmvoice" placeholder="请输入旁白" required lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>
             <div align="center">
-                <input type="hidden" id="abc" name="abc" value="1">
-                <button id="1" type="submit" value="01" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='1'">添加旁白</button>
-                <button id="2" type="submit" value="02" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='2'">删除旁白</button>
+                <input type="hidden" id="abc" name="abc">
+                <input type="hidden" id="FilmID1" name="FilmID">
+                <button id="1" type="submit" value="01" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='1';this.form.FilmID.value=''">添加旁白</button>
+                <button id="2" type="submit" value="02" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='2';this.form.FilmID.value=''">删除旁白</button>
             </div>
         </form>
-        </br>
-        <form id="filmform" class="layui-form layui-form-pane" action="" onsubmit="">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend style="text-align: center;">修改旁白</legend>
+        </fieldset>
+        <form class="layui-form layui-form-pane" action="" onsubmit="">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">输入旁白</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmvoice_cpre" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input type="tel" name="Filmvoice_cpre" placeholder="请输入修改前的旁白" required lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">修改旁白</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmvoice_clate" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input type="tel" name="Filmvoice_clate" placeholder="请输入修改后的旁白" required lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>
             <div align="center">
-                <button id="3" type="submit" value="03" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='3'">修改旁白</button>
+                <input type="hidden" id="FilmID2" name="FilmID">
+                <button id="3" type="submit" value="03" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='3';this.form.FilmID.value=''">修改旁白</button>
             </div>
         </form>
     </div>

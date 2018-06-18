@@ -68,7 +68,7 @@
     </ul>
 </div>
 <div class="div-right2">
-    <form class="layui-form layui-form-pane">
+    <form class="layui-form layui-form-pane" action="/voiceQuery" method="get">
         <tr >
             <td >
                 <div class="layui-form-item">
@@ -76,7 +76,7 @@
                         <font color="gray">旁白姓名</font>
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="voicename" name="voicename" required lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                        <input name="voicename" required lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </td>

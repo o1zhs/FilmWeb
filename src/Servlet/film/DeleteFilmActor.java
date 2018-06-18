@@ -16,7 +16,7 @@ public class DeleteFilmActor {
         this.filmID = filmID;
         this.actorName = actorName;
         this.role = role;
-        this.dbOperator = new DBOperator("root1","L90efcad1");
+        this.dbOperator = new DBOperator("root","reku3in5");
     }
 
     public void executeDelete(){

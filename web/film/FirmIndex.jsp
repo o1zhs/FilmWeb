@@ -1,3 +1,6 @@
+<%@ page import="database.DBOperator" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Bean.Firm" %>
 <%--
   Created by IntelliJ IDEA.
   User: zhang
@@ -90,6 +93,17 @@ layui.use('table', function(){
 });
 </script>
 </div>-->
+<%
+    String username = "root";
+    String password = "reku3in5";
+    String operateObject = "firmIndex";
+    String sql = "select * from Firm order by FirmID + 0";
+
+    DBOperator dbOperator = new DBOperator(username,password,operateObject);
+    dbOperator.query(sql);
+
+    List<Firm> firmList = dbOperator.getFirmList();
+%>
 <div class="maincontainer" style="margin-left: 120px;margin-right: 20px">
     <div class="layui-row">
         <div class="layui-col-xs6">
@@ -104,71 +118,20 @@ layui.use('table', function(){
                 </tr>
                 </thead>
                 <tbody>
+                <%
+                    for (Firm firmIndex: firmList){
+                        String FirmID = firmIndex.getFirmID();
+                        String FirmName = firmIndex.getFirmName();
+                        String FirmCity = firmIndex.getCity();
+                %>
                 <tr>
-                    <td>03285</td>
-                    <td>万达</td>
-                    <td>大连</td>
+                    <td><%=FirmID%></td>
+                    <td><%=FirmName%></td>
+                    <td><%=FirmCity%></td>
                 </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>万达</td>
-                    <td>大连</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>万达</td>
-                    <td>大连</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>万达</td>
-                    <td>大连</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>万达</td>
-                    <td>大连</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>万达</td>
-                    <td>大连</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>万达</td>
-                    <td>大连</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>万达</td>
-                    <td>大连</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>万达</td>
-                    <td>大连</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                </tr>
-                <tr>
-                    <td>03285</td>
-                    <td>张浩森和薛芸菲</td>
-                    <td>1997.05.17</td>
-                </tr>
+                <%
+                    }
+                %>
                 </tbody>
             </table>
         </div>
@@ -197,7 +160,7 @@ layui.use('table', function(){
 
             <form class="layui-form layui-form-pane" action="" onsubmit="">
                 <fieldset class="layui-elem-field layui-field-title">
-                    <legend>修改名称</legend>
+                    <legend>修改名称和城市</legend>
                 </fieldset>
                 <div class="layui-form-item">
                     <label class="layui-form-label">公司编号</label>
@@ -206,23 +169,9 @@ layui.use('table', function(){
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">公司姓名</label>
+                    <label class="layui-form-label">公司名称</label>
                     <div class="layui-input-inline">
                         <input type="text" name="firm_name_up" required lay-verify="required" placeholder="请输入公司名称" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div align="" style="margin-left: 100px;">
-                    <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius">修改记录</button>
-                </div>
-            </form>
-            <form class="layui-form layui-form-pane" action="" onsubmit="">
-                <fieldset class="layui-elem-field layui-field-title">
-                    <legend>修改城市</legend>
-                </fieldset>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">公司编号</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="firm_num_upb" required lay-verify="required" placeholder="请输入公司编号" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
