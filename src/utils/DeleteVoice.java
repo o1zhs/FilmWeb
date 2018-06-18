@@ -14,7 +14,7 @@ public class DeleteVoice {
     public DeleteVoice(String filmID,String voiceName){
         this.filmID = filmID;
         this.voiceName = voiceName;
-        this.dbOperator = new DBOperator("root1","L90efcad1");
+        this.dbOperator = new DBOperator("film","123456");
     }
 
     public void executeDelete(){

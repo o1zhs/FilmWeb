@@ -1,3 +1,7 @@
+<%@ page import="database.DBOperator" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Bean.Film" %>
+<%@ page import="Bean.Person" %>
 <%--
   Created by IntelliJ IDEA.
   User: liu
@@ -67,6 +71,17 @@
         <li class="sliding-element"><a href="../index.jsp" style="font-size:20px; font-family:verdana">返回</a></li>
     </ul>
 </div>
+<%
+    String username = "root";
+    String password = "reku3in5";
+    String operateObject = "categoryList";
+    String sql = "select * from CategoryList";
+
+    DBOperator dbOperator = new DBOperator(username,password,operateObject);
+    dbOperator.query(sql);
+
+    List<String> category = dbOperator.getCategoryList();
+%>
 <div class="div-right1">
     <form>
         <input type="radio" name="xx" value="fname" onclick="clickRadioValue()"><font color="gray">按照名称查询</font>
@@ -78,24 +93,26 @@
             <div class="layui-form-item">
                 <label class="layui-form-label"><font color="gray">电影名称</font></label>
                 <div class="layui-input-inline">
-                    <input type="text" name="Filmname" required lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+                    <input name="FilmName" required lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <td colspan="2" style="text-align:center">
-                <button id="" type="submit" class="layui-btn layui-btn-primary layui-btn-radius div-right3">查询</button>
+                <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius div-right3">查询</button>
             </td>
         </form>
-        <form id="ft" action="" style="visibility:hidden" class="layui-form layui-form-pane" action="" onsubmit="">
+        <form id="ft" action="/FilmQuery" style="visibility:hidden" class="layui-form layui-form-pane" method="post">
             <div class="layui-form-item">
                 <label class="layui-form-label"><font clolor="gray">电影类别</font></label>
                 <div class="layui-input-inline">
-                    <select required name="kind" lay-filter="kind">
+                    <select name="kind" required lay-verify="required">
                         <option value="" selected=""></option>
-                        <option value="0">动作片</option>
-                        <option value="1">恐怖片</option>
-                        <option value="2">喜剧片</option>
-                        <option value="3">科幻片</option>
-                        <option value="4">纪录片</option>
+                        <%
+                            for (String kind:category){
+                        %>
+                        <option value="<%=kind%>"><%=kind%></option>
+                        <%
+                            }
+                        %>
                     </select>
                 </div>
             </div>

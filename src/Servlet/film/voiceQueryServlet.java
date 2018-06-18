@@ -44,7 +44,7 @@ public class voiceQueryServlet extends HttpServlet {
                 System.out.println(rs.getString("FilmName"));
             }
             request.setAttribute("information", information);
-            request.getRequestDispatcher("film/voice_QueryResult.jsp").forward(request,response);
+            request.getRequestDispatcher("/film/voice_QueryResult.jsp").forward(request,response);
 
         } catch (SQLException e) {
             e.printStackTrace();

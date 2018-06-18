@@ -213,6 +213,7 @@
         <servlet-name>voiceQueryServlet</servlet-name>
         <url-pattern>/voiceQuery</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>CategoryInsertServlet</servlet-name>
         <servlet-class>Servlet.category.CategoryInsertServlet</servlet-class>

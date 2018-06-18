@@ -12,7 +12,7 @@ public class DeleteFilmCategory {
     public DeleteFilmCategory(String filmID,String category){
         this.filmID = filmID;
         this.category = category;
-        this.dbOperator = new DBOperator("root1","L90efcad1");
+        this.dbOperator = new DBOperator("film","123456");
     }
 
     public int getAffectRows() {

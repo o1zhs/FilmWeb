@@ -1,3 +1,11 @@
+<%@ page import="database.DBOperator" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Servlet.film.FilmQueryServlet" %>
+<%@ page import="Bean.Film" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="Bean.Person" %>
+<%@ page import="Bean.Actor" %>
+<%@ page import="com.sun.jdi.event.StepEvent" %>
 <%--
   Created by IntelliJ IDEA.
   User: liu
@@ -15,18 +23,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>电影信息管理系统</title>
     <script type="application/javascript" src="layui/layui.all.js"></script>
-    <link href="../layui/css/layui.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="../afctf/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="../afctf/css/reser.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="../afctf/css/countdown.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="../afctf/css/challenge.css" rel="stylesheet" type="text/css" media="all" />
-    <script src="../afctf/js/jquery-3.3.1.min.js"></script>
-    <script src="../afctf/js/layer/layer.js"></script>
-    <script src="../afctf/js/echarts.min.js"></script>
-    <script src="../afctf/js/utils.js"></script>
-    <script src="../afctf/js/challenge.js"></script>
-    <script src="../afctf/js/inputLimit.js"></script>
-    <script type="text/javascript" src="../value_js/jquery.min.2.0.js"></script>
+    <link href="layui/css/layui.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="afctf/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="afctf/css/reser.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="afctf/css/countdown.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="afctf/css/challenge.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="afctf/js/jquery-3.3.1.min.js"></script>
+    <script src="afctf/js/layer/layer.js"></script>
+    <script src="afctf/js/echarts.min.js"></script>
+    <script src="afctf/js/utils.js"></script>
+    <script src="afctf/js/challenge.js"></script>
+    <script src="afctf/js/inputLimit.js"></script>
+    <script type="text/javascript" src="value_js/jquery.min.2.0.js"></script>
     <style>
         .window{
             text-align: center;
@@ -47,7 +55,7 @@
 <div class="bh">
     <div class="header">
         <div class="logo">
-            <h1><a href=""><img src="../img/logo.png" alt=""></a></h1>
+            <h1><a href=""><img src="img/logo.png" alt=""></a></h1>
         </div>
         <div class='cssmenu' style="margin-left: 0;flex: 0 0 70%;max-width: 50%;display: block;width: 100%">
             <div class="title">
@@ -60,70 +68,140 @@
                 <li id="username"><span style="margin-right:20px;max-width:120px;display:block;overflow:hidden;">用户昵称</span>
                 </li>
                 <li><span>/</span></li>
-                <li id="logout"><a href="../login.jsp" style="">退出登录</a></li>
+                <li id="logout"><a href="login.jsp" style="">退出登录</a></li>
             </ul>
         </div>
         <div class='cssmenu' style="margin-left: 0;flex: 0 0 4.5%;max-width: 10%;display: block;width: 100%">
             <ul>
-                <li><a href="" style="border-bottom: 0px"><img src="user.png" alt=""></a></li>
+                <li><a href="" style="border-bottom: 0px"><img src="/film/user.png" alt=""></a></li>
             </ul>
         </div>
     </div>
 </div>
+<%
+    Object object = request.getAttribute("filmList");
+    List<Film> filmList = new ArrayList<>();
+    if(object instanceof List) {
+        filmList = (List<Film>) object;
+    }
+    //按名称查询电影的信息
+    for(Film film:filmList){
+        String filmname = film.getFilmName();
+        String filmyear = film.getPublishYear();
+        String filmlength = film.getLength();
+        String filmfirm = film.getPublishFirm();
+        List<Person> filmactor = film.getActor();
+        List<Person> filmdirector = film.getDirector();
+        List<String> filmcategory = film.getCategoryList();
+        String filmplot = film.getPlot();
+        List<Person> filmvoice = film.getVoice();
+%>
 <div class="layui-container">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-        <legend style="text-align: center;">电影查询结果</legend>
+        <legend style="margin-left: 500px;">电影查询结果</legend>
     </fieldset>
     <ul class="layui-timeline" style="margin-left: 120px;">
         <li class="layui-timeline-item">
             <i class="layui-icon layui-timeline-axis"></i>
             <div class="layui-timeline-content layui-text">
-                <div class="layui-timeline-title">电影名称：邱轶昊的大学生活</div>
+                <div class="layui-timeline-title">电影名称：<%=filmname%></div>
             </div>
         </li>
         <li class="layui-timeline-item">
             <i class="layui-icon layui-timeline-axis"></i>
             <div class="layui-timeline-content layui-text">
-                <div class="layui-timeline-title">出品日期：2019年6月1日</div>
+                <div class="layui-timeline-title">出品日期：<%=filmyear%></div>
             </div>
         </li>
         <li class="layui-timeline-item">
             <i class="layui-icon layui-timeline-axis"></i>
             <div class="layui-timeline-content layui-text">
-                <div class="layui-timeline-title">电影时长：120分钟</div>
+                <div class="layui-timeline-title">电影时长：<%=filmlength%>分钟</div>
             </div>
         </li>
         <li class="layui-timeline-item">
             <i class="layui-icon layui-timeline-axis"></i>
             <div class="layui-timeline-content layui-text">
-                <div class="layui-timeline-title">出品公司：湖南大学信息科学与工程学院</div>
+                <div class="layui-timeline-title">出品公司：<%=filmfirm%></div>
             </div>
         </li>
         <li class="layui-timeline-item">
             <i class="layui-icon layui-timeline-axis"></i>
             <div class="layui-timeline-content layui-text">
-                <div class="layui-timeline-title">电影导演：张浩森</div>
+                <div class="layui-timeline-title">电影导演：</div>
+                <%
+                    for (Person film_director:filmdirector){
+                        String Person_name = film_director.getName();
+                %>
+                <%=Person_name%>
+                <p></p>
+                <%
+                    }
+                %>
             </div>
         </li>
         <li class="layui-timeline-item">
             <i class="layui-icon layui-timeline-axis"></i>
             <div class="layui-timeline-content layui-text">
                 <div class="layui-timeline-title">电影演员：</div>
-                邱轶昊 饰演
+                <%
+                    for (Person film_actor:filmactor){
+                        String Person_name = film_actor.getName();  //演员姓名
+                        Actor filma = film_actor.getActor();        //获取演员饰演的角色
+                        List<String> filmal = filma.getRole();      //遍历演员饰演的角色
+                        for (String filmall:filmal){                //获取演员饰演的角色的String
+
+                %>
+                <%=Person_name%> 饰演 <%=filmall%>
                 <p></p>
-                邱轶昊 饰演
+                <%
+                    }
+                    }
+                %>
+            </div>
+        </li>
+        <li class="layui-timeline-item">
+            <i class="layui-icon layui-timeline-axis"></i>
+            <div class="layui-timeline-content layui-text">
+                <div class="layui-timeline-title">电影旁白：</div>
+                <%
+                    for (Person film_voice:filmvoice){
+                        String Person_name = film_voice.getName();
+                %>
+                <%=Person_name%>
+                <p></p>
+                <%
+                    }
+                %>
+            </div>
+        </li>
+        <li class="layui-timeline-item">
+            <i class="layui-icon layui-timeline-axis"></i>
+            <div class="layui-timeline-content layui-text">
+                <div class="layui-timeline-title">电影类别：</div>
+                <%
+                    for (String film_category:filmcategory){
+                %>
+                <%=film_category%>
+                <p></p>
+                <%
+                    }
+                %>
             </div>
         </li>
         <li class="layui-timeline-item">
             <i class="layui-icon layui-timeline-axis"></i>
             <div class="layui-timeline-content layui-text">
                 <div class="layui-timeline-title">电影简介：</div>
-                电影电佛挡杀佛捷恩斯附近哦is的是骂你哦收入划分iOS覅偶二十年覅偶是弄死你发对将诶佛借我我佛教二维我of囧闻发窘违法及偶尔玩法及偶尔我就覅偶尔我就覅偶尔我就覅偶尔玩飞机哦接地气我降低欧神诺才哦你出去玩抛弃我及偶尔发你哦违反new
+                <%=filmplot%>
             </div>
         </li>
     </ul>
+    <%
+        }
+    %>
     <div style="text-align: center;">
-        <button id="" class="layui-btn layui-btn-radius" onclick="window.location.href='queryindex.jsp'">返回</button>
+        <button id="" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/queryindex.jsp'">返回</button>
     </div>
 </div>
 
@@ -144,7 +222,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" color="0,0,139" count="175" opacity="0.5" src="../canvas-nest.min.js"></script>
+<script type="text/javascript" color="0,0,139" count="175" opacity="0.5" src="canvas-nest.min.js"></script>
 <script type="text/javascript">
     /* 鼠标特效 */
     var a_idx = 0;

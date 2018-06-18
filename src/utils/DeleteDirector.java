@@ -14,7 +14,7 @@ public class DeleteDirector {
     public DeleteDirector(String filmID,String directorName){
         this.filmID = filmID;
         this.directorName = directorName;
-        this.dbOperator = new DBOperator("root1","L90efcad1");
+        this.dbOperator = new DBOperator("film","123456");
     }
 
     public void executeDelete(){

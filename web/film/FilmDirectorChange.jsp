@@ -89,39 +89,46 @@
         </li>
     </ul>
     <div style="text-align: center;">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend style="text-align: center;">添加导演或删除导演</legend>
+        </fieldset>
         <form id="filmform" class="layui-form layui-form-pane" action="" onsubmit="">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">输入导演</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmdirector" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input type="tel" name="Filmdirector" placeholder="请输入导演" required lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>
             <div align="center">
                 <input type="hidden" id="abc" name="abc" value="1">
-                <button id="1" type="submit" value="01" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='1'">添加导演</button>
-                <button id="2" type="submit" value="02" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='2'">删除导演</button>
+                <input type="hidden" id="FilmID1" name="FilmID" value="1">
+                <button id="1" type="submit" value="01" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='1';this.form.FilmID1.value=''">添加导演</button>
+                <button id="2" type="submit" value="02" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='2';this.form.FilmID1.value=''">删除导演</button>
             </div>
         </form>
-        </br>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend style="text-align: center;">修改导演</legend>
+        </fieldset>
         <form class="layui-form layui-form-pane" action="" onsubmit="">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">输入导演</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmdirector_cpre" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input type="tel" name="Filmdirector_cpre" placeholder="请输入要修改的导演" required lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">修改导演</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmdirector_clate" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input type="tel" name="Filmdirector_clate" placeholder="请输入修改后的导演" required lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>
             <div align="center">
-                <button id="3" type="submit" value="03" class="layui-btn layui-btn-radius" style="margin-top: 30px;">修改导演</button>
+                <input type="hidden" id="FilmID2" name="FilmID" value="1">
+                <button id="3" type="submit" value="03" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='3';this.form.FilmID1.value=''">修改导演</button>
             </div>
         </form>
     </div>

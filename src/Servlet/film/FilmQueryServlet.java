@@ -20,21 +20,28 @@ public class FilmQueryServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         String filmName = request.getParameter("FilmName");
         String filmCategory = request.getParameter("kind");
-        Boolean isName = false;
-        List<Film> filmList = new ArrayList<>();
+        System.out.println("查询电影了！************************************");
+
         if(filmName != null) {
-            isName = true;
+            System.out.println("按照名称查询电影");
             QueryFilm queryFilm = new QueryFilm(filmName, true);
             queryFilm.executeQuery();
-            filmList = queryFilm.getFilmList();
+            List<Film> filmList = queryFilm.getFilmList();
             request.setAttribute("filmList", filmList);
+            for(Film film:filmList){
+                System.out.println("名称：" + film.getFilmName());
+                System.out.println("时长：" + film.getLength()+" min");
+                System.out.println("发行年份：" + film.getPublishYear());
+                System.out.println("情节：" + film.getPlot());
+            }
+            System.out.println("输出结束");
             request.getRequestDispatcher("/film/filmNameQueryResult.jsp").forward(request,response);
         }
-        else if(filmCategory != null){
-            isName = false;
+        else if(filmCategory != null) {
+            System.out.println("按照类别查询电影");
             QueryFilm queryFilm = new QueryFilm(filmCategory,false);
             queryFilm.executeQuery();
-            filmList = queryFilm.getFilmList();
+            List<Film> filmList = queryFilm.getFilmList();
             request.setAttribute("filmList", filmList);
             request.getRequestDispatcher("/film/filmCategoryQueryResult.jsp").forward(request,response);
         }

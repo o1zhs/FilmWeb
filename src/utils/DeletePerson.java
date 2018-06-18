@@ -18,7 +18,7 @@ public class DeletePerson {
 
     public int executeDelete(){
         int affectRows;
-        String username = "root";
+        String username = "film";
         String password = "123456";
         DBOperator dbOperator = new DBOperator(username,password);
         affectRows = dbOperator.update(this.sql);

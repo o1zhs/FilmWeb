@@ -44,7 +44,7 @@ public class directorQueryServlet extends HttpServlet {
                 System.out.println(rs.getString("FilmName"));
             }
             request.setAttribute("information", information);
-            request.getRequestDispatcher("film/directorQueryResult.jsp").forward(request,response);
+            request.getRequestDispatcher("/film/directorQueryResult.jsp").forward(request,response);
 
         } catch (SQLException e) {
             e.printStackTrace();

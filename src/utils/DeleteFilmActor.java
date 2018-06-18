@@ -1,4 +1,4 @@
-package Servlet.film;
+package utils;
 
 import database.DBOperator;
 
@@ -16,7 +16,7 @@ public class DeleteFilmActor {
         this.filmID = filmID;
         this.actorName = actorName;
         this.role = role;
-        this.dbOperator = new DBOperator("root1","L90efcad1");
+        this.dbOperator = new DBOperator("film","123456");
     }
 
     public void executeDelete(){

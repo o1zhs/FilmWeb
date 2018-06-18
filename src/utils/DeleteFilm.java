@@ -21,8 +21,8 @@ public class DeleteFilm {
     }
 
     public int executeDelete(){
-        String username = "root1";
-        String password = "L90efcad1";
+        String username = "film";
+        String password = "123456";
         DBOperator dbOperator = new DBOperator(username, password,"film");
         int affectRows = dbOperator.update(this.sql);
         return affectRows;

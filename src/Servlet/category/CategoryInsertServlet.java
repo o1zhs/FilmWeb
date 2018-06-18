@@ -14,8 +14,8 @@ public class CategoryInsertServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String category = request.getParameter("kind");
-        String username = "root1";
-        String password = "L90efcad1";
+        String username = "film";
+        String password = "123456";
         DBOperator dbOperator = new DBOperator(username,password);
         String sql = "insert into CategoryList (DYLB_LB) values ('" + category + "');";
         int affectRows;

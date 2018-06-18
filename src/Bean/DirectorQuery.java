@@ -14,4 +14,24 @@ public class DirectorQuery {
     public String getPersonName() {
         return this.PersonName;
     }
+
+    public String getPersonBirth() {
+        return PersonBirth;
+    }
+
+    public String getFilmName() {
+        return FilmName;
+    }
+
+    public void setPersonName(String personName) {
+        PersonName = personName;
+    }
+
+    public void setPersonBirth(String personBirth) {
+        PersonBirth = personBirth;
+    }
+
+    public void setFilmName(String filmName) {
+        FilmName = filmName;
+    }
 }

@@ -19,8 +19,8 @@ public class InsertFilm {
 
     public int executeInsert(){
         int affectRows;
-        String username = "root1";
-        String password = "L90efcad1";
+        String username = "film";
+        String password = "123456";
         DBOperator dbOperator = new DBOperator(username,password);
         String firmID = dbOperator.preQuery(this.preSql,"FirmID");
         this.setSql(firmID);

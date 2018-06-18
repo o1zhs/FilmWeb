@@ -1,7 +1,6 @@
 <%@ page import="database.DBOperator" %>
 <%@ page import="java.util.List" %>
-<%@ page import="Bean.Film" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="Bean.Film" %><%--
   Created by IntelliJ IDEA.
   User: zhang
   Date: 2018/6/10
@@ -98,8 +97,8 @@ layui.use('table', function(){
         <div class="layui-col-xs6">
             <div style="margin:20px 0;"></div>
             <%
-                String username = "user1";
-                String password = "abcD.1234";
+                String username = "root";
+                String password = "reku3in5";
                 String operateObject = "filmIndex";
                 String sql = "select Film.*,Firm.FirmName from Film,Firm where Film.FirmID=Firm.FirmID order by Film.IntId;";
 
@@ -124,7 +123,6 @@ layui.use('table', function(){
                 </thead>
                 <tbody>
                     <%
-
                         for(Film film:filmList){
                             String filmID = film.getFilmID();
                             String firmName = film.getPublishFirm();
