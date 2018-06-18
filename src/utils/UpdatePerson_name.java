@@ -8,8 +8,8 @@ public class UpdatePerson_name {
 
     public UpdatePerson_name(Person person){
         this.person = person;
-        this.sql = "update Person set PersonName='" + this.person.getName() +
-                " where PersonID='" + this.person.getPersonID() + "'; ";
+        this.sql = "update person set PersonName='" + this.person.getName() +
+                "' where PersonID='" + this.person.getPersonID() + "'; ";
     }
 
     public int executeUpdate(){

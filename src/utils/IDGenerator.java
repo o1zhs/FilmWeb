@@ -14,8 +14,8 @@ public class IDGenerator {
     }
 
     public void queryID(){
-        String username = "root1";
-        String password = "L90efcad1";
+        String username = "film";
+        String password = "123456";
         DBOperator dbOperator = new DBOperator(username,password,"queryID");
         dbOperator.query(this.sql);
         this.intID = dbOperator.getQueryID()+1;

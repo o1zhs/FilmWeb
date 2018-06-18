@@ -15,7 +15,7 @@ public class InsertVoice {
     public InsertVoice(String voiceName,String filmID){
         this.voiceName = voiceName;
         this.filmID = filmID;
-        this.dbOperator = new DBOperator("root1","L90efcad1");
+        this.dbOperator = new DBOperator("film","123456");
     }
 
     public void executeInsert(){

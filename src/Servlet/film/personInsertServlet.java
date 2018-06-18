@@ -20,20 +20,21 @@ public class personInsertServlet extends HttpServlet{
 
         IDGenerator idGenerator = new IDGenerator("Person");
         idGenerator.queryID();
-        String filmID = idGenerator.getRealID();
+        String personId = idGenerator.getRealID();
         int IntID = idGenerator.getIntID();
         String PersonName = request.getParameter("PersonName");
         String PersonBirth = request.getParameter("PersonBirth");
 
 
-        Person person = new Person("",PersonName,PersonBirth,
-                null,null,null);
+        Person person = new Person(personId,PersonName,PersonBirth,
+                null,null,null, IntID);
         InsertPerson insertPerson = new InsertPerson(person);
         this.affectRows = insertPerson.executeInsert();
         if(this.affectRows>0)
             this.insertInfo = "Insert successfully!";
         else
             this.insertInfo = "Insert failed;";
+        System.out.println(insertInfo);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

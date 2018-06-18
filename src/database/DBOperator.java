@@ -40,8 +40,8 @@ public class DBOperator {
      * @param operateObject
      */
     public DBOperator(String user, String password,String operateObject){
-        this.user = user;
-        this.password = password;
+        this.user = "film";
+        this.password = "123456";
         this.operateObject = operateObject;
     }
 
@@ -51,8 +51,8 @@ public class DBOperator {
      * @param password
      */
     public DBOperator(String user,String password){
-        this.user = user;
-        this.password = password;
+        this.user = "film";
+        this.password = "123456";
     }
 
     public Connection getSqlConnection(){
@@ -65,7 +65,7 @@ public class DBOperator {
         }
 
         try {
-            String url = "jdbc:mysql://localhost:3306/film??useSSL=false&useUnicode=true&characterEncoding=UTF-8&useServerPrepStmts=true";
+            String url = "jdbc:mysql://120.25.249.73:3306/film??useSSL=false&useUnicode=true&characterEncoding=UTF-8&useServerPrepStmts=true";
             sqlConnection = DriverManager.getConnection(url,this.user,this.password);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -178,6 +178,7 @@ public class DBOperator {
                     break;
                 //ID预查询
                 case "queryID":
+                    resultSet.next();
                     this.queryID = resultSet.getInt("max(IntID)");
                     break;
                 //粗略查询电影信息

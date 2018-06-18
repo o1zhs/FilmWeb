@@ -21,8 +21,8 @@ public class DeleteFirm {
 
     public int executeDelete(){
         int affectRows;
-        String username = "root1";
-        String password = "L90efcad1";
+        String username = "film";
+        String password = "123456";
         DBOperator dbOperator = new DBOperator(username,password);
         affectRows = dbOperator.update(this.sql);
         return affectRows;

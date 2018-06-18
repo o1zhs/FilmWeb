@@ -41,6 +41,10 @@ public class actorQueryServlet extends HttpServlet {
                         rs.getString("PersonBirth"));
 
                 information.add(actorQuery);
+                System.out.println(rs.getString("PersonName"));
+                System.out.println(rs.getString("PersonBirth"));
+                System.out.println(rs.getString("FilmName"));
+                System.out.println(rs.getString("Role"));
             }
             request.setAttribute("information", information);
             request.getRequestDispatcher("/film/actorQueryResult.jsp").forward(request,response);

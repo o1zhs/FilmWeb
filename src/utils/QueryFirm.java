@@ -10,8 +10,8 @@ public class QueryFirm {
 
     private Firm firm;
     private String firmName;
-    private String username = "root";
-    private String password = "reku3in5";
+    private String username = "film";
+    private String password = "123456";
     private String sql;
 
     private List<String> filmNameList = new ArrayList<>();

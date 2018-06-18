@@ -9,13 +9,13 @@ public class InsertPerson {
 
     public InsertPerson(Person person){
         this.person = person;
-        this.sql = "insert into Person (PersonName, PersonBirth) values" +
-                " ('" + this.person.getName() + "', '" + this.person.getBirth() + "', '";
+        this.sql = "insert into Person (PersonID, PersonName, PersonBirth, IntID) values" +
+                " ('" + this.person.getPersonID() + "', '" + this.person.getName() + "', '" + this.person.getBirth() + "', '"+ this.person.getIntID() + "')";
     }
 
     public int executeInsert(){
         int affectRows;
-        String username = "root";
+        String username = "film";
         String password = "123456";
         DBOperator dbOperator = new DBOperator(username,password);
         affectRows = dbOperator.update(this.sql);
