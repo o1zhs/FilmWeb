@@ -8,7 +8,7 @@ public class UpdatePerson_name {
 
     public UpdatePerson_name(Person person){
         this.person = person;
-        this.sql = "update person set PersonName='" + this.person.getName() +
+        this.sql = "update Person set PersonName='" + this.person.getName() +
                 "' where PersonID='" + this.person.getPersonID() + "'; ";
     }
 

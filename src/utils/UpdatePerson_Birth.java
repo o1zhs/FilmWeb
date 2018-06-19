@@ -10,7 +10,7 @@ public class UpdatePerson_Birth {
     public UpdatePerson_Birth(Person person){
         this.person = person;
         this.sql = "update Person set PersonBirth='" + this.person.getBirth() +
-                " where PersonID='" + this.person.getPersonID() + "'; ";
+                "' where PersonID='" + this.person.getPersonID() + "'; ";
     }
 
     public int executeUpdate(){
