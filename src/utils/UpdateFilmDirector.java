@@ -49,8 +49,8 @@ public class UpdateFilmDirector {
             //旧导演Person和新导演Person都存在的前提下，判断Director表是否存在旧导演
             this.directorID0 = this.dbOperator.preQuery(sql0,"PersonID");    //旧的导演PersonID
             this.directorID1 = this.dbOperator.preQuery(sql1,"PersonID");    //新的导演PersonID
-
-            String sql2 = "select * from Director where PersonID='" + this.directorID0 + "' ;";
+            //检查要修改的记录是否存在
+            String sql2 = "select * from Director where PersonID='" + this.directorID0 + "' and FilmID='" + this.filmID + "' ;";
             this.isExisted = this.dbOperator.checkExisted(sql2);
         }
     }

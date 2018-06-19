@@ -22,15 +22,32 @@ public class FilmActorUpdateServlet extends HttpServlet {
         String actorRole1 = request.getParameter("Filmrole1");
 
         UpdateFilmActor updateFilmActor = new UpdateFilmActor(filmID,actorName0,actorName1,actorRole0,actorRole1);
-        updateFilmActor.executeUpdate();
-        affectRows = updateFilmActor.getAffectRows();
-        if(affectRows>0)
-            updateInfo = "Update Successfully!";
-        else
-            updateInfo = "Update Failed!";
-        request.setAttribute("affectRows",affectRows);
-        request.setAttribute("updateInfo",updateInfo);
-        request.getRequestDispatcher("/film/FilmOtherChangeQuery.jsp").forward(request,response);
+        if(updateFilmActor.getTrue()){
+            updateFilmActor.executeUpdate();
+            affectRows = updateFilmActor.getAffectRows();
+            if(affectRows>0)
+                updateInfo = "Update Successfully!";
+            else
+                updateInfo = "Update Failed!";
+            request.setAttribute("affectRows",affectRows);
+            request.setAttribute("updateInfo",updateInfo);
+            request.getRequestDispatcher("/film/FilmOtherChangeQuery.jsp").forward(request,response);
+        }
+        else{
+            Boolean isExisted = null;
+            if(!updateFilmActor.getExisted()){   //插入的或者原对象不存在
+                isExisted = false;
+            }
+            else if(updateFilmActor.getSame()){  //Director表中已存在修改结果的记录,重复
+                isExisted = true;
+            }
+            request.setAttribute("isExisted",isExisted);
+            request.setAttribute("isTrue",updateFilmActor.getTrue());
+            request.setAttribute("errorOperation","Update");
+            request.setAttribute("errorObject","Actor");
+            request.getRequestDispatcher("/film/ErrorOutput.jsp").forward(request,response);
+        }
+
 
     }
 

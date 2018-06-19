@@ -19,14 +19,15 @@ public class InsertDirector {
         this.directorName = directorName;
         this.dbOperator = new DBOperator("film","123456");
 
+        this.isTrue = false;
         this.isExisted = true;
         this.isSame = false;
 
         this.preCheck0();
         if(this.isExisted){
             this.preCheck1();
-            if(this.isSame)
-                this.isTrue = false;
+            if(!this.isSame)
+                this.isTrue = true;
         }
         else{
             this.isTrue = false;

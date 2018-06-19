@@ -32,13 +32,19 @@ public class DeleteVoice {
     }
 
     private void preCheck(){
+        Boolean recordExisted = false;
         String sql0 = "select PersonID from Person where PersonName='" + this.voiceName + "' ;";
         this.isExisted = this.dbOperator.checkExisted(sql0);
         if(this.isExisted){
             //旁白Person已存在
             //预查询旁白的PersonID
             this.voiceID = this.dbOperator.preQuery(sql0,"PersonID");
+            //检查要删除的记录是否存在
+            String sql1 = "select * from Voice where PersonID='" + this.voiceID + "' and FilmID='"
+                    + this.filmID + "' ;";
+            recordExisted = this.dbOperator.checkExisted(sql1);
         }
+        this.isExisted = recordExisted;
     }
 
     public int getAffectRows() {

@@ -37,7 +37,7 @@ public class FilmVoiceUpdateServlet extends HttpServlet {
             if(!updateFilmVoice.getExisted()){   //插入的或者原对象不存在
                 isExisted = false;
             }
-            else if(updateFilmVoice.getSame()){  //Director表中已存在修改结果的记录
+            else if(updateFilmVoice.getSame()){  //Director表中已存在修改结果的记录，重复
                 isExisted = true;
             }
             request.setAttribute("isExisted",isExisted);
