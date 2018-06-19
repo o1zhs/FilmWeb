@@ -21,7 +21,7 @@ public class UpdateFilmDirector {
         this.filmID = filmID;
         this.directorName0 = directorName0;
         this.directorName1 = directorName1;
-        this.dbOperator = new DBOperator("root1","L90efcad1");
+        this.dbOperator = new DBOperator("film","123456");
 
         this.isTrue = false;
         this.isExisted = false;
@@ -36,11 +36,7 @@ public class UpdateFilmDirector {
     }
 
     public void executeUpdate(){
-        String sql0 = "select PersonID from Person where PersonName='" + this.directorName0 + "' ;";
-        String sql1 = "select PersonID from Person where PersonName='" + this.directorName1 + "' ;";
-
-
-
+        //执行修改
         String sql = "update Director set PersonID='" + this.directorID1 + "' where FilmID='" + this.filmID
                 + "' and PersonID='" + this.directorID0 + "' ;" ;
         this.affectRows = this.dbOperator.update(sql);
@@ -49,10 +45,11 @@ public class UpdateFilmDirector {
     private void preCheck0(){
         String sql0 = "select PersonID from Person where PersonName='" + this.directorName0 + "' ;";
         String sql1 = "select PersonID from Person where PersonName='" + this.directorName1 + "' ;";
-        this.directorID0 = this.dbOperator.preQuery(sql0,"PersonID");    //旧的导演PersonID
-        this.directorID1 = this.dbOperator.preQuery(sql1,"PersonID");    //新的导演PersonID
         if(this.dbOperator.checkExisted(sql0)&&this.dbOperator.checkExisted(sql1)){
             //旧导演Person和新导演Person都存在的前提下，判断Director表是否存在旧导演
+            this.directorID0 = this.dbOperator.preQuery(sql0,"PersonID");    //旧的导演PersonID
+            this.directorID1 = this.dbOperator.preQuery(sql1,"PersonID");    //新的导演PersonID
+
             String sql2 = "select * from Director where PersonID='" + this.directorID0 + "' ;";
             this.isExisted = this.dbOperator.checkExisted(sql2);
         }

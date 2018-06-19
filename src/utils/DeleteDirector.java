@@ -7,6 +7,7 @@ public class DeleteDirector {
     private String directorName;
     private String directorID;
     private int affectRows;
+
     private Boolean isTrue;
     private Boolean isExisted;
 
@@ -20,14 +21,7 @@ public class DeleteDirector {
         this.isExisted = false;
         this.isTrue = false;
         preCheck();
-        if(this.isExisted){
-            this.isTrue = true;
-        }
-        else{
-            //表中不存在要删除的记录
-            this.isTrue = false;
-        }
-
+        this.isTrue = this.isExisted;
 
     }
 

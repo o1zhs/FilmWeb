@@ -39,10 +39,10 @@ public class FilmDiretorChangeServlet extends HttpServlet {
             else{
                 Boolean isExisted = null;
                 if(!insertDirector.getExisted()){
-                    isExisted = false;      //插入的导演这个人尚不存在Person表中
+                    isExisted = false;      //插入的导演Person尚不存在Person表中
                 }
                 else if(insertDirector.getSame()){
-                    isExisted = true;       //插入的导演记录已存在
+                    isExisted = true;       //Director表中已存在与即将插入的导演完全相同的记录
                 }
                 request.setAttribute("isExisted",isExisted);
                 request.setAttribute("isTrue",insertDirector.getTrue());
@@ -72,12 +72,8 @@ public class FilmDiretorChangeServlet extends HttpServlet {
                 request.setAttribute("errorOperation","Delete");
                 request.setAttribute("errorObject","Director");
                 request.getRequestDispatcher("/film/ErrorOutput.jsp").forward(request,response);
-
             }
-
         }
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

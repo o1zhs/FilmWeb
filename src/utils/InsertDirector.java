@@ -50,7 +50,7 @@ public class InsertDirector {
         }
     }
 
-    public void preCheck1(){
+    private void preCheck1(){
         //查询是否已经有完全相同的记录存在
         String sql = "select * from Director where FilmID='" + this.filmID + "' and PersonID='" + this.directorID
                 + "';";
