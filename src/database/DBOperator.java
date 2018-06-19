@@ -271,7 +271,8 @@ public class DBOperator {
      * @return preString
      */
     public String preQuery(String sql,String object){
-        this.statement = getStatement();
+        if(this.statement == null)
+            this.statement = getStatement();
         String preString = null;
         try {
             ResultSet resultSet = statement.executeQuery(sql);
@@ -281,7 +282,6 @@ public class DBOperator {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        close();
         return preString;
     }
 
