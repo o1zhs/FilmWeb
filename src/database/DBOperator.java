@@ -97,7 +97,8 @@ public class DBOperator {
      */
     public void query(String sql){
         ResultSet resultSet = null;
-        this.statement = getStatement();
+        if(this.statement == null)
+            this.statement = getStatement();
 
         Statement stmt = getStatement();        //新建独立的stmt，方便在一次获取查询结果内再进行其他查询
         try {
@@ -283,6 +284,56 @@ public class DBOperator {
         close();
         return preString;
     }
+
+    /**
+     * 预查询函数，在插入和修改前检查是否有重复记录
+     * 同时用于，在修改和删除前检查修改和删除的对象是否不存在
+     * @param sql
+     * @return isExisted
+     */
+    public Boolean checkExisted(String sql){
+        Boolean isExisted = false;
+        Statement stmt = this.getStatement();
+        try {
+            ResultSet resultSet = stmt.executeQuery(sql);
+            if(resultSet.next()){
+                isExisted = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isExisted;
+    }
+
+//    /**
+//     *
+//     * @param sql
+//     * @return isExisted
+//     */
+//    public Boolean checkNotExisted(String sql){
+//        Boolean isExisted = false;
+//        Statement stmt = this.getStatement();
+//        try {
+//            ResultSet resultSet = stmt.executeQuery(sql);
+//            if(resultSet.next()){
+//                isExisted = true;
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            stmt.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return isExisted;
+//    }
+
 
     /**
      * 关闭SQL连接和Statement

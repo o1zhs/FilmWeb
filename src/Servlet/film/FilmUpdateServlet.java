@@ -24,14 +24,30 @@ public class FilmUpdateServlet extends HttpServlet {
         Film film = new Film(filmID,filmName,date,firmName,filmLength,
                 null,null,null,null,filmPlot);
         UpdateFilm updateFilm = new UpdateFilm(film);
-        int affectRows = updateFilm.executeUpdate();
-        if(affectRows>0)
-            updateInfo = "Update successfully!";
-        else
-            updateInfo = "Update failed!";
-        request.setAttribute("affectRows",affectRows);
-        request.setAttribute("updateInfo",updateInfo);
-        request.getRequestDispatcher("film/alterFilmIndex.jsp").forward(request,response);
+        if(updateFilm.getTrue()){
+            int affectRows = updateFilm.executeUpdate();
+            if(affectRows>0)
+                updateInfo = "Update successfully!";
+            else
+                updateInfo = "Update failed!";
+            request.setAttribute("affectRows",affectRows);
+            request.setAttribute("updateInfo",updateInfo);
+            request.getRequestDispatcher("film/alterFilmIndex.jsp").forward(request,response);
+        }
+        else{
+            Boolean isExisted = null;
+            if(!updateFilm.getExisted())
+                isExisted = false;
+            else if(updateFilm.getSame()){
+                isExisted = true;
+            }
+            request.setAttribute("isExisted",isExisted);
+            request.setAttribute("isTrue",updateFilm.getTrue());
+            request.setAttribute("errorOperation","Insert");
+            request.setAttribute("errorObject","Film");
+            request.getRequestDispatcher("/film/ErrorOutput.jsp").forward(request,response);
+        }
+
 
     }
 
