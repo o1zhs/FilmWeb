@@ -546,6 +546,7 @@ Firm firm;
 Boolean isTrue;				//是否正确
 Boolean isExisted;			//是否重复，1为重复，0为对象不存在
 String errorObject;			//出错对象，如Film,Person
+	{"Film","Actor","Voice","Director"}
 String errorOperation;		//操作类型，判断不成功的操作是插入、修改、删除的哪一个
 ~~~
 
