@@ -78,7 +78,7 @@
                         <font color="gray">公司名称</font>
                     </label>
                     <div class="layui-input-inline">
-                        <input name="FirmName" required lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+                        <input name="firmname" required lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </td>

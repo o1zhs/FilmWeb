@@ -81,10 +81,16 @@
 </div>
 <%
     Object object = request.getAttribute("information");
-    List<DirectorQuery> Directorquery = new ArrayList<>();
+    List<DirectorQuery> Directorquery = null;
     if(object instanceof List) {
         Directorquery = (List<DirectorQuery>) object;
     }
+    if(Directorquery.isEmpty()){
+        %>
+<h1>对不起没有此导演</h1>
+<%
+    }
+    else {
     String Person_name = request.getParameter("directorname");
     String Director_Birth = "";
     for (DirectorQuery director: Directorquery){
@@ -121,12 +127,13 @@
                 <p></p>
                 <%
                     }
+                    }
                 %>
             </div>
         </li>
     </ul>
     <div style="text-align: center;">
-        <button id="" type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/queryindex.jsp'">返回</button>
+        <button id="" type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/directorQuery.jsp'">返回</button>
     </div>
 </div>
 

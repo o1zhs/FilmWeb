@@ -32,14 +32,26 @@ public class FilmInsertServlet extends HttpServlet {
         Film film = new Film(filmID,filmName,date,firmName,filmLength,
                     null,null,null,null,filmPlot);
         InsertFilm insertFilm = new InsertFilm(film,IntID);
-        this.affectRows = insertFilm.executeInsert();
-        if(this.affectRows>0)
-            this.insertInfo = "Insert successfully!";
-        else
-            this.insertInfo = "Insert failed;";
-        request.setAttribute("affectRows",this.affectRows);
-        request.setAttribute("insertInfo",this.insertInfo);
-        request.getRequestDispatcher("/film/alterFilmIndex.jsp").forward(request,response);
+        if(insertFilm.getTrue()){
+            this.affectRows = insertFilm.executeInsert();
+            if(this.affectRows>0)
+                this.insertInfo = "Insert successfully!";
+            else
+                this.insertInfo = "Insert failed;";
+            request.setAttribute("affectRows",this.affectRows);
+            request.setAttribute("insertInfo",this.insertInfo);
+            request.getRequestDispatcher("/film/alterFilmIndex.jsp").forward(request,response);
+        }
+        else {
+            Boolean isTrue = insertFilm.getTrue();
+            Boolean isExisted = insertFilm.getExisted();
+            request.setAttribute("isTrue",isTrue);
+            request.setAttribute("isExisted",isExisted);
+            request.setAttribute("errorOperation","Insert");
+            request.setAttribute("errorObject","Film");
+            request.getRequestDispatcher("/film/ErrorOutput.jsp").forward(request,response);
+        }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -80,11 +80,17 @@
 </div>
 <%
     Object object = request.getAttribute("filmList");
-    List<Film> filmList = new ArrayList<>();
+    List<Film> filmList = null;
     if(object instanceof List) {
         filmList = (List<Film>) object;
     }
     //按名称查询电影的信息
+    if(filmList.isEmpty()){
+        %>
+<h1>对不起没有此记录</h1>
+<%
+    }
+    else{
     for(Film film:filmList){
         String filmname = film.getFilmName();
         String filmyear = film.getPublishYear();
@@ -199,9 +205,10 @@
     </ul>
     <%
         }
+        }
     %>
     <div style="text-align: center;">
-        <button id="" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/queryindex.jsp'">返回</button>
+        <button id="" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/filmQuery.jsp'">返回</button>
     </div>
 </div>
 

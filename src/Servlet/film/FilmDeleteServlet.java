@@ -19,21 +19,16 @@ public class FilmDeleteServlet extends HttpServlet {
         String filmName = request.getParameter("FilmName");
         String filmID = request.getParameter("FilmID");
 
+        DeleteFilm deleteFilm;
+
         //影响行数，即删除的行数
         int affectRows;
+        if(!filmName.equals(""))
+            deleteFilm = new DeleteFilm(filmID, filmName);
+        else
+            deleteFilm = new DeleteFilm(filmID);
 
-        if(!filmName.equals("")){
-            DeleteFilm deleteFilm = new DeleteFilm(filmID, filmName);
-            affectRows = deleteFilm.executeDelete();
-            if(affectRows >0)
-                this.resultInfo = "Delete Successfully!";
-            else
-                this.resultInfo = filmID + " " + filmName + " doesn't exists!";
-            request.setAttribute("affectRows", affectRows);
-            request.setAttribute("resultInfo",this.resultInfo);
-        }
-        else{
-            DeleteFilm deleteFilm = new DeleteFilm(filmID);
+        if(deleteFilm.getTrue()){
             affectRows = deleteFilm.executeDelete();
             if(affectRows >0)
                 this.resultInfo = "Delete Successfully!";
@@ -43,7 +38,13 @@ public class FilmDeleteServlet extends HttpServlet {
             request.setAttribute("resultInfo",this.resultInfo);
             request.getRequestDispatcher("film/alterFilmIndex.jsp").forward(request,response);
         }
-
+        else{
+            request.setAttribute("errorObject","Film");
+            request.setAttribute("errorOperation","Delete");
+            request.setAttribute("isTrue",deleteFilm.getTrue());
+            request.setAttribute("isExisted",deleteFilm.getExisted());
+            request.getRequestDispatcher("/film/ErrorOutput.jsp").forward(request,response);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -536,3 +536,17 @@ Firm firm;
 页面功能：按照姓名查询旁白，包括其生日和旁白的所有电影。
 
 返回按钮返回queryindex.jsp。
+
+### 27、ErrorOutput.jsp
+
+页面功能：返回错误信息
+
+~~~java
+返回参数列表及用途：
+Boolean isTrue;				//是否正确
+Boolean isExisted;			//是否重复，1为重复，0为对象不存在
+String errorObject;			//出错对象，如Film,Person
+	{"Film","Actor","Voice","Director"}
+String errorOperation;		//操作类型，判断不成功的操作是插入、修改、删除的哪一个
+~~~
+

@@ -1,9 +1,12 @@
 package Bean;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Firm {
+    private Boolean isNull = true;
     private String firmID;
     private String firmName;
     private String city;
@@ -14,6 +17,7 @@ public class Firm {
         this.firmName = firmName;
         this.city = city;
         this.filmNamelist = filmNamelist;
+        this.isNull = false;
     }
 
     public String getFirmID() {
@@ -30,5 +34,9 @@ public class Firm {
 
     public List<String> getFilmNamelist() {
         return filmNamelist;
+    }
+
+    public Boolean getNull() {
+        return isNull;
     }
 }
