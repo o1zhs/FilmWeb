@@ -108,13 +108,15 @@ layui.use('table', function(){
     <div class="layui-row">
         <div class="layui-col-xs6">
             </br>
-            <table class="easyui-datagrid" title="公司信息" style="width:600px;height:800px;"
+            <table class="easyui-datagrid" title="公司信息" style="width:600px;height:400px;"
                    data-options="singleSelect:true,collapsible:true,method:'get'">
                 <thead>
                 <tr>
-                    <th data-options="field:'itemid',width:200,align:'center'">公司编号</th>
-                    <th data-options="field:'productid',width:200,align:'center'">公司名称</th>
-                    <th data-options="field:'listprice',width:200,align:'center'">所在城市</th>
+                    <th data-options="field:'itemid',width:80,align:'center'">公司编号</th>
+                    <th data-options="field:'productid',width:180,align:'center'">公司名称</th>
+                    <th data-options="field:'listprice',width:100,align:'center'">所在城市</th>
+                    <th data-options="field:'listid',width:80,align:'center'">删除操作</th>
+                    <th data-options="field:'list1',width:100,align:'center'">改名字或城市</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -128,6 +130,21 @@ layui.use('table', function(){
                     <td><%=FirmID%></td>
                     <td><%=FirmName%></td>
                     <td><%=FirmCity%></td>
+                    <td>
+                        <form action="/FirmDelete" method="post">
+                            <input type="hidden" name="mark">
+                            <input type="hidden" name="FirmID">
+                            <input type="hidden" name="FirmName">
+                            <button type="submit" onclick="this.form.mark.value='5';this.form.FirmID.value='<%=FirmID%>';this.form.FirmName.value='<%=FirmName%>';javascript:return p_del()">删除记录</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="FirmCityNamechange.jsp">
+                            <input type="hidden" name="mark">
+                            <input type="hidden" name="firm_num_upn">
+                            <button type="submit" onclick="this.form.mark.value='5';this.form.firm_num_upn.value='<%=FirmID%>';this.form.FirmName.value='<%=FirmName%>';javascript:return p_del()">修改</button>
+                        </form>
+                    </td>
                 </tr>
                 <%
                     }
@@ -184,27 +201,6 @@ layui.use('table', function(){
                 <div align="" style="margin-left: 100px;">
                     <input type="hidden" name="mark">
                     <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='5'">修改记录</button>
-                </div>
-            </form>
-            <form class="layui-form layui-form-pane" action="/FirmDelete" method="post">
-                <fieldset class="layui-elem-field layui-field-title">
-                    <legend>删除公司</legend>
-                </fieldset>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">公司编号</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="FirmID" required lay-verify="required" placeholder="请输入公司编号" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">公司名称</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="FirmName" required lay-verify="required" placeholder="请输入公司名称" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div align="" style="margin-left: 100px;">
-                    <input type="hidden" name="mark">
-                    <button id="" type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='5';javascript:return p_del()">删除记录</button>
                 </div>
             </form>
         </div>

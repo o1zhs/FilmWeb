@@ -113,9 +113,12 @@ layui.use('table', function(){
                    data-options="singleSelect:true,collapsible:true,method:'get'">
                 <thead>
                 <tr>
-                    <th data-options="field:'itemid',width:200,align:'center'">人物编号</th>
-                    <th data-options="field:'productid',width:200,align:'center'">人物姓名</th>
-                    <th data-options="field:'listprice',width:200,align:'center'">出生日期</th>
+                    <th data-options="field:'itemid',width:100,align:'center'">人物编号</th>
+                    <th data-options="field:'productid',width:150,align:'center'">人物姓名</th>
+                    <th data-options="field:'listprice',width:150,align:'center'">出生日期</th>
+                    <th data-options="field:'listpric1',width:50,align:'center'">删除</th>
+                    <th data-options="field:'listpric2',width:70,align:'center'">改生日</th>
+                    <th data-options="field:'listpric3',width:70,align:'center'">改名字</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -129,6 +132,28 @@ layui.use('table', function(){
                     <td><%=PersonID%></td>
                     <td><%=PersonName%></td>
                     <td><%=PersonBirth%></td>
+                    <td>
+                        <form action="/PersonDelete" method="post">
+                            <input type="hidden" name="mark">
+                            <input type="hidden" name="PersonID">
+                            <input type="hidden" name="PersonName">
+                            <button type="submit" onclick="this.form.mark.value='4';this.form.PersonID.value='<%=PersonID%>';this.form.PersonName.value='<%=PersonName%>';javascript:return p_del()">删除</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="Personbirth.jsp">
+                            <input type="hidden" name="mark">
+                            <input type="hidden" name="PersonID">
+                            <button type="submit" onclick="this.form.mark.value='4';this.form.PersonID.value='<%=PersonID%>'">改生日</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="Personname.jsp">
+                            <input type="hidden" name="mark">
+                            <input type="hidden" name="PersonID">
+                            <button type="submit" onclick="this.form.mark.value='4';this.form.PersonID.value='<%=PersonID%>'">改名字</button>
+                        </form>
+                    </td>
                 </tr>
                 <%
                     }
@@ -160,7 +185,7 @@ layui.use('table', function(){
             </form>
             <p></p>
 
-            <form class="layui-form layui-form-pane" action="/PersonUpdateName" method="post">
+            <!--<form class="layui-form layui-form-pane" action="/PersonUpdateName" method="post">
                 <fieldset class="layui-elem-field layui-field-title">
                     <legend>修改姓名</legend>
                 </fieldset>
@@ -222,7 +247,7 @@ layui.use('table', function(){
                     <input type="hidden" name="mark">
                     <button id="1" type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='4';javascript:return p_del()">删除记录</button>
                 </div>
-            </form>
+            </form>-->
         </div>
     </div>
 </div>
