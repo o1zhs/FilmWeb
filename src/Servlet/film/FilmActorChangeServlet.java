@@ -25,7 +25,6 @@ public class FilmActorChangeServlet extends HttpServlet {
         String actorRole = request.getParameter("Filmrole");
 
 
-
         String resultInfo;
         int affectRows;
         if(id.equals("1")){         //1、添加演员
