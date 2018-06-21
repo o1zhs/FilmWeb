@@ -155,7 +155,7 @@ layui.use('table', function(){
                     </br>
                     <label class="layui-form-label">请输入</label>
                     <div class="layui-input-block">
-                        <input type="text" name="FilmID" placeholder="请输入要管理的电影编号" autocomplete="off" required lay-verify="required" class="layui-input">
+                        <input type="number" name="FilmID" placeholder="请输入要管理的电影编号" autocomplete="off" required lay-verify="required" class="layui-input">
                     </div>
                 </div>
                 <div align="center">

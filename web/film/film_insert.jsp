@@ -201,7 +201,7 @@ layui.use('table', function(){
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">电影简介</label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入内容" name="FilmPot" class="layui-textarea"></textarea>
+                        <textarea placeholder="请输入内容" name="FilmPlot" class="layui-textarea"></textarea>
                     </div>
                 </div>
                 <div align="center">
@@ -217,7 +217,28 @@ layui.use('table', function(){
         </div>
     </div>
 </div>
+<script language="javascript">
+    function checkForm(){
+        var userValue=document.getElementById('nn').value;
+        var regu= /^([a-zA-Z0-9]|[._]){4,10}$/;
+        if (userValue =="")
+        {
+            alert("请输入用户名称")
+            return false;
+        }
+        else {
+            if(!regu.exec(userValue))
+            {
+                alert("输入错误");
+            }else
+            {
 
+                alert("输入正确");
+                return true
+            }
+        }
+    }
+</script>
 <script src="../layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>

@@ -58,6 +58,7 @@
 </div>
 <%
     Object object = request.getAttribute("isExisted");
+
 %>
 <div class="maincontainer">
     <script src='../afctf/js/TweenMax.min.js'></script>
