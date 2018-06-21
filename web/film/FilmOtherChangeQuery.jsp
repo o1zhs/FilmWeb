@@ -95,7 +95,6 @@ layui.use('table', function(){
 </div>-->
 <div class="maincontainer" style="margin-left: 20px;margin-right: 20px">
     <div class="layui-row">
-        <div class="layui-col-xs6">
             <div style="margin:20px 0;"></div>
             <%
                 String username = "film";
@@ -108,16 +107,16 @@ layui.use('table', function(){
 
                 List<Film> filmList = dbOperator.getFilmList();
             %>
-            <table class="easyui-datagrid" title="电影信息" style="width:650px;height:480px"
-                   data-options="singleSelect:true,collapsible:true,method:'get'">
+            <table class="easyui-datagrid" title="电影信息" style="width:1320px;height:480px;"
+                   data-options="rownumbers:true,singleSelect:true,pagination:true,method:'get'">
                 <thead>
                 <tr>
-                    <th data-options="field:'itemid',width:80,align:'center'">电影编号</th>
-                    <th data-options="field:'productid',width:160,align:'center'">电影名称</th>
-                    <th data-options="field:'listprice',width:80,align:'center'">出品日期</th>
-                    <th data-options="field:'unitcost',width:70,align:'center'">电影时长</th>
-                    <th data-options="field:'attr1',width:200,align:'center'">出品公司</th>
-                    <th data-options="field:'status',width:1000">电影简介</th>
+                    <th data-options="field:'itemid',width:180,align:'center'">电影编号</th>
+                    <th data-options="field:'productid',width:260,align:'center'">电影名称</th>
+                    <th data-options="field:'listprice',width:180,align:'center'">出品日期</th>
+                    <th data-options="field:'unitcost',width:170,align:'center'">电影时长</th>
+                    <th data-options="field:'attr1',width:300,align:'center'">出品公司</th>
+                    <th data-options="field:'status',width:250">操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -137,7 +136,17 @@ layui.use('table', function(){
                     <td><%= filmYear%></td>
                     <td><%= filmLength%></td>
                     <td><%= firmName%></td>
-                    <td><%= filmPlot%></td>
+                    <td>
+                        <form action="/FilmQuery" method="post">
+                            <input type="hidden" name="FilmID">
+                            <input type="hidden" name="abc">
+                            <input type="hidden" name="FilmName">
+                            <button type="submit" onclick="this.form.FilmID.value='<%=filmID%>';this.form.abc.value='1';this.form.FilmName.value='<%=filmName%>'">导演</button>
+                            <button type="submit" onclick="this.form.FilmID.value='<%=filmID%>';this.form.abc.value='2';this.form.FilmName.value='<%=filmName%>'">演员</button>
+                            <button type="submit" onclick="this.form.FilmID.value='<%=filmID%>';this.form.abc.value='3';this.form.FilmName.value='<%=filmName%>'">旁白</button>
+                            <button type="submit" onclick="this.form.FilmID.value='<%=filmID%>';this.form.abc.value='4';this.form.FilmName.value='<%=filmName%>'">类别</button>
+                        </form>
+                    </td>
                 </tr>
                 <%
                     }
@@ -145,36 +154,35 @@ layui.use('table', function(){
                 </tbody>
             </table>
         </div>
-        <div class="layui-col-xs6" style="margin-top: 20px">
-            <form id="filmform" class="layui-form layui-form-pane" action="/FilmQuery" method="post">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">请输入</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="FilmName" placeholder="请输入要管理的电影名称" autocomplete="off" required lay-verify="required" class="layui-input">
-                    </div>
-                    </br>
-                    <label class="layui-form-label">请输入</label>
-                    <div class="layui-input-block">
-                        <input type="number" name="FilmID" placeholder="请输入要管理的电影编号" autocomplete="off" required lay-verify="required" class="layui-input">
-                    </div>
-                </div>
-                <div align="center">
-                    <input type="hidden" id="abc" name="abc" value="1">
-                    <button id="1" type="submit" value="01" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='1'">导演管理</button>
-                    <button id="2" type="submit" value="02" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='2'">演员管理</button>
-                    <button id="3" type="submit" value="03" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='3'">旁白管理</button>
-                    <button id="4" type="submit" value="03" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='4'">类别管理</button>
-                </div>
-            </form>
-            </br>
-            </br>
+</br>
+    </br>
             <div align="center">
                 <button id="5" type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='alterFilmIndex.jsp'">返回</button>
             </div>
-        </div>
-    </div>
 </div>
-
+<script type="text/javascript">
+    $(function(){
+        var pager = $('#dg').datagrid().datagrid('getPager');	// get the pager of datagrid
+        pager.pagination({
+            buttons:[{
+                iconCls:'icon-search',
+                handler:function(){
+                    alert('search');
+                }
+            },{
+                iconCls:'icon-add',
+                handler:function(){
+                    alert('add');
+                }
+            },{
+                iconCls:'icon-edit',
+                handler:function(){
+                    alert('edit');
+                }
+            }]
+        });
+    })
+</script>
 <script src="../layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
