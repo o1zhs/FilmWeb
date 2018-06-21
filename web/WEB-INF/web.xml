@@ -146,13 +146,22 @@
         <url-pattern>/FirmDelete</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>FirmUpdateServlet</servlet-name>
-        <servlet-class>Servlet.firm.FirmUpdateServlet</servlet-class>
+        <servlet-name>FirmUpdateNameServlet</servlet-name>
+        <servlet-class>Servlet.firm.FirmUpdateNameServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>FirmUpdateServlet</servlet-name>
-        <url-pattern>/FirmUpdate</url-pattern>
+        <servlet-name>FirmUpdateNameServlet</servlet-name>
+        <url-pattern>/FirmUpdateName</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>FirmUpdateCityServlet</servlet-name>
+        <servlet-class>Servlet.firm.FirmUpdateCityServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FirmUpdateCityServlet</servlet-name>
+        <url-pattern>/FirmUpdateCity</url-pattern>
+    </servlet-mapping>
+
 
 
     <!-- 所以这个应该actorQueryServlet放到哪并不知道 -->
@@ -238,4 +247,5 @@
         <servlet-name>CategoryDeleteServlet</servlet-name>
         <url-pattern>/CategoryDelete</url-pattern>
     </servlet-mapping>
+
 </web-app>

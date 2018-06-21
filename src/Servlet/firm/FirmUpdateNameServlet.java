@@ -1,8 +1,7 @@
 package Servlet.firm;
 
 import Bean.Firm;
-import utils.UpdateFilm;
-import utils.UpdateFirm;
+import utils.UpdateFirmName;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,15 +13,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "FirmUpdateServlet")
-public class FirmUpdateServlet extends HttpServlet {
+@WebServlet(name = "FirmUpdateNameServlet")
+public class FirmUpdateNameServlet extends HttpServlet {
     private int affectRows;
     private String updateInfo;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         String firmID = request.getParameter("firm_num_upn");
         String firmName = request.getParameter("firm_name_up");
-        String city = request.getParameter("city");
+
 
         Boolean isTrue = true;        //是否正确
         Boolean isExisted;        //是否重复，1为重复，0为对象不存在
@@ -121,8 +120,8 @@ public class FirmUpdateServlet extends HttpServlet {
         }
         request.setAttribute("isTrue", isTrue);
         if (isTrue) {
-            Firm firm = new Firm(firmID, firmName, city, null);
-            UpdateFirm updateFirm = new UpdateFirm(firm);
+            Firm firm = new Firm(firmID, firmName, null, null);
+            UpdateFirmName updateFirm = new UpdateFirmName(firm);
             this.affectRows = updateFirm.executeUpdate();
             if (affectRows > 0)
                 updateInfo = "Update successfully!";
