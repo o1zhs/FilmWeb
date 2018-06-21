@@ -98,8 +98,8 @@ layui.use('table', function(){
         <div class="layui-col-xs6">
             <div style="margin:20px 0;"></div>
             <%
-                String username = "root";
-                String password = "reku3in5";
+                String username = "film";
+                String password = "123456";
                 String operateObject = "filmIndex";
                 String sql = "select Film.*,Firm.FirmName from Film,Firm where Film.FirmID=Firm.FirmID order by Film.IntId;";
 
@@ -107,8 +107,6 @@ layui.use('table', function(){
                 dbOperator.query(sql);
 
                 List<Film> filmList = dbOperator.getFilmList();
-
-
             %>
             <table class="easyui-datagrid" title="电影信息" style="width:650px;height:480px"
                    data-options="singleSelect:true,collapsible:true,method:'get'">
@@ -148,7 +146,7 @@ layui.use('table', function(){
             </table>
         </div>
         <div class="layui-col-xs6" style="margin-top: 20px">
-            <form id="filmform" class="layui-form layui-form-pane" action="" onsubmit="">
+            <form id="filmform" class="layui-form layui-form-pane" action="/FilmQuery" method="post">
                 <div class="layui-form-item">
                     <label class="layui-form-label">请输入</label>
                     <div class="layui-input-block">

@@ -1,12 +1,8 @@
-<%@ page import="database.DBOperator" %>
-<%@ page import="java.util.List" %>
-<%@ page import="Bean.Film" %>
-<%@ page import="Bean.Person" %>
 <%--
   Created by IntelliJ IDEA.
   User: liu
   Date: 2018/5/30
-  Time: 下午9:33
+  Time: 下午9:34
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -60,96 +56,82 @@
         </div>
     </div>
 </div>
-<div id="navigation-block">
-    <h1>电影查询</h1>
-    <ul id="sliding-navigation">
-        <li class="sliding-element"><a href="filmQuery.jsp" style="font-size:20px; font-family:verdana">电影</a></li>
-        <li class="sliding-element"><a href="actorQuery.jsp" style="font-size:20px; font-family:verdana">演员</a></li>
-        <li class="sliding-element"><a href="directorQuery.jsp" style="font-size:20px; font-family:verdana">导演</a></li>
-        <li class="sliding-element"><a href="voice_Query.jsp" style="font-size:20px; font-family:verdana">旁白</a></li>
-        <li class="sliding-element"><a href="firmQuery.jsp" style="font-size:20px; font-family:verdana">发行公司</a></li>
-        <li class="sliding-element"><a href="../index.jsp" style="font-size:20px; font-family:verdana">返回</a></li>
-    </ul>
-</div>
+<h1>操作成功</h1>
 <%
-    String username = "film";
-    String password = "123456";
-    String operateObject = "categoryList";
-    String sql = "select * from CategoryList";
-
-    DBOperator dbOperator = new DBOperator(username,password,operateObject);
-    dbOperator.query(sql);
-
-    List<String> category = dbOperator.getCategoryList();
+    String label = request.getParameter("label");
+    String mark = request.getParameter("mark");
+    String FilmName = request.getParameter("FilmName");
+    String ID = request.getParameter("FilmID");
+    if(label != null){
 %>
-<div class="div-right1">
-    <form>
-        <input type="radio" name="xx" value="fname" onclick="clickRadioValue()"><font color="gray">按照名称查询</font>
-        <input type="radio" name="xx" value="ftype" onclick="clickRadioValue()"><font color="gray">按照类别查询</font>
-    </form>
-    </br>
-    <div id = "test">
-        <form id="fn" action="/FilmQuery" style="visibility:hidden" class="layui-form layui-form-pane" method="post">
-            <div class="layui-form-item">
-                <label class="layui-form-label"><font color="gray">电影名称</font></label>
-                <div class="layui-input-inline">
-                    <input name="FilmName" required lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <td colspan="2" style="text-align:center">
-                <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius div-right3">查询</button>
-            </td>
-        </form>
-        <form id="ft" action="/FilmQuery" style="visibility:hidden" class="layui-form layui-form-pane" method="post">
-            <div class="layui-form-item">
-                <label class="layui-form-label"><font clolor="gray">电影类别</font></label>
-                <div class="layui-input-inline">
-                    <select name="kind" required lay-verify="required">
-                        <option value="" selected=""></option>
-                        <%
-                            for (String kind:category){
-                        %>
-                        <option value="<%=kind%>"><%=kind%></option>
-                        <%
-                            }
-                        %>
-                    </select>
-                </div>
-            </div>
-            <tr>
-                <td colspan="2" style="text-align:center">
-                    <button  type="submit" class="layui-btn layui-btn-primary layui-btn-radius div-right3">查询</button>
-                </td>
-            </tr>
+<div>
+    <div style="text-align: center;">
+        <form action="/FilmQuery" method="post">
+            <input type="hidden" name="FilmName">
+            <input type="hidden" name="abc">
+            <input type="hidden" name="FilmID">
+            <button type="submit" class="layui-btn layui-btn-radius" onclick="this.form.FilmName.value='<%=FilmName%>';this.form.abc.value='<%=label%>';this.form.FilmID.value='<%=ID%>'">返回</button>
         </form>
     </div>
-    <form id="tj" style="visibility:hidden">
-    </form>
 </div>
+<%
+    }
+    else if(mark != null && mark.equals("1")){
+%>
+<div>
+    <div style="text-align: center;">
+            <button type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/film_insert.jsp'">返回</button>
+    </div>
+</div>
+      <%
+    }
+    else if(mark != null && mark.equals("2")){
+        %>
+<div>
+    <div style="text-align: center;">
+        <button type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/film_delete.jsp'">返回</button>
+    </div>
+</div>
+<%
+    }
+    else if(mark != null && mark.equals("3")){
+        %>
+<div>
+    <div style="text-align: center;">
+        <button type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/film_update.jsp'">返回</button>
+    </div>
+</div>
+        <%
+    }
+    else if(mark != null && mark.equals("4")) {
+        %>
+<div>
+    <div style="text-align: center;">
+        <button type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/PersonIndex.jsp'">返回</button>
+    </div>
+</div>
+<%
+    }
+    else if(mark != null && mark.equals("5")) {
+        %>
+<div>
+    <div style="text-align: center;">
+        <button type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/FirmIndex.jsp'">返回</button>
+    </div>
+</div>
+<%
+    }
+    else if(mark != null && mark.equals("6")) {
+        %>
+<div>
+    <div style="text-align: center;">
+        <button type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/KindManage.jsp'">返回</button>
+    </div>
+</div>
+<%
+    }
+%>
 
-<script src="../layui/layui.js" charset="utf-8"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-<script>
-    layui.use(['form', 'layedit', 'laydate'], function(){
-        var form = layui.form
-            ,layer = layui.layer
-            ,layedit = layui.layedit
-            ,laydate = layui.laydate;
-
-        //日期
-        laydate.render({
-            elem: '#date'
-        });
-        laydate.render({
-            elem: '#date1'
-        });
-
-        //创建一个编辑器
-        var editIndex = layedit.build('LAY_demo_editor');
-
-
-    });
-</script>
 
 <div class="maincontainer">
     <script src='../afctf/js/TweenMax.min.js'></script>
@@ -203,3 +185,4 @@
 </script>
 </body>
 </html>
+

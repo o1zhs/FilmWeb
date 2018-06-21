@@ -40,7 +40,7 @@ public class FilmInsertServlet extends HttpServlet {
                 this.insertInfo = "Insert failed;";
             request.setAttribute("affectRows",this.affectRows);
             request.setAttribute("insertInfo",this.insertInfo);
-            request.getRequestDispatcher("/film/alterFilmIndex.jsp").forward(request,response);
+            request.getRequestDispatcher("/film/RightOutput.jsp").forward(request,response);
         }
         else {
             Boolean isTrue = insertFilm.getTrue();

@@ -71,6 +71,7 @@ public class PersonDeleteServlet extends HttpServlet {
                 request.setAttribute("isExisted", isExisted);
                 request.setAttribute("errorObject", errorObject);
                 request.setAttribute("errorOperation", errorOperation);
+                request.getRequestDispatcher("film/ErrorOutput.jsp").forward(request,response);
             }
             stmt.close();
             conn.close();
@@ -83,7 +84,7 @@ public class PersonDeleteServlet extends HttpServlet {
         }
         request.setAttribute("isTrue", isTrue);
         if (isTrue) {
-            if(!personName.equals("")){
+            if(personName != null){
                 DeletePerson deletePerson = new DeletePerson(personID,personName);
                 this.affectRows = deletePerson.executeDelete();
                 if(this.affectRows>0)
@@ -92,7 +93,7 @@ public class PersonDeleteServlet extends HttpServlet {
                     this.deleteInfo = "Delete failed";
                 request.setAttribute("affectRows",affectRows);
                 request.setAttribute("deleteInfo",deleteInfo);
-                request.getRequestDispatcher("person/person_delete.jsp").forward(request,response);
+                request.getRequestDispatcher("film/RightOutput.jsp").forward(request,response);
             }
             else {
                 DeletePerson deletePerson = new DeletePerson(personID);
@@ -103,7 +104,7 @@ public class PersonDeleteServlet extends HttpServlet {
                     this.deleteInfo = "Delete failed";
                 request.setAttribute("affectRows",affectRows);
                 request.setAttribute("deleteInfo",deleteInfo);
-                request.getRequestDispatcher("person/person_delete.jsp").forward(request,response);
+                request.getRequestDispatcher("film/RightOutput.jsp").forward(request,response);
             }
         }
 

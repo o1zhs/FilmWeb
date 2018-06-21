@@ -23,7 +23,7 @@ public class FilmDeleteServlet extends HttpServlet {
 
         //影响行数，即删除的行数
         int affectRows;
-        if(!filmName.equals(""))
+        if(filmName != null)
             deleteFilm = new DeleteFilm(filmID, filmName);
         else
             deleteFilm = new DeleteFilm(filmID);
@@ -36,7 +36,7 @@ public class FilmDeleteServlet extends HttpServlet {
                 this.resultInfo = filmID + " " + filmName + " doesn't exists!";
             request.setAttribute("affectRows", affectRows);
             request.setAttribute("resultInfo",this.resultInfo);
-            request.getRequestDispatcher("film/alterFilmIndex.jsp").forward(request,response);
+            request.getRequestDispatcher("film/RightOutput.jsp").forward(request,response);
         }
         else{
             request.setAttribute("errorObject","Film");

@@ -1,6 +1,7 @@
 <%@ page import="database.DBOperator" %>
 <%@ page import="java.util.List" %>
 <%@ page import="Bean.Film" %>
+<%@ page import="Bean.Firm" %>
 <%--
   Created by IntelliJ IDEA.
   User: liu
@@ -98,15 +99,21 @@ layui.use('table', function(){
         <div class="layui-col-xs6">
             <div style="margin:20px 0;"></div>
             <%
-                String username = "root";
-                String password = "reku3in5";
-                String operateObject = "filmIndex";
-                String sql = "select Film.*,Firm.FirmName from Film,Firm where Film.FirmID=Firm.FirmID order by Film.IntId;";
+                String username = "film";
+                String password = "123456";
+                String operateObject1 = "filmIndex";
+                String sql1 = "select Film.*,Firm.FirmName from Film,Firm where Film.FirmID=Firm.FirmID order by Film.IntId;";
 
-                DBOperator dbOperator = new DBOperator(username,password,operateObject);
-                dbOperator.query(sql);
+                DBOperator dbOperator1 = new DBOperator(username,password,operateObject1);
+                dbOperator1.query(sql1);
 
-                List<Film> filmList = dbOperator.getFilmList();
+                String operateObject2 = "firmIndex";
+                List<Film> filmList = dbOperator1.getFilmList();
+                String sql2 = "select * from Firm order by FirmID + 0";
+                DBOperator dbOperator2 = new DBOperator(username,password,operateObject2);
+                dbOperator2.query(sql2);
+
+                List<Firm> firmList = dbOperator2.getFirmList();
 
 
             %>
@@ -148,7 +155,7 @@ layui.use('table', function(){
             </table>
         </div>
         <div class="layui-col-xs6" style="margin-top: 20px">
-            <form id="filmform" class="layui-form layui-form-pane" action="" onsubmit="">
+            <form id="filmform" class="layui-form layui-form-pane" action="/FilmUpdate" method="post">
                 <div class="layui-form-item">
                      <label class="layui-form-label">电影编号</label>
                          <div class="layui-input-block">
@@ -179,11 +186,14 @@ layui.use('table', function(){
                     <div class="layui-input-inline">
                         <select name="Firm" lay-filter="aihao">
                             <option value="" selected=""></option>
-                            <option value="0" style="font-family:verdana">万达</option>
-                            <option value="1">华谊</option>
-                            <option value="2">漫威</option>
-                            <option value="3">好莱坞</option>
-                            <option value="4">宝莱坞</option>
+                            <%
+                            for (Firm firmIndex: firmList){
+                            String FirmName = firmIndex.getFirmName();
+                            %>
+                            <option value="<%=FirmName%>"><%=FirmName%></option>
+                            <%
+                                }
+                            %>
                         </select>
                     </div>
                 </div>
@@ -194,7 +204,8 @@ layui.use('table', function(){
                     </div>
                 </div>
                 <div align="center">
-                    <button id="1" type="submit" class="layui-btn layui-btn-normal layui-btn-radius">更新记录</button>
+                    <input type="hidden" name="mark">
+                    <button id="1" type="submit" class="layui-btn layui-btn-normal layui-btn-radius" onclick="this.form.mark.value='3'">更新记录</button>
                 </div>
             </form>
             </br>

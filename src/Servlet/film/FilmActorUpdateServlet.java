@@ -12,6 +12,7 @@ import java.io.IOException;
 @WebServlet(name = "FilmActorUpdateServlet")
 public class FilmActorUpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         String updateInfo;
         int affectRows;
 
@@ -31,7 +32,7 @@ public class FilmActorUpdateServlet extends HttpServlet {
                 updateInfo = "Update Failed!";
             request.setAttribute("affectRows",affectRows);
             request.setAttribute("updateInfo",updateInfo);
-            request.getRequestDispatcher("/film/FilmOtherChangeQuery.jsp").forward(request,response);
+            request.getRequestDispatcher("/film/RightOutput.jsp").forward(request,response);
         }
         else{
             Boolean isExisted = null;
