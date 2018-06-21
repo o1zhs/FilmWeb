@@ -21,10 +21,11 @@ public class DeleteFilm {
         String username = "film";
         String password = "123456";
         this.dbOperator = new DBOperator(username,password);
+        this.isTrue = false;
 
         this.preCheck();
-        if(!this.isExisted){
-            this.isTrue = false;
+        if(this.isExisted){
+            this.isTrue = true;
             this.errorInfo = "The film to be deleted doesn't exist!";
         }
     }
