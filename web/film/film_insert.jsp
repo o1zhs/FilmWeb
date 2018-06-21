@@ -201,7 +201,7 @@ layui.use('table', function(){
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">电影简介</label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入内容" name="FilmPot" class="layui-textarea"></textarea>
+                        <textarea placeholder="请输入内容" name="FilmPlot" class="layui-textarea"></textarea>
                     </div>
                 </div>
                 <div align="center">

@@ -17,7 +17,7 @@ public class FilmInsertServlet extends HttpServlet {
     private String insertInfo;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setCharacterEncoding("utf-8");
         IDGenerator idGenerator = new IDGenerator("Film");
         idGenerator.queryID();
         String filmID = idGenerator.getRealID();
@@ -27,7 +27,7 @@ public class FilmInsertServlet extends HttpServlet {
         String filmLength = request.getParameter("FilmLength");
         String firmName = request.getParameter("Firm");
         String filmPlot = request.getParameter("FilmPlot");
-
+        
 
         Film film = new Film(filmID,filmName,date,firmName,filmLength,
                     null,null,null,null,filmPlot);

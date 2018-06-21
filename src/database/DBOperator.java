@@ -96,6 +96,7 @@ public class DBOperator {
      * @param sql
      */
     public void query(String sql){
+        System.out.println(sql);
         ResultSet resultSet = null;
         if(this.statement == null)
             this.statement = getStatement();
@@ -253,6 +254,7 @@ public class DBOperator {
      * @return
      */
     public int update(String sql) {
+        System.out.println(sql);
         int result = 0;
         try {
             this.statement = getStatement();
@@ -271,6 +273,7 @@ public class DBOperator {
      * @return preString
      */
     public String preQuery(String sql,String object){
+        System.out.println(sql);
         if(this.statement == null)
             this.statement = getStatement();
         String preString = null;
