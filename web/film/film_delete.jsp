@@ -137,11 +137,12 @@ layui.use('table', function(){
                 <td><%= filmLength%></td>
                 <td><%= firmName%></td>
                 <td>
-                    <form action="/FilmQuery" method="post">
+                    <form action="/FilmDelete" method="post">
                         <input type="hidden" name="FilmID">
                         <input type="hidden" name="abc">
                         <input type="hidden" name="FilmName">
-                        <button type="submit" onclick="this.form.FilmID.value='<%=filmID%>';this.form.abc.value='1';this.form.FilmName.value='<%=filmName%>';javascript:return p_del()">删除</button>
+                        <input type="hidden" name="mark">
+                        <button type="submit" onclick="this.form.FilmID.value='<%=filmID%>';this.form.abc.value='1';this.form.FilmName.value='<%=filmName%>';this.form.mark.value='2';javascript:return p_del()">删除</button>
                     </form>
                 </td>
             </tr>

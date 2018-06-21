@@ -29,6 +29,7 @@
     <script src="../afctf/js/utils.js"></script>
     <script src="../afctf/js/challenge.js"></script>
     <script src="../afctf/js/inputLimit.js"></script>
+    <script src="js/jquery-3-2-1.js"></script>
     <script type="text/javascript" src="../value_js/jquery.min.2.0.js"></script>
     <style>
         .window{
@@ -151,7 +152,7 @@ else{
                 <div class="layui-inline">
                     <label class="layui-form-label"><font clolor="gray">选择演员</font></label>
                     <div class="layui-input-inline">
-                        <select name="Filmactor" required lay-verify="required">
+                        <select id="deteleperson" name="Filmactor" required lay-verify="required">
                             <option value="" selected=""></option>
                             <%
                                 for (Person film_actor:filmactor){
@@ -168,7 +169,7 @@ else{
                     <label class="layui-form-label">选择角色</label>
                     <div class="layui-input-inline">
                         <div class="layui-input-inline">
-                            <select name="Filmrole" required lay-verify="required">
+                            <select id="delaterole" name="Filmrole" required lay-verify="required">
                                 <option value="" selected=""></option>
                                 <%
                                     for (Person film_actor:filmactor){
@@ -307,6 +308,33 @@ else{
         }else{
             return false;
         }
+    }
+</script>
+<script type="text/javascript">
+    function findjc(){
+        var person_name = $('#deleteperson option:selected').val();
+        $.ajax({
+            url:"/FilmQuery",
+            type:"post",
+            dataType:"html",
+            timeout:"1000",
+            data:{cityname:cityname},
+            success:function(data){
+
+                $("#jcname option").remove();
+                var jc=data.split(",");
+                for ( var i = 0; i < jc.length; i++) {
+                    var jcName = jc[i];
+                    $("#jcname").append(
+                        "<option value="+jcName+">"
+                        + jcName + "</option>");
+                }
+
+            },
+            error : function(XMLResponse) {
+                alert(XMLResponse.responseText);
+            }
+        });
     }
 </script>
 <script src="../layui/layui.js" charset="utf-8"></script>

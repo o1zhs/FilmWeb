@@ -118,7 +118,7 @@ layui.use('table', function(){
 
             %>
             <table class="easyui-datagrid" title="电影信息" style="width:650px;height:480px"
-                   data-options="singleSelect:true,collapsible:true,method:'get'">
+                   data-options="rownumbers:true,singleSelect:true,pagination:true,method:'get'">
                 <thead>
                 <tr>
                     <th data-options="field:'itemid',width:80,align:'center'">电影编号</th>
