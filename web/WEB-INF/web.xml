@@ -234,6 +234,10 @@
         <servlet-name>CategoryDeleteServlet</servlet-name>
         <servlet-class>Servlet.category.CategoryDeleteServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>newServlet</servlet-name>
+        <servlet-class>Servlet.film.newServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CategoryDeleteServlet</servlet-name>
         <url-pattern>/CategoryDelete</url-pattern>

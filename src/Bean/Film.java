@@ -34,6 +34,16 @@ public class Film {
         this.actor = actor;
         this.voice = voice;
         this.plot = plot;
+
+        for(Person person:actor){
+            String Person_name = person.getName();  //演员姓名
+            Actor filma = person.getActor();        //获取演员饰演的角色
+            System.out.println(Person_name + ": ");
+            List<String> filmal = filma.getRole();      //遍历演员饰演的角色
+            for(String role:filmal){
+                System.out.println(role);
+            }
+        }
     }
 
     public String getFilmID() {

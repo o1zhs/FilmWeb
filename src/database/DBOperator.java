@@ -125,7 +125,8 @@ public class DBOperator {
 
                         String sql1 = "select DYLB_LB from Category where FilmID='" + filmID + "' ;";
                         String sql2 = "select Person.* from Film,Actor,Person " +
-                                "where Film.FilmID='" + filmID + "' and Film.FilmID=Actor.FilmID and Actor.PersonID=Person.PersonID ;";
+                                "where Film.FilmID='" + filmID + "' and Film.FilmID=Actor.FilmID and Actor.PersonID=Person.PersonID " +
+                                "group by Person.PersonID;";
                         String sql3 = "select Person.* from Film,Director,Person " +
                                 "where Film.FilmID='" + filmID + "' and Film.FilmID=Director.FilmID and Director.PersonID=Person.PersonID ;";
                         String sql4 = "select Person.* from Film,Voice,Person " +
