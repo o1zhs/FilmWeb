@@ -13,6 +13,7 @@ public class UpdateFilm {
     private Boolean isTrue;
     private Boolean isExisted;      //修改前的记录是否存在
     private Boolean isSame;         //修改后的记录是否已经存在
+    private String firmID;
 
     private DBOperator dbOperator;
 
@@ -22,7 +23,7 @@ public class UpdateFilm {
             "',FilmLength='" + film.getLength() + "',FilmPlot='" + film.getPlot() + "',FirmID='";
         this.preSql = "select FirmID from Firm where FirmName='" + film.getPublishFirm() + "' ;";
 
-        this.isTrue = true;
+        this.isTrue = false;
         this.isExisted = true;
         this.isSame = false;
         String username = "film";
@@ -30,24 +31,27 @@ public class UpdateFilm {
         this.dbOperator = new DBOperator(username,password);
 
         this.preCheck();
-        if(this.isSame|| !this.isExisted){
-            this.isTrue = false;
+        if(!this.isSame&&this.isExisted){
+            this.isTrue = true;
         }
     }
 
     public int executeUpdate(){
         int affectRows;
-        String firmID = this.dbOperator.preQuery(this.preSql,"FirmID");
-        this.sql = this.sql + firmID + "' where FilmID='" + film.getFilmID() + "' ;";
+        this.sql = this.sql + this.firmID + "' where FilmID='" + film.getFilmID() + "' ;";
         affectRows = this.dbOperator.update(this.sql);
         return affectRows;
     }
 
 
     private void preCheck(){
+        //预查询公司ID
+        this.firmID = this.dbOperator.preQuery(this.preSql,"FirmID");
         String checkSql0 = "select * from Film where FilmID='" + this.film.getFilmID() + "';";
         this.isExisted = this.dbOperator.checkExisted(checkSql0);
-        String checkSql1 = "select * from Film where FilmName='" + this.film.getFilmName() + "';";
+        String checkSql1 = "select * from Film where FilmName='" + this.film.getFilmName() + "' and " +
+                "FirmID='" + this.firmID + "' and FilmYear='" + film.getPublishYear() + "' and FilmLength='" +
+                film.getLength() + "' and FilmPlot='" + this.film.getPlot() + "';";
         this.isSame = this.dbOperator.checkExisted(checkSql1);
     }
 

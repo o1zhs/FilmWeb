@@ -41,6 +41,7 @@ public class FilmActorChangeServlet extends HttpServlet {
                 request.getRequestDispatcher("/film/RightOutput.jsp").forward(request,response);
             }
             else{
+                //System.out.println(insertFilmActor.getExisted() + " " + insertFilmActor.getSame());
                 Boolean isExisted = null;
                 if(!insertFilmActor.getExisted()){
                     isExisted = false;      //插入的演员Person尚不存在Person表中

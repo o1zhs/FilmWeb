@@ -14,12 +14,14 @@ import java.io.IOException;
 public class FilmUpdateServlet extends HttpServlet {
     private String updateInfo;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         String filmID = request.getParameter("FilmID");
         String filmName = request.getParameter("FilmName");
         String date =  request.getParameter("date");
         String filmLength = request.getParameter("FilmLength");
         String firmName = request.getParameter("Firm");
         String filmPlot = request.getParameter("FilmPlot");
+        System.out.println(filmID + "," + filmName + "," + date + "," + filmLength + "," + firmName + "," + filmPlot);
 
         Film film = new Film(filmID,filmName,date,firmName,filmLength,
                 null,null,null,null,filmPlot);
@@ -36,6 +38,7 @@ public class FilmUpdateServlet extends HttpServlet {
         }
         else{
             Boolean isExisted = null;
+            System.out.println(updateFilm.getExisted() + " " + updateFilm.getSame() + " " + updateFilm.getTrue());
             if(!updateFilm.getExisted())
                 isExisted = false;
             else if(updateFilm.getSame()){
