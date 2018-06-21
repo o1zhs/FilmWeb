@@ -47,33 +47,39 @@ public class FilmQueryServlet extends HttpServlet {
             request.getRequestDispatcher("/film/filmCategoryQueryResult.jsp").forward(request,response);
         }
         else if(ID != null && filmName != null){
-            if(ID.equals("1")) {
-                QueryFilm queryFilm = new QueryFilm(filmName, true);
-                queryFilm.executeQuery();
-                List<Film> filmList = queryFilm.getFilmList();
-                request.setAttribute("filmList", filmList);
-                request.getRequestDispatcher("/film/FilmDirectorChange.jsp").forward(request, response);
-            }
-            else if(ID.equals("2")) {
-                QueryFilm queryFilm = new QueryFilm(filmName, true);
-                queryFilm.executeQuery();
-                List<Film> filmList = queryFilm.getFilmList();
-                request.setAttribute("filmList", filmList);
-                request.getRequestDispatcher("/film/FilmActorChange.jsp").forward(request, response);
-            }
-            else if(ID.equals("3")) {
-                QueryFilm queryFilm = new QueryFilm(filmName, true);
-                queryFilm.executeQuery();
-                List<Film> filmList = queryFilm.getFilmList();
-                request.setAttribute("filmList", filmList);
-                request.getRequestDispatcher("/film/FilmVoiceChange.jsp").forward(request, response);
-            }
-            else if(ID.equals("4")) {
-                QueryFilm queryFilm = new QueryFilm(filmName, true);
-                queryFilm.executeQuery();
-                List<Film> filmList = queryFilm.getFilmList();
-                request.setAttribute("filmList", filmList);
-                request.getRequestDispatcher("/film/FilmKindChange.jsp").forward(request, response);
+            switch (ID) {
+                case "1": {
+                    QueryFilm queryFilm = new QueryFilm(filmName, true);
+                    queryFilm.executeQuery();
+                    List<Film> filmList = queryFilm.getFilmList();
+                    request.setAttribute("filmList", filmList);
+                    request.getRequestDispatcher("/film/FilmDirectorChange.jsp").forward(request, response);
+                    break;
+                }
+                case "2": {
+                    QueryFilm queryFilm = new QueryFilm(filmName, true);
+                    queryFilm.executeQuery();
+                    List<Film> filmList = queryFilm.getFilmList();
+                    request.setAttribute("filmList", filmList);
+                    request.getRequestDispatcher("/film/FilmActorChange.jsp").forward(request, response);
+                    break;
+                }
+                case "3": {
+                    QueryFilm queryFilm = new QueryFilm(filmName, true);
+                    queryFilm.executeQuery();
+                    List<Film> filmList = queryFilm.getFilmList();
+                    request.setAttribute("filmList", filmList);
+                    request.getRequestDispatcher("/film/FilmVoiceChange.jsp").forward(request, response);
+                    break;
+                }
+                case "4": {
+                    QueryFilm queryFilm = new QueryFilm(filmName, true);
+                    queryFilm.executeQuery();
+                    List<Film> filmList = queryFilm.getFilmList();
+                    request.setAttribute("filmList", filmList);
+                    request.getRequestDispatcher("/film/FilmKindChange.jsp").forward(request, response);
+                    break;
+                }
             }
         }
 
