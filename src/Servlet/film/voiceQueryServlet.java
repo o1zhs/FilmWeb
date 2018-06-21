@@ -24,7 +24,7 @@ public class voiceQueryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         String name = request.getParameter("voicename");
-        String sql = "SELECT person.PersonName, person.PersonBirth, film.FilmName  FROM person JOIN voice USING (PersonID) JOIN film USING (FilmID) WHERE person.PersonName = ?";
+        String sql = "SELECT Person.PersonName, Person.PersonBirth, Film.FilmName  FROM Person JOIN Voice USING (PersonID) JOIN Film USING (FilmID) WHERE Person.PersonName = ?";
         try {
             DB db = new DB();
 //            System.out.println(sql);

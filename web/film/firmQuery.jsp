@@ -1,4 +1,6 @@
-<%--
+<%@ page import="database.DBOperator" %>
+<%@ page import="Bean.Firm" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: liu
   Date: 2018/5/30
@@ -67,6 +69,17 @@
         <li class="sliding-element"><a href="../index.jsp" style="font-size:20px; font-family:verdana">返回</a></li>
     </ul>
 </div>
+<%
+    String username = "film";
+    String password = "123456";
+    String operateObject = "firmIndex";
+    String sql = "select * from Firm order by FirmID + 0";
+
+    DBOperator dbOperator = new DBOperator(username,password,operateObject);
+    dbOperator.query(sql);
+
+    List<Firm> firmList = dbOperator.getFirmList();
+%>
 <div class="div-right2">
 
 
@@ -74,11 +87,19 @@
         <tr >
             <td >
                 <div class="layui-form-item">
-                    <label class="layui-form-label">
-                        <font color="gray">公司名称</font>
-                    </label>
+                    <label class="layui-form-label">出品公司</label>
                     <div class="layui-input-inline">
-                        <input name="firmname" required lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+                        <select name="firmname" lay-filter="aihao">
+                            <option value="" selected=""></option>
+                            <%
+                                for (Firm firmIndex: firmList){
+                                    String FirmName = firmIndex.getFirmName();
+                            %>
+                            <option value="<%=FirmName%>"><%=FirmName%></option>
+                            <%
+                                }
+                            %>
+                        </select>
                     </div>
                 </div>
             </td>
@@ -90,6 +111,29 @@
         </tr>
     </form>
 </div>
+<script src="../layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+
+    });
+</script>
 <div class="maincontainer">
     <script src='../afctf/js/TweenMax.min.js'></script>
     <script src="../afctf/js/index.js"></script>

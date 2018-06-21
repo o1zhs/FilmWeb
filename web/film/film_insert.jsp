@@ -178,7 +178,7 @@ layui.use('table', function(){
                 <div class="layui-form-item">
                     <label class="layui-form-label">电影时长</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="FilmLength" lay-verify="required" placeholder="请输入时长" autocomplete="off" class="layui-input">
+                        <input type="number" name="FilmLength" lay-verify="required" placeholder="请输入时长" autocomplete="off" class="layui-input">
                     </div>
                 </div>
 

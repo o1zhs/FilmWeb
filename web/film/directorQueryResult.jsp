@@ -85,7 +85,7 @@
     if(object instanceof List) {
         Directorquery = (List<DirectorQuery>) object;
     }
-    if(Directorquery.isEmpty()){
+    if(Directorquery == null){
         %>
 <h1>对不起没有此导演</h1>
 <%

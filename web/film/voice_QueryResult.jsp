@@ -83,7 +83,7 @@
     if(object instanceof List){
         voicequery = (List<VoiceQuery>) object;
     }
-    if(voicequery.isEmpty()){
+    if(voicequery == null){
         %>
 <h1>对不起没有此旁白</h1>
 <%

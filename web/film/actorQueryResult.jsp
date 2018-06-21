@@ -85,7 +85,7 @@
     if(object instanceof List) {
         Actorquery = (List<ActorQuery>) object;
     }
-    if(Actorquery.isEmpty())
+    if(Actorquery == null)
     {
         %>
 <h1>对不起没有此演员</h1>

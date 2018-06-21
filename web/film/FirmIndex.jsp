@@ -175,7 +175,7 @@ layui.use('table', function(){
                 </div>
             </form>
             <p></p>
-
+<!--
             <form class="layui-form layui-form-pane" action="/FirmUpdate" method="post">
                 <fieldset class="layui-elem-field layui-field-title">
                     <legend>修改名称和城市</legend>
@@ -203,6 +203,7 @@ layui.use('table', function(){
                     <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='5'">修改记录</button>
                 </div>
             </form>
+            -->
         </div>
     </div>
 </div>
