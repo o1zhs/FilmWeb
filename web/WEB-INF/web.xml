@@ -147,7 +147,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>FirmUpdateServlet</servlet-name>
-        <servlet-class>Servlet.firm.FirmUpdateServlet</servlet-class>
+        <servlet-class>Servlet.firm.FirmUpdateNameServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FirmUpdateServlet</servlet-name>

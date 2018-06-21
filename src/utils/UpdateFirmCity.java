@@ -3,14 +3,13 @@ package utils;
 import Bean.Firm;
 import database.DBOperator;
 
-public class UpdateFirm {
+public class UpdateFirmCity {
     private Firm firm;
     private String sql;
 
-    public UpdateFirm(Firm firm){
+    public UpdateFirmCity(Firm firm){
         this.firm = firm;
-        this.sql = "update Firm set FirmName='" + this.firm.getFirmName() + "', FirmCity='" + this.firm.getCity() + "'" +
-                " where FirmID='" + this.firm.getFirmID() + "'; ";
+        this.sql = "update Firm set FirmName='" + this.firm.getCity() + "' where FirmID='" + this.firm.getFirmID() + "'; ";
     }
 
     public int executeUpdate(){
