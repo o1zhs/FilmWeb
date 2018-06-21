@@ -1,12 +1,8 @@
-<%@ page import="database.DBOperator" %>
-<%@ page import="java.util.List" %>
-<%@ page import="Bean.Film" %>
-<%@ page import="Bean.Person" %>
 <%--
   Created by IntelliJ IDEA.
   User: liu
   Date: 2018/5/30
-  Time: 下午9:33
+  Time: 下午9:34
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -60,97 +56,9 @@
         </div>
     </div>
 </div>
-<div id="navigation-block">
-    <h1>电影查询</h1>
-    <ul id="sliding-navigation">
-        <li class="sliding-element"><a href="filmQuery.jsp" style="font-size:20px; font-family:verdana">电影</a></li>
-        <li class="sliding-element"><a href="actorQuery.jsp" style="font-size:20px; font-family:verdana">演员</a></li>
-        <li class="sliding-element"><a href="directorQuery.jsp" style="font-size:20px; font-family:verdana">导演</a></li>
-        <li class="sliding-element"><a href="voice_Query.jsp" style="font-size:20px; font-family:verdana">旁白</a></li>
-        <li class="sliding-element"><a href="firmQuery.jsp" style="font-size:20px; font-family:verdana">发行公司</a></li>
-        <li class="sliding-element"><a href="../index.jsp" style="font-size:20px; font-family:verdana">返回</a></li>
-    </ul>
-</div>
 <%
-    String username = "film";
-    String password = "123456";
-    String operateObject = "categoryList";
-    String sql = "select * from CategoryList";
-
-    DBOperator dbOperator = new DBOperator(username,password,operateObject);
-    dbOperator.query(sql);
-
-    List<String> category = dbOperator.getCategoryList();
+    Object object = request.getAttribute("isExisted");
 %>
-<div class="div-right1">
-    <form>
-        <input type="radio" name="xx" value="fname" onclick="clickRadioValue()"><font color="gray">按照名称查询</font>
-        <input type="radio" name="xx" value="ftype" onclick="clickRadioValue()"><font color="gray">按照类别查询</font>
-    </form>
-    </br>
-    <div id = "test">
-        <form id="fn" action="/FilmQuery" style="visibility:hidden" class="layui-form layui-form-pane" method="post">
-            <div class="layui-form-item">
-                <label class="layui-form-label"><font color="gray">电影名称</font></label>
-                <div class="layui-input-inline">
-                    <input name="FilmName" required lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <td colspan="2" style="text-align:center">
-                <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius div-right3">查询</button>
-            </td>
-        </form>
-        <form id="ft" action="/FilmQuery" style="visibility:hidden" class="layui-form layui-form-pane" method="post">
-            <div class="layui-form-item">
-                <label class="layui-form-label"><font clolor="gray">电影类别</font></label>
-                <div class="layui-input-inline">
-                    <select name="kind" required lay-verify="required">
-                        <option value="" selected=""></option>
-                        <%
-                            for (String kind:category){
-                        %>
-                        <option value="<%=kind%>"><%=kind%></option>
-                        <%
-                            }
-                        %>
-                    </select>
-                </div>
-            </div>
-            <tr>
-                <td colspan="2" style="text-align:center">
-                    <button  type="submit" class="layui-btn layui-btn-primary layui-btn-radius div-right3">查询</button>
-                </td>
-            </tr>
-        </form>
-    </div>
-    <form id="tj" style="visibility:hidden">
-    </form>
-</div>
-
-<script src="../layui/layui.js" charset="utf-8"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-<script>
-    layui.use(['form', 'layedit', 'laydate'], function(){
-        var form = layui.form
-            ,layer = layui.layer
-            ,layedit = layui.layedit
-            ,laydate = layui.laydate;
-
-        //日期
-        laydate.render({
-            elem: '#date'
-        });
-        laydate.render({
-            elem: '#date1'
-        });
-
-        //创建一个编辑器
-        var editIndex = layedit.build('LAY_demo_editor');
-
-
-    });
-</script>
-
 <div class="maincontainer">
     <script src='../afctf/js/TweenMax.min.js'></script>
     <script src="../afctf/js/index.js"></script>

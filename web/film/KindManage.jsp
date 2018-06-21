@@ -93,8 +93,8 @@ layui.use('table', function(){
 </script>
 </div>-->
 <%
-    String username = "root";
-    String password = "reku3in5";
+    String username = "film";
+    String password = "123456";
     String operateObject = "categoryList";
     String sql = "select * from CategoryList";
 
@@ -128,7 +128,7 @@ layui.use('table', function(){
             </table>
         </div>
         <div class="layui-col-xs6" style="margin-top: 20px">
-            <form id="kindform" class="layui-form layui-form-pane" action="" onsubmit="">
+            <form id="kindform" class="layui-form layui-form-pane" action="/CategoryUpdate" method="post">
                 <fieldset class="layui-elem-field layui-field-title">
                     <legend>修改类别</legend>
                 </fieldset>
@@ -154,11 +154,12 @@ layui.use('table', function(){
                     </div>
                 </div>
                 <div style="margin-left: 100px;">
-                    <button id="3" type="submit" class="layui-btn layui-btn-primary layui-btn-radius">修改记录</button>
+                    <input type="hidden" name="mark">
+                    <button id="3" type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='6'">修改记录</button>
                 </div>
             </form>
             <p></p>
-            <form class="layui-form layui-form-pane" action="" onsubmit="">
+            <form class="layui-form layui-form-pane" action="/CategoryInsert" method="post">
                 <fieldset class="layui-elem-field layui-field-title">
                     <legend>添加类别</legend>
                 </fieldset>
@@ -169,10 +170,11 @@ layui.use('table', function(){
                     </div>
                 </div>
                 <div style="margin-left: 100px;">
-                    <button id="1" type="submit" class="layui-btn layui-btn-primary layui-btn-radius">添加类别</button>
+                    <input type="hidden" name="mark">
+                    <button id="1" type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='6'">添加类别</button>
                 </div>
             </form>
-            <form class="layui-form layui-form-pane" action="" onsubmit="">
+            <form class="layui-form layui-form-pane" action="/CategoryDelete" method="post">
                 <fieldset class="layui-elem-field layui-field-title">
                     <legend>删除类别</legend>
                 </fieldset>
@@ -192,7 +194,8 @@ layui.use('table', function(){
                     </div>
                 </div>
                 <div style="margin-left: 100px;">
-                    <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius">删除类别</button>
+                    <input type="hidden" name="mark">
+                    <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='6';javascript:return p_del()">删除类别</button>
                 </div>
             </form>
         </div>
@@ -203,6 +206,16 @@ layui.use('table', function(){
 <div style="text-align: center">
     <button id="4" class="layui-btn layui-btn-primary layui-btn-radius" onclick="window.location.href='changeindex.html'">返回</button>
 </div>
+<script language=javascript>
+    function p_del() {
+        var msg = "您真的确定要删除吗？\n\n请确认！";
+        if (confirm(msg)==true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
 <script src="../layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>

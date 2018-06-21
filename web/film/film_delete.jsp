@@ -98,8 +98,8 @@ layui.use('table', function(){
         <div class="layui-col-xs6">
             <div style="margin:20px 0;"></div>
             <%
-                String username = "root";
-                String password = "reku3in5";
+                String username = "film";
+                String password = "123456";
                 String operateObject = "filmIndex";
                 String sql = "select Film.*,Firm.FirmName from Film,Firm where Film.FirmID=Firm.FirmID order by Film.IntId;";
 
@@ -148,7 +148,7 @@ layui.use('table', function(){
             </table>
         </div>
         <div class="layui-col-xs6" style="margin-top: 20px">
-            <form id="filmform" class="layui-form layui-form-pane" action="" onsubmit="">
+            <form id="filmform" class="layui-form layui-form-pane" action="/FilmDelete" method="post">
                 <div class="layui-form-item">
                     <label class="layui-form-label">电影编号</label>
                     <div class="layui-input-block">
@@ -162,7 +162,8 @@ layui.use('table', function(){
                     </div>
                 </div>
                 <div align="center">
-                    <button id="2" type="submit" class="layui-btn layui-btn-radius" style="margin-top: 30px;">删除记录</button>
+                    <input type="hidden" name="mark">
+                    <button id="2" type="submit" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.mark.value='2';javascript:return p_del()">删除记录</button>
                 </div>
             </form>
             </br>
@@ -173,7 +174,16 @@ layui.use('table', function(){
         </div>
     </div>
 </div>
-
+<script language=javascript>
+    function p_del() {
+        var msg = "您真的确定要删除吗？\n\n请确认！";
+        if (confirm(msg)==true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
 <script src="../layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>

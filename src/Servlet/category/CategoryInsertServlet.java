@@ -97,7 +97,7 @@ public class CategoryInsertServlet extends HttpServlet {
                 insertInfo = "Insert Failed!";
             request.setAttribute("affectRows",affectRows);
             request.setAttribute("insertInfo",insertInfo);
-            request.getRequestDispatcher("/film/changeindex.html").forward(request,response);
+            request.getRequestDispatcher("/film/RightOutput.jsp").forward(request,response);
         }
 
     }

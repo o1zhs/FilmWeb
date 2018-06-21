@@ -32,7 +32,7 @@ public class FilmUpdateServlet extends HttpServlet {
                 updateInfo = "Update failed!";
             request.setAttribute("affectRows",affectRows);
             request.setAttribute("updateInfo",updateInfo);
-            request.getRequestDispatcher("film/alterFilmIndex.jsp").forward(request,response);
+            request.getRequestDispatcher("film/RightOutput.jsp").forward(request,response);
         }
         else{
             Boolean isExisted = null;

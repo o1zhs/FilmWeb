@@ -14,6 +14,7 @@ import java.io.IOException;
 public class FilmCategoryChangeServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         int affectRows;
         String resultInfo;
 
@@ -31,7 +32,7 @@ public class FilmCategoryChangeServlet extends HttpServlet {
                 resultInfo = "Insert Failed!";
             request.setAttribute("affectRows",affectRows);
             request.setAttribute("resultInfo",resultInfo);
-            request.getRequestDispatcher("/film/FilmOtherChangeQuery.jsp").forward(request,response);
+            request.getRequestDispatcher("/film/RightOutput.jsp").forward(request,response);
         }
         else if(id.equals("2")){    //删除类别
             DeleteFilmCategory deleteFilmCategory = new DeleteFilmCategory(filmID,filmCategory);
@@ -43,7 +44,7 @@ public class FilmCategoryChangeServlet extends HttpServlet {
                 resultInfo = "Delete Failed!";
             request.setAttribute("affectRows",affectRows);
             request.setAttribute("resultInfo",resultInfo);
-            request.getRequestDispatcher("/film/FilmOtherChangeQuery.jsp").forward(request,response);
+            request.getRequestDispatcher("/film/RightOutput.jsp").forward(request,response);
         }
 
 

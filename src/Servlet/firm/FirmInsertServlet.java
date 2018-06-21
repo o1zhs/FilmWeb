@@ -107,7 +107,7 @@ public class FirmInsertServlet extends HttpServlet {
 
                 request.setAttribute("affectRows",affectRows);
                 request.setAttribute("insertInfo",insertInfo);
-                request.getRequestDispatcher("film/firm_insert.jsp").forward(request,response);
+                request.getRequestDispatcher("film/RightOutput.jsp").forward(request,response);
             }
             else{
 

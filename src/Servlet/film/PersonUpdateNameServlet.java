@@ -70,6 +70,7 @@ public class PersonUpdateNameServlet extends HttpServlet{
                 request.setAttribute("isExisted", isExisted);
                 request.setAttribute("errorObject", errorObject);
                 request.setAttribute("errorOperation", errorOperation);
+                request.getRequestDispatcher("film/ErrorOutput.jsp").forward(request,response);
             }
             stmt.close();
             conn.close();
@@ -91,7 +92,7 @@ public class PersonUpdateNameServlet extends HttpServlet{
                 updateInfo = "Update failed!";
             request.setAttribute("affectRows", affectRows);
             request.setAttribute("updateInfo", updateInfo);
-            request.getRequestDispatcher("person/person_update.jsp").forward(request, response);
+            request.getRequestDispatcher("film/RightOutput.jsp").forward(request,response);
         }
     }
 

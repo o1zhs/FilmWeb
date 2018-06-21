@@ -1,4 +1,6 @@
-<%--
+<%@ page import="Bean.Person" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Bean.Film" %><%--
   Created by IntelliJ IDEA.
   User: zhang
   Date: 2018/6/10
@@ -70,6 +72,42 @@
         </div>
     </div>
 </div>
+<%
+    String ID = request.getParameter("FilmID");
+    String FilmName = request.getParameter("FilmName");
+    Object object = request.getAttribute("filmList");
+    List<Film> filmList = null;
+    if(object instanceof List) {
+        filmList = (List<Film>) object;
+    }
+    //按名称查询电影的信息
+    if(filmList.isEmpty()){
+%>
+<h1>对不起没有此记录</h1>
+<%
+}
+else{
+    String filmname = "";
+    String filmyear = "";
+    String filmlength = "";
+    String filmfirm = "";
+    List<Person> filmactor = null;
+    List<Person> filmdirector = null;
+    List<String> filmcategory = null;
+    String filmplot = "";
+    List<Person> filmvoice = null;
+    for(Film film:filmList) {
+        filmname = film.getFilmName();
+        filmyear = film.getPublishYear();
+        filmlength = film.getLength();
+        filmfirm = film.getPublishFirm();
+        filmactor = film.getActor();
+        filmdirector = film.getDirector();
+        filmcategory = film.getCategoryList();
+        filmplot = film.getPlot();
+        filmvoice = film.getVoice();
+    }
+%>
 <div class="layui-container">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
         <legend style="text-align: center;">电影查询结果</legend>
@@ -78,69 +116,145 @@
         <li class="layui-timeline-item">
             <i class="layui-icon layui-timeline-axis"></i>
             <div class="layui-timeline-content layui-text">
-                <div class="layui-timeline-title">电影名称：邱轶昊的大学生活</div>
+                <div class="layui-timeline-title">电影名称：<%=filmname%></div>
             </div>
         </li>
         <li class="layui-timeline-item">
             <i class="layui-icon layui-timeline-axis"></i>
             <div class="layui-timeline-content layui-text">
-                <div class="layui-timeline-title">电影导演：张浩森</div>
+                <div class="layui-timeline-title">电影导演：</div>
+                <%
+                    for (Person film_director:filmdirector) {
+                        String Person_name = film_director.getName();
+                %>
+                <%=Person_name%>
+                <p></p>
+                <%
+                    }
+                %>
             </div>
         </li>
     </ul>
+
     <div style="text-align: center;">
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-            <legend style="text-align: center;">添加导演或删除导演</legend>
+            <legend style="text-align: center;">添加导演</legend>
         </fieldset>
-        <form id="filmform" class="layui-form layui-form-pane" action="" onsubmit="">
+        <form class="layui-form layui-form-pane" action="/FilmDirectorChange" method="post">
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label">输入导演</label>
+                    <label class="layui-form-label">输入姓名</label>
                     <div class="layui-input-inline">
                         <input type="tel" name="Filmdirector" placeholder="请输入导演" required lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>
             <div align="center">
-                <input type="hidden" id="abc" name="abc" value="1">
-                <input type="hidden" id="FilmID1" name="FilmID" value="1">
-                <button id="1" type="submit" value="01" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='1';this.form.FilmID1.value=''">添加导演</button>
-                <button id="2" type="submit" value="02" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='2';this.form.FilmID1.value=''">删除导演</button>
+                <input type="hidden" name="id">
+                <input type="hidden" name="FilmID">
+                <input type="hidden" name="label">
+                <input type="hidden" name="FilmName">
+                <button type="submit" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.id.value='1';this.form.FilmID.value='<%=ID%>';this.form.label.value='1';this.form.FilmName.value='<%=FilmName%>';">添加导演</button>
+            </div>
+        </form>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend style="text-align: center;">删除导演</legend>
+        </fieldset>
+        <form class="layui-form layui-form-pane" action="/FilmDirectorChange" method="post">
+            <div class="layui-inline">
+                <label class="layui-form-label"><font clolor="gray">选择导演</font></label>
+                <div class="layui-input-inline">
+                    <select name="Filmdirector" required lay-verify="required">
+                        <option value="" selected=""></option>
+                        <%
+                            for (Person film_director:filmdirector){
+                                String Person_name = film_director.getName();
+                        %>
+                        <option value="<%=Person_name%>"><%=Person_name%></option>
+                        <%
+                            }
+                        %>
+                    </select>
+                </div>
+            </div>
+            <div align="center">
+                <input type="hidden" name="id">
+                <input type="hidden" name="FilmID">
+                <input type="hidden" name="label">
+                <input type="hidden" name="FilmName">
+                <button type="submit" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.id.value='2';this.form.FilmID.value='<%=ID%>';this.form.label.value='1';this.form.FilmName.value='<%=FilmName%>';javascript:return p_del()">删除导演</button>
             </div>
         </form>
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
             <legend style="text-align: center;">修改导演</legend>
         </fieldset>
-        <form class="layui-form layui-form-pane" action="" onsubmit="">
+        <form class="layui-form layui-form-pane" action="/FilmDirectorUpdate" method="post">
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label">输入导演</label>
+                    <label class="layui-form-label"><font clolor="gray">选择导演</font></label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmdirector_cpre" placeholder="请输入要修改的导演" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <select name="Filmdirector_cpre">
+                            <option value="" selected=""></option>
+                            <%
+                                for (Person film_director:filmdirector){
+                                    String Person_name = film_director.getName();
+                            %>
+                            <option value="<%=Person_name%>"><%=Person_name%></option>
+                            <%
+                                }
+                            %>
+                        </select>
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">修改导演</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmdirector_clate" placeholder="请输入修改后的导演" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input name="Filmdirector_clate" placeholder="请输入修改后的导演" required lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>
             <div align="center">
-                <input type="hidden" id="FilmID2" name="FilmID" value="1">
-                <button id="3" type="submit" value="03" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='3';this.form.FilmID1.value=''">修改导演</button>
+                <input type="hidden" name="FilmID">
+                <input type="hidden" name="label">
+                <input type="hidden" name="FilmName">
+                <button type="submit" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.FilmID.value='<%=ID%>';this.form.label.value='1';this.form.FilmName.value='<%=FilmName%>'">修改导演</button>
             </div>
         </form>
     </div>
+    <%
+        }
+    %>
     </br>
     <div style="text-align: center;">
-        <button id="" class="layui-btn layui-btn-radius" onclick="window.location.href='FilmOtherChangeQuery.jsp'">返回</button>
+        <button id="" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/FilmOtherChangeQuery.jsp'">返回</button>
     </div>
 </div>
+<script src="../layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
 
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+
+    });
+</script>
 <div class="maincontainer">
-    <script src='afctf/js/TweenMax.min.js'></script>
-    <script src="afctf/js/index.js"></script>
+    <script src='../afctf/js/TweenMax.min.js'></script>
+    <script src="../afctf/js/index.js"></script>
 </div>
 <div class="ftr1-bg">
     <div class="wrap">
@@ -155,6 +269,16 @@
         </div>
     </div>
 </div>
+<script language=javascript>
+    function p_del() {
+        var msg = "您真的确定要删除吗？\n\n请确认！";
+        if (confirm(msg)==true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
 <script type="text/javascript" color="0,0,139" count="175" opacity="0.5" src="../canvas-nest.min.js"></script>
 <script type="text/javascript">
     /* 鼠标特效 */

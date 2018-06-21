@@ -130,7 +130,7 @@ public class FirmUpdateServlet extends HttpServlet {
                 updateInfo = "Update failed!";
             request.setAttribute("affectRows", affectRows);
             request.setAttribute("updateInfo", updateInfo);
-            request.getRequestDispatcher("film/firm_update.jsp").forward(request, response);
+            request.getRequestDispatcher("film/RightOutput.jsp").forward(request, response);
         }
     }
 
