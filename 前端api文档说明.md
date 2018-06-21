@@ -119,7 +119,7 @@ KindManage.jsp
     date:发行日期
     FilmLengt:电影时长
     Firm:出品公司
-    FilmPot:电影简介
+    FilmPlot:电影简介
 }
 ```
 

@@ -20,9 +20,10 @@ public class FilmQueryServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         String filmName = request.getParameter("FilmName");
         String filmCategory = request.getParameter("kind");
+        String ID = request.getParameter("abc");
         System.out.println("查询电影了！************************************");
 
-        if(filmName != null) {
+        if(filmName != null && ID == null) {
             System.out.println("按照名称查询电影");
             QueryFilm queryFilm = new QueryFilm(filmName, true);
             queryFilm.executeQuery();
@@ -44,6 +45,42 @@ public class FilmQueryServlet extends HttpServlet {
             List<Film> filmList = queryFilm.getFilmList();
             request.setAttribute("filmList", filmList);
             request.getRequestDispatcher("/film/filmCategoryQueryResult.jsp").forward(request,response);
+        }
+        else if(ID != null && filmName != null){
+            switch (ID) {
+                case "1": {
+                    QueryFilm queryFilm = new QueryFilm(filmName, true);
+                    queryFilm.executeQuery();
+                    List<Film> filmList = queryFilm.getFilmList();
+                    request.setAttribute("filmList", filmList);
+                    request.getRequestDispatcher("/film/FilmDirectorChange.jsp").forward(request, response);
+                    break;
+                }
+                case "2": {
+                    QueryFilm queryFilm = new QueryFilm(filmName, true);
+                    queryFilm.executeQuery();
+                    List<Film> filmList = queryFilm.getFilmList();
+                    request.setAttribute("filmList", filmList);
+                    request.getRequestDispatcher("/film/FilmActorChange.jsp").forward(request, response);
+                    break;
+                }
+                case "3": {
+                    QueryFilm queryFilm = new QueryFilm(filmName, true);
+                    queryFilm.executeQuery();
+                    List<Film> filmList = queryFilm.getFilmList();
+                    request.setAttribute("filmList", filmList);
+                    request.getRequestDispatcher("/film/FilmVoiceChange.jsp").forward(request, response);
+                    break;
+                }
+                case "4": {
+                    QueryFilm queryFilm = new QueryFilm(filmName, true);
+                    queryFilm.executeQuery();
+                    List<Film> filmList = queryFilm.getFilmList();
+                    request.setAttribute("filmList", filmList);
+                    request.getRequestDispatcher("/film/FilmKindChange.jsp").forward(request, response);
+                    break;
+                }
+            }
         }
 
 

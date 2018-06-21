@@ -91,16 +91,26 @@
 <%
     }
     else{
-    for(Film film:filmList){
-        String filmname = film.getFilmName();
-        String filmyear = film.getPublishYear();
-        String filmlength = film.getLength();
-        String filmfirm = film.getPublishFirm();
-        List<Person> filmactor = film.getActor();
-        List<Person> filmdirector = film.getDirector();
-        List<String> filmcategory = film.getCategoryList();
-        String filmplot = film.getPlot();
-        List<Person> filmvoice = film.getVoice();
+        String filmname = "";
+        String filmyear = "";
+        String filmlength = "";
+        String filmfirm = "";
+        List<Person> filmactor = null;
+        List<Person> filmdirector = null;
+        List<String> filmcategory = null;
+        String filmplot = "";
+        List<Person> filmvoice = null;
+        for(Film film:filmList) {
+            filmname = film.getFilmName();
+            filmyear = film.getPublishYear();
+            filmlength = film.getLength();
+            filmfirm = film.getPublishFirm();
+            filmactor = film.getActor();
+            filmdirector = film.getDirector();
+            filmcategory = film.getCategoryList();
+            filmplot = film.getPlot();
+            filmvoice = film.getVoice();
+        }
 %>
 <div class="layui-container">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
@@ -204,7 +214,6 @@
         </li>
     </ul>
     <%
-        }
         }
     %>
     <div style="text-align: center;">

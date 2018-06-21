@@ -95,8 +95,8 @@ layui.use('table', function(){
 </script>
 </div>-->
 <%
-    String username = "root";
-    String password = "reku3in5";
+    String username = "film";
+    String password = "123456";
     String operateObject = "Person";
     String sql = "select * from Person order by PersonID + 0";
 
@@ -109,7 +109,7 @@ layui.use('table', function(){
     <div class="layui-row">
         <div class="layui-col-xs6">
             </br>
-            <table class="easyui-datagrid" title="人物信息" style="width:600px;height:600px;"
+            <table class="easyui-datagrid" title="人物信息" style="width:600px;height:800px;"
                    data-options="singleSelect:true,collapsible:true,method:'get'">
                 <thead>
                 <tr>
@@ -137,72 +137,90 @@ layui.use('table', function(){
             </table>
         </div>
         <div class="layui-col-xs6" style="margin-top: 20px">
-            <form class="layui-form layui-form-pane" action="" onsubmit="">
+            <form class="layui-form layui-form-pane" action="/personInsert" method="post">
                 <fieldset class="layui-elem-field layui-field-title">
                     <legend>添加人物</legend>
                 </fieldset>
                 <div class="layui-form-item">
                     <label class="layui-form-label">人物姓名</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="person_name_insert" required lay-verify="required" placeholder="请输入人物姓名" autocomplete="off" class="layui-input">
+                        <input type="text" name="PersonName" required lay-verify="required" placeholder="请输入人物姓名" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">出生日期</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="person_date_insert" id="date" required lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                        <input type="text" name="PersonBirth" id="date1" required lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div align="" style="margin-left: 100px;">
-                    <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius">添加记录</button>
+                    <input type="hidden" name="mark">
+                    <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='4'">添加记录</button>
                 </div>
             </form>
             <p></p>
 
-            <form class="layui-form layui-form-pane" action="" onsubmit="">
+            <form class="layui-form layui-form-pane" action="/PersonUpdateName" method="post">
                 <fieldset class="layui-elem-field layui-field-title">
-                    <legend>修改信息</legend>
+                    <legend>修改姓名</legend>
                 </fieldset>
                 <div class="layui-form-item">
                     <label class="layui-form-label">人物编号</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="person_num_upn" required lay-verify="required" placeholder="请输入人物编号" autocomplete="off" class="layui-input">
+                        <input type="text" name="PersonID" required lay-verify="required" placeholder="请输入人物编号" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">人物姓名</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="person_name_up" required lay-verify="required" placeholder="请输入人物姓名" autocomplete="off" class="layui-input">
+                        <input type="text" name="PersonName" required lay-verify="required" placeholder="请输入人物姓名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div align="" style="margin-left: 100px;">
+                    <input type="hidden" name="mark">
+                    <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='4'">修改记录</button>
+                </div>
+            </form>
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>修改生日</legend>
+            </fieldset>
+            <form class="layui-form layui-form-pane" action="/PersonUpdateBirth" method="post">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">人物编号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="PersonID" required lay-verify="required" placeholder="请输入人物编号" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">出生日期</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="person_date_up" id="date1" required lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                        <input type="text" name="PersonBirth" id="date1" required lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div align="" style="margin-left: 100px;">
-                    <button id="" type="submit" class="layui-btn layui-btn-primary layui-btn-radius">修改记录</button>
+                    <input type="hidden" name="mark">
+                    <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='4'">修改记录</button>
                 </div>
             </form>
-            <form class="layui-form layui-form-pane" action="" onsubmit="">
+            <form class="layui-form layui-form-pane" action="/PersonDelete" method="post">
                 <fieldset class="layui-elem-field layui-field-title">
                     <legend>删除人物</legend>
                 </fieldset>
                 <div class="layui-form-item">
                     <label class="layui-form-label">人物编号</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="person_num_delete" required lay-verify="required" placeholder="请输入人物编号" autocomplete="off" class="layui-input">
+                        <input type="text" name="PersonID" required lay-verify="required" placeholder="请输入人物编号" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">人物姓名</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="person_name_delete" required lay-verify="required" placeholder="请输入人物姓名" autocomplete="off" class="layui-input">
+                        <input type="text" name="PersonName" required lay-verify="required" placeholder="请输入人物姓名" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div align="" style="margin-left: 100px;">
-                    <button id="1" type="submit" class="layui-btn layui-btn-primary layui-btn-radius">删除记录</button>
+                    <input type="hidden" name="mark">
+                    <button id="1" type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='4';javascript:return p_del()">删除记录</button>
                 </div>
             </form>
         </div>
@@ -213,6 +231,16 @@ layui.use('table', function(){
 <div style="text-align: center;">
     <button id="2" class="layui-btn layui-btn-primary layui-btn-radius" onclick="window.location.href='changeindex.html'">返回</button>
 </div>
+<script language=javascript>
+    function p_del() {
+        var msg = "您真的确定要删除吗？\n\n请确认！";
+        if (confirm(msg)==true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
 <script src="../layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>

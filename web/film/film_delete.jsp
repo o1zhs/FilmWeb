@@ -95,85 +95,79 @@ layui.use('table', function(){
 </div>-->
 <div class="maincontainer" style="margin-left: 20px;margin-right: 20px">
     <div class="layui-row">
-        <div class="layui-col-xs6">
-            <div style="margin:20px 0;"></div>
+        <div style="margin:20px 0;"></div>
+        <%
+            String username = "film";
+            String password = "123456";
+            String operateObject = "filmIndex";
+            String sql = "select Film.*,Firm.FirmName from Film,Firm where Film.FirmID=Firm.FirmID order by Film.IntId;";
+
+            DBOperator dbOperator = new DBOperator(username,password,operateObject);
+            dbOperator.query(sql);
+
+            List<Film> filmList = dbOperator.getFilmList();
+        %>
+        <table class="easyui-datagrid" title="电影信息" style="width:1320px;height:480px;"
+               data-options="rownumbers:true,singleSelect:true,pagination:true,method:'get'">
+            <thead>
+            <tr>
+                <th data-options="field:'itemid',width:180,align:'center'">电影编号</th>
+                <th data-options="field:'productid',width:260,align:'center'">电影名称</th>
+                <th data-options="field:'listprice',width:180,align:'center'">出品日期</th>
+                <th data-options="field:'unitcost',width:170,align:'center'">电影时长</th>
+                <th data-options="field:'attr1',width:300,align:'center'">出品公司</th>
+                <th data-options="field:'status',width:250">操作</th>
+            </tr>
+            </thead>
+            <tbody>
             <%
-                String username = "root";
-                String password = "reku3in5";
-                String operateObject = "filmIndex";
-                String sql = "select Film.*,Firm.FirmName from Film,Firm where Film.FirmID=Firm.FirmID order by Film.IntId;";
-
-                DBOperator dbOperator = new DBOperator(username,password,operateObject);
-                dbOperator.query(sql);
-
-                List<Film> filmList = dbOperator.getFilmList();
-
+                for(Film film:filmList){
+                    String filmID = film.getFilmID();
+                    String firmName = film.getPublishFirm();
+                    String filmName = film.getFilmName();
+                    String filmYear = film.getPublishYear();
+                    String filmLength = film.getLength();
+                    String filmPlot =  film.getPlot();
 
             %>
-            <table class="easyui-datagrid" title="电影信息" style="width:650px;height:480px"
-                   data-options="singleSelect:true,collapsible:true,method:'get'">
-                <thead>
-                <tr>
-                    <th data-options="field:'itemid',width:80,align:'center'">电影编号</th>
-                    <th data-options="field:'productid',width:160,align:'center'">电影名称</th>
-                    <th data-options="field:'listprice',width:80,align:'center'">出品日期</th>
-                    <th data-options="field:'unitcost',width:70,align:'center'">电影时长</th>
-                    <th data-options="field:'attr1',width:200,align:'center'">出品公司</th>
-                    <th data-options="field:'status',width:1000">电影简介</th>
-                </tr>
-                </thead>
-                <tbody>
-                <%
-                    for(Film film:filmList){
-                        String filmID = film.getFilmID();
-                        String firmName = film.getPublishFirm();
-                        String filmName = film.getFilmName();
-                        String filmYear = film.getPublishYear();
-                        String filmLength = film.getLength();
-                        String filmPlot =  film.getPlot();
-
-                %>
-                <tr>
-                    <td><%= filmID%></td>
-                    <td><%= filmName%></td>
-                    <td><%= filmYear%></td>
-                    <td><%= filmLength%></td>
-                    <td><%= firmName%></td>
-                    <td><%= filmPlot%></td>
-                </tr>
-                <%
-                    }
-                %>
-                </tbody>
-            </table>
-        </div>
-        <div class="layui-col-xs6" style="margin-top: 20px">
-            <form id="filmform" class="layui-form layui-form-pane" action="" onsubmit="">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">电影编号</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="FilmID" required placeholder="请输入名称" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">电影名称</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="FilmName" required placeholder="请输入名称" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div align="center">
-                    <button id="2" type="submit" class="layui-btn layui-btn-radius" style="margin-top: 30px;">删除记录</button>
-                </div>
-            </form>
-            </br>
-            </br>
-            <div align="center">
-                <button id="3" type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='alterFilmIndex.jsp'">返回</button>
-            </div>
-        </div>
+            <tr>
+                <td><%= filmID%></td>
+                <td><%= filmName%></td>
+                <td><%= filmYear%></td>
+                <td><%= filmLength%></td>
+                <td><%= firmName%></td>
+                <td>
+                    <form action="/FilmDelete" method="post">
+                        <input type="hidden" name="FilmID">
+                        <input type="hidden" name="abc">
+                        <input type="hidden" name="FilmName">
+                        <input type="hidden" name="mark">
+                        <button type="submit" onclick="this.form.FilmID.value='<%=filmID%>';this.form.abc.value='1';this.form.FilmName.value='<%=filmName%>';this.form.mark.value='2';javascript:return p_del()">删除</button>
+                    </form>
+                </td>
+            </tr>
+            <%
+                }
+            %>
+            </tbody>
+        </table>
+    </div>
+    </br>
+    </br>
+    <div align="center">
+        <button id="5" type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='alterFilmIndex.jsp'">返回</button>
     </div>
 </div>
-
+<script language=javascript>
+    function p_del() {
+        var msg = "您真的确定要删除吗？\n\n请确认！";
+        if (confirm(msg)==true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
 <script src="../layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>

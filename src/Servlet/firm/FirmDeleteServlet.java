@@ -93,7 +93,7 @@ public class FirmDeleteServlet extends HttpServlet {
                     this.deleteInfo = "Delete failed";
                 request.setAttribute("affectRows",affectRows);
                 request.setAttribute("deleteInfo",deleteInfo);
-                request.getRequestDispatcher("film/firm_delete.jsp").forward(request,response);
+                request.getRequestDispatcher("film/RightOutput.jsp").forward(request,response);
             }
             else {
                 DeleteFirm deleteFirm = new DeleteFirm(firmID);
@@ -104,7 +104,7 @@ public class FirmDeleteServlet extends HttpServlet {
                     this.deleteInfo = "Delete failed";
                 request.setAttribute("affectRows",affectRows);
                 request.setAttribute("deleteInfo",deleteInfo);
-                request.getRequestDispatcher("film/firm_delete.jsp").forward(request,response);
+                request.getRequestDispatcher("film/RightOutput.jsp").forward(request,response);
             }
         }
 

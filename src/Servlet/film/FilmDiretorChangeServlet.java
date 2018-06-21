@@ -17,6 +17,7 @@ import java.io.IOException;
 public class FilmDiretorChangeServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         String id = request.getParameter("id");
         String filmID = request.getParameter("FilmID");
         String directorName = request.getParameter("Filmdirector");
@@ -34,7 +35,7 @@ public class FilmDiretorChangeServlet extends HttpServlet {
                     resultInfo = "Insert Failed!";
                 request.setAttribute("affectRows", affectRows);
                 request.setAttribute("resultInfo", resultInfo);
-                request.getRequestDispatcher("/film/FilmOtherChangeQuery.jsp").forward(request,response);
+                request.getRequestDispatcher("/film/RightOutput.jsp").forward(request,response);
             }
             else{
                 Boolean isExisted = null;
@@ -63,7 +64,7 @@ public class FilmDiretorChangeServlet extends HttpServlet {
                     resultInfo = "Delete Failed!";
                 request.setAttribute("affectRows", affectRows);
                 request.setAttribute("resultInfo", resultInfo);
-                request.getRequestDispatcher("/film/FilmOtherChangeQuery.jsp").forward(request,response);
+                request.getRequestDispatcher("/film/RightOutput.jsp").forward(request,response);
             }
             else{
                 Boolean isExisted = deleteDirector.getExisted();    //表中不存在要删除的记录

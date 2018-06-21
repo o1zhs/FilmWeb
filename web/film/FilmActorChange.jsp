@@ -1,4 +1,7 @@
-<%--
+<%@ page import="Bean.Film" %>
+<%@ page import="Bean.Person" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Bean.Actor" %><%--
   Created by IntelliJ IDEA.
   User: zhang
   Date: 2018/6/10
@@ -26,6 +29,7 @@
     <script src="../afctf/js/utils.js"></script>
     <script src="../afctf/js/challenge.js"></script>
     <script src="../afctf/js/inputLimit.js"></script>
+    <script src="js/jquery-3-2-1.js"></script>
     <script type="text/javascript" src="../value_js/jquery.min.2.0.js"></script>
     <style>
         .window{
@@ -70,6 +74,42 @@
         </div>
     </div>
 </div>
+<%
+    String ID = request.getParameter("FilmID");
+    String FilmName = request.getParameter("FilmName");
+    Object object = request.getAttribute("filmList");
+    List<Film> filmList = null;
+    if(object instanceof List) {
+        filmList = (List<Film>) object;
+    }
+    //按名称查询电影的信息
+    if(filmList.isEmpty()){
+%>
+<h1>对不起没有此记录</h1>
+<%
+}
+else{
+    String filmname = "";
+    String filmyear = "";
+    String filmlength = "";
+    String filmfirm = "";
+    List<Person> filmactor = null;
+    List<Person> filmdirector = null;
+    List<String> filmcategory = null;
+    String filmplot = "";
+    List<Person> filmvoice = null;
+    for(Film film:filmList) {
+        filmname = film.getFilmName();
+        filmyear = film.getPublishYear();
+        filmlength = film.getLength();
+        filmfirm = film.getPublishFirm();
+        filmactor = film.getActor();
+        filmdirector = film.getDirector();
+        filmcategory = film.getCategoryList();
+        filmplot = film.getPlot();
+        filmvoice = film.getVoice();
+    }
+%>
 <div class="layui-container">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
         <legend style="text-align: center;">电影查询结果</legend>
@@ -78,7 +118,7 @@
         <li class="layui-timeline-item">
             <i class="layui-icon layui-timeline-axis"></i>
             <div class="layui-timeline-content layui-text">
-                <div class="layui-timeline-title">电影名称：邱轶昊的大学生活</div>
+                <div class="layui-timeline-title">电影名称：<%=filmname%></div>
             </div>
         </li>
 
@@ -86,54 +126,148 @@
             <i class="layui-icon layui-timeline-axis"></i>
             <div class="layui-timeline-content layui-text">
                 <div class="layui-timeline-title">电影演员：</div>
-                邱轶昊 饰演 孙悟空
+                <%
+                    for (Person film_actor:filmactor){
+                        String Person_name = film_actor.getName();  //演员姓名
+                        Actor filma = film_actor.getActor();        //获取演员饰演的角色
+                        List<String> filmal = filma.getRole();      //遍历演员饰演的角色
+                        for (String filmall:filmal){                //获取演员饰演的角色的String
+
+                %>
+                <%=Person_name%> 饰演 <%=filmall%>
                 <p></p>
-                邱轶昊 饰演 猪八戒
+                <%
+                        }
+                    }
+                %>
             </div>
         </li>
     </ul>
     <div style="text-align: center;">
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-            <legend style="text-align: center;">添加记录或删除记录</legend>
+            <legend style="text-align: center;">删除记录</legend>
         </fieldset>
-        <form class="layui-form layui-form-pane" action="" onsubmit="">
+        <form class="layui-form layui-form-pane" action="/FilmActorChange" method="post" name="role1">
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label">输入演员</label>
+                    <label class="layui-form-label"><font clolor="gray">选择演员</font></label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmactor" placeholder="请输入演员" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <select id="deteleperson" name="Filmactor" required lay-verify="required">
+                            <option value="" selected=""></option>
+                            <%
+                                for (Person film_actor:filmactor){
+                                    String Person_name = film_actor.getName();
+                            %>
+                            <option value="<%=Person_name%>"><%=Person_name%></option>
+                            <%
+                                }
+                            %>
+                        </select>
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <label class="layui-form-label">输入角色</label>
+                    <label class="layui-form-label">选择角色</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="Filmrole" placeholder="请输入角色" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <div class="layui-input-inline">
+                            <select id="delaterole" name="Filmrole" required lay-verify="required">
+                                <option value="" selected=""></option>
+                                <%
+                                    for (Person film_actor:filmactor){
+                                        String Person_name = film_actor.getName();  //演员姓名
+                                        Actor filma = film_actor.getActor();        //获取演员饰演的角色
+                                        List<String> filmal = filma.getRole();      //遍历演员饰演的角色
+                                        for (String filmall:filmal){                //获取演员饰演的角色的String
+
+                                %>
+                                <option value="<%=filmall%>"><%=filmall%></option>
+                                <p></p>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
             <div align="center">
-                <input type="hidden" id="FilmID1" name="FilmID" value="1">
-                <input type="hidden" id="abc" name="abc" value="1">
-                <button id="1" type="submit" value="01" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='1';this.form.FilmID.value=''">添加</button>
-                <button id="2" type="submit" value="02" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='2';this.form.FilmID.value=''">删除</button>
+                <input type="hidden" name="FilmID">
+                <input type="hidden" name="label">
+                <input type="hidden" name="FilmName">
+                <input type="hidden" name="id">
+                <button type="submit" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.id.value='2';this.form.FilmID.value='<%=ID%>';this.form.label.value='2';this.form.FilmName.value='<%=FilmName%>';javascript:return p_del()">删除</button>
             </div>
         </form>
         </br>
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-            <legend style="text-align: center;">修改演员或角色</legend>
+            <legend style="text-align: center;">添加记录</legend>
         </fieldset>
-        <form class="layui-form layui-form-pane" action="" onsubmit="">
+        <form class="layui-form layui-form-pane" action="/FilmActorChange" method="post" name="role1">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">输入演员</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmactor0" required lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入原始的演员">
+                        <input type="tel" name="Filmactor" required lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入演员">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">输入角色</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="Filmrole0" required lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入原始的角色">
+                        <input type="text" name="Filmrole" required lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入角色">
+                    </div>
+                </div>
+            </div>
+            <div align="center">
+                <input type="hidden" name="FilmID">
+                <input type="hidden" name="label">
+                <input type="hidden" name="FilmName">
+                <input type="hidden" name="id">
+                <button type="submit" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.id.value='1';this.form.FilmID.value='<%=ID%>';this.form.label.value='2';this.form.FilmName.value='<%=FilmName%>'">添加</button>
+            </div>
+        </form>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend style="text-align: center;">修改演员或角色</legend>
+        </fieldset>
+        <form class="layui-form layui-form-pane" action="/FilmActorUpdate" method="post">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label"><font clolor="gray">选择原始演员</font></label>
+                    <div class="layui-input-inline">
+                        <select name="Filmactor0" required lay-verify="required">
+                            <option value="" selected=""></option>
+                            <%
+                                for (Person film_actor:filmactor){
+                                    String Person_name = film_actor.getName();
+                            %>
+                            <option value="<%=Person_name%>"><%=Person_name%></option>
+                            <%
+                                }
+                            %>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">选择原始角色</label>
+                    <div class="layui-input-inline">
+                        <div class="layui-input-inline">
+                            <select name="Filmrole0" required lay-verify="required">
+                                <option value="" selected=""></option>
+                                <%
+                                    for (Person film_actor:filmactor){
+                                        String Person_name = film_actor.getName();  //演员姓名
+                                        Actor filma = film_actor.getActor();        //获取演员饰演的角色
+                                        List<String> filmal = filma.getRole();      //遍历演员饰演的角色
+                                        for (String filmall:filmal){                //获取演员饰演的角色的String
+
+                                %>
+                                <option value="<%=filmall%>"><%=filmall%></option>
+                                <p></p>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,16 +286,80 @@
                 </div>
             </div>
             <div align="center">
-                <input type="hidden" id="FilmID2" name="FilmID" value="1">
-                <button id="3" type="submit" value="01" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.abc.value='';this.form.FilmID.value=''">添加</button>
+                <input type="hidden" name="FilmID" value="1">
+                <input type="hidden" name="label">
+                <input type="hidden" name="FilmName">
+                <button type="submit" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="this.form.FilmID.value='<%=ID%>';this.form.label.value='2';this.form.FilmName.value='<%=FilmName%>'">修改</button>
             </div>
         </form>
+        <%
+            }
+        %>
         </br>
         </br>
-        <button id="" class="layui-btn layui-btn-radius" onclick="window.location.href='FilmOtherChangeQuery.jsp'">返回</button>
+        <button id="" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/FilmOtherChangeQuery.jsp'">返回</button>
     </div>
 </div>
+<script language=javascript>
+    function p_del() {
+        var msg = "您真的确定要删除吗？\n\n请确认！";
+        if (confirm(msg)==true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
+<script type="text/javascript">
+    function findjc(){
+        var person_name = $('#deleteperson option:selected').val();
+        $.ajax({
+            url:"/FilmQuery",
+            type:"post",
+            dataType:"html",
+            timeout:"1000",
+            data:{cityname:cityname},
+            success:function(data){
 
+                $("#jcname option").remove();
+                var jc=data.split(",");
+                for ( var i = 0; i < jc.length; i++) {
+                    var jcName = jc[i];
+                    $("#jcname").append(
+                        "<option value="+jcName+">"
+                        + jcName + "</option>");
+                }
+
+            },
+            error : function(XMLResponse) {
+                alert(XMLResponse.responseText);
+            }
+        });
+    }
+</script>
+<script src="../layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+
+    });
+</script>
 <div class="maincontainer">
     <script src='afctf/js/TweenMax.min.js'></script>
     <script src="afctf/js/index.js"></script>

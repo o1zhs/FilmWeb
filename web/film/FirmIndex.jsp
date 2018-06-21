@@ -94,8 +94,8 @@ layui.use('table', function(){
 </script>
 </div>-->
 <%
-    String username = "root";
-    String password = "reku3in5";
+    String username = "film";
+    String password = "123456";
     String operateObject = "firmIndex";
     String sql = "select * from Firm order by FirmID + 0";
 
@@ -136,29 +136,30 @@ layui.use('table', function(){
             </table>
         </div>
         <div class="layui-col-xs6" style="margin-top: 20px">
-            <form class="layui-form layui-form-pane" action="" onsubmit="">
+            <form class="layui-form layui-form-pane" action="/FirmInsert" method="post">
                 <fieldset class="layui-elem-field layui-field-title">
                     <legend>添加公司</legend>
                 </fieldset>
                 <div class="layui-form-item">
                     <label class="layui-form-label">公司名称</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="firm_name_insert" required lay-verify="required" placeholder="请输入公司名称" autocomplete="off" class="layui-input">
+                        <input type="text" name="FirmName" required lay-verify="required" placeholder="请输入公司名称" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">所在城市</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="firm_city_insert" required lay-verify="required" placeholder="请输入所在城市" autocomplete="off" class="layui-input">
+                        <input type="text" name="city" required lay-verify="required" placeholder="请输入所在城市" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div align="" style="margin-left: 100px;">
-                    <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius">添加记录</button>
+                    <input type="hidden" name="mark">
+                    <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='5'">添加记录</button>
                 </div>
             </form>
             <p></p>
 
-            <form class="layui-form layui-form-pane" action="" onsubmit="">
+            <form class="layui-form layui-form-pane" action="/FirmUpdate" method="post">
                 <fieldset class="layui-elem-field layui-field-title">
                     <legend>修改名称和城市</legend>
                 </fieldset>
@@ -177,31 +178,33 @@ layui.use('table', function(){
                 <div class="layui-form-item">
                     <label class="layui-form-label">所在城市</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="firm_city_upb" required lay-verify="required" placeholder="请输入所在城市" autocomplete="off" class="layui-input">
+                        <input type="text" name="city" required lay-verify="required" placeholder="请输入所在城市" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div align="" style="margin-left: 100px;">
-                    <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius">修改记录</button>
+                    <input type="hidden" name="mark">
+                    <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='5'">修改记录</button>
                 </div>
             </form>
-            <form class="layui-form layui-form-pane" action="" onsubmit="">
+            <form class="layui-form layui-form-pane" action="/FirmDelete" method="post">
                 <fieldset class="layui-elem-field layui-field-title">
                     <legend>删除公司</legend>
                 </fieldset>
                 <div class="layui-form-item">
                     <label class="layui-form-label">公司编号</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="firm_num_delete" required lay-verify="required" placeholder="请输入公司编号" autocomplete="off" class="layui-input">
+                        <input type="text" name="FirmID" required lay-verify="required" placeholder="请输入公司编号" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">公司名称</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="firm_name_delete" required lay-verify="required" placeholder="请输入公司名称" autocomplete="off" class="layui-input">
+                        <input type="text" name="FirmName" required lay-verify="required" placeholder="请输入公司名称" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div align="" style="margin-left: 100px;">
-                    <button id="" type="submit" class="layui-btn layui-btn-primary layui-btn-radius">删除记录</button>
+                    <input type="hidden" name="mark">
+                    <button id="" type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='5';javascript:return p_del()">删除记录</button>
                 </div>
             </form>
         </div>
@@ -212,6 +215,16 @@ layui.use('table', function(){
 <div style="text-align: center;">
     <button id="2" class="layui-btn layui-btn-primary layui-btn-radius" onclick="window.location.href='changeindex.html'">返回</button>
 </div>
+<script language=javascript>
+    function p_del() {
+        var msg = "您真的确定要删除吗？\n\n请确认！";
+        if (confirm(msg)==true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
 <script src="../layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>

@@ -18,11 +18,11 @@ import java.io.IOException;
 @WebServlet(name = "FilmActorChangeServlet")
 public class FilmActorChangeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         String id = request.getParameter("id");
         String filmID = request.getParameter("FilmID");
         String actorName = request.getParameter("Filmactor");
-        String actorRole = request.getParameter("FilmRole");
-
+        String actorRole = request.getParameter("Filmrole");
 
 
         String resultInfo;
@@ -38,9 +38,10 @@ public class FilmActorChangeServlet extends HttpServlet {
                     resultInfo = "Insert Failed!";
                 request.setAttribute("affectRows", affectRows);
                 request.setAttribute("resultInfo", resultInfo);
-                request.getRequestDispatcher("/film/FilmOtherChangeQuery.jsp").forward(request,response);
+                request.getRequestDispatcher("/film/RightOutput.jsp").forward(request,response);
             }
             else{
+                //System.out.println(insertFilmActor.getExisted() + " " + insertFilmActor.getSame());
                 Boolean isExisted = null;
                 if(!insertFilmActor.getExisted()){
                     isExisted = false;      //插入的演员Person尚不存在Person表中
@@ -67,7 +68,7 @@ public class FilmActorChangeServlet extends HttpServlet {
                     resultInfo = "Delete Failed!";
                 request.setAttribute("affectRows", affectRows);
                 request.setAttribute("resultInfo", resultInfo);
-                request.getRequestDispatcher("/film/FilmOtherChangeQuery.jsp").forward(request,response);
+                request.getRequestDispatcher("/film/RightOutput.jsp").forward(request,response);
             }
             else{
                 Boolean isExisted = deleteFilmActor.getExisted();    //表中不存在要删除的记录

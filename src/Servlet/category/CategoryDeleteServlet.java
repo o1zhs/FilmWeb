@@ -93,7 +93,7 @@ public class CategoryDeleteServlet extends HttpServlet {
                 deleteInfo = "Insert Failed!";
             request.setAttribute("affectRows", affectRows);
             request.setAttribute("insertInfo", deleteInfo);
-            request.getRequestDispatcher("/film/changeindex.html").forward(request, response);
+            request.getRequestDispatcher("/film/RightOutput.jsp").forward(request, response);
         }
     }
 
