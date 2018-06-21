@@ -9,7 +9,7 @@ public class UpdateFirmCity {
 
     public UpdateFirmCity(Firm firm){
         this.firm = firm;
-        this.sql = "update Firm set FirmName='" + this.firm.getCity() + "' where FirmID='" + this.firm.getFirmID() + "'; ";
+        this.sql = "update Firm set FirmCity='" + this.firm.getCity() + "' where FirmID='" + this.firm.getFirmID() + "'; ";
     }
 
     public int executeUpdate(){

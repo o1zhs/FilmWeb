@@ -60,7 +60,7 @@
     String FirmID = request.getParameter("firm_num_upn");
 %>
 <div style="text-align: center">
-<form class="layui-form layui-form-pane" action="/FirmUpdate" method="post" style="margin-left: 500px;">
+<form class="layui-form layui-form-pane" action="/FirmUpdateName" method="post" style="margin-left: 500px;">
     <fieldset class="layui-elem-field layui-field-title">
         <legend>修改名称</legend>
     </fieldset>
@@ -76,14 +76,14 @@
         <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='5';this.form.firm_num_upn.value='<%=FirmID%>'">修改记录</button>
     </div>
 </form>
-    <form class="layui-form layui-form-pane" action="/FirmUpdate" method="post"  style="margin-left: 500px;">
+    <form class="layui-form layui-form-pane" action="/FirmUpdateCity" method="post"  style="margin-left: 500px;">
         <fieldset class="layui-elem-field layui-field-title">
             <legend>修改城市</legend>
         </fieldset>
         <div class="layui-form-item">
             <label class="layui-form-label">修改城市</label>
             <div class="layui-input-inline">
-                <input type="text" name="city" required lay-verify="required" placeholder="请输入所在城市" autocomplete="off" class="layui-input">
+                <input type="text" name="firm_city_up" required lay-verify="required" placeholder="请输入所在城市" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div align="" style="margin-left: 100px;">
