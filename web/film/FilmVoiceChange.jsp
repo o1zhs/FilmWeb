@@ -172,7 +172,7 @@ else{
                 <div class="layui-inline">
                     <label class="layui-form-label">输入旁白</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmvoice" placeholder="请输入旁白" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input onkeyup="value=value.replace(/[\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\d]/g,''))" type="tel" name="Filmvoice" placeholder="请输入旁白" required lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -208,7 +208,7 @@ else{
                 <div class="layui-inline">
                     <label class="layui-form-label">修改旁白</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmvoice_clate" placeholder="请输入修改后的旁白" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <input onkeyup="value=value.replace(/[\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\d]/g,''))" type="tel" name="Filmvoice_clate" placeholder="请输入修改后的旁白" required lay-verify="required" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>

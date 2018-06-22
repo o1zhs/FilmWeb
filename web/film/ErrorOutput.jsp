@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.sun.org.apache.xpath.internal.operations.Bool" %><%--
   Created by IntelliJ IDEA.
   User: liu
   Date: 2018/5/30
@@ -57,7 +57,9 @@
     </div>
 </div>
 <%
-    Object object = request.getAttribute("isExisted");
+    Boolean isExisted = (Boolean) request.getAttribute("isExisted");
+    String errorObject = (String) request.getAttribute("errorObject");
+    String errorOperation = (String) request.getAttribute("errorOperation");
 
 %>
 <div class="maincontainer">

@@ -142,7 +142,9 @@ layui.use('table', function(){
                         <form action="FirmCityNamechange.jsp">
                             <input type="hidden" name="mark">
                             <input type="hidden" name="firm_num_upn">
-                            <button type="submit" onclick="this.form.mark.value='5';this.form.firm_num_upn.value='<%=FirmID%>';this.form.FirmName.value='<%=FirmName%>';javascript:return p_del()">修改</button>
+                            <input type="hidden" name="city">
+                            <input type="hidden" name="name">
+                            <button type="submit" onclick="this.form.mark.value='5';this.form.firm_num_upn.value='<%=FirmID%>';this.form.name.value='<%=FirmName%>';this.form.city.value='<%=FirmCity%>'">修改</button>
                         </form>
                     </td>
                 </tr>
@@ -166,7 +168,7 @@ layui.use('table', function(){
                 <div class="layui-form-item">
                     <label class="layui-form-label">所在城市</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="city" required lay-verify="required" placeholder="请输入所在城市" autocomplete="off" class="layui-input">
+                        <input onkeyup="value=value.replace(/[\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\d]/g,''))" type="text" name="city" required lay-verify="required" placeholder="请输入所在城市" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div align="" style="margin-left: 100px;">

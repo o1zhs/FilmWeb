@@ -5,7 +5,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="Bean.Person" %>
 <%@ page import="Bean.Actor" %>
-<%@ page import="com.sun.jdi.event.StepEvent" %>
 <%@ page import="Bean.DirectorQuery" %>
 <%--
   Created by IntelliJ IDEA.

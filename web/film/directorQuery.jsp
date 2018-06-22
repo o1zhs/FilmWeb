@@ -76,7 +76,7 @@
                         <font color="gray">导演姓名</font>
                     </label>
                     <div class="layui-input-inline">
-                        <input name="directorname" required lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                        <input onkeyup="value=value.replace(/[\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\d]/g,''))" name="directorname" required lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </td>

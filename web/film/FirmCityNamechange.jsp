@@ -58,9 +58,11 @@
 </div>
 <%
     String FirmID = request.getParameter("firm_num_upn");
+    String city = request.getParameter("city");
+    String name = request.getParameter("name");
 %>
 <div style="text-align: center">
-<form class="layui-form layui-form-pane" action="/FirmUpdateName" method="post" style="margin-left: 500px;">
+<form class="layui-form layui-form-pane" lay-filter="example1" action="/FirmUpdateName" method="post" style="margin-left: 500px;">
     <fieldset class="layui-elem-field layui-field-title">
         <legend>修改名称</legend>
     </fieldset>
@@ -70,29 +72,96 @@
             <input type="text" name="firm_name_up" required lay-verify="required" placeholder="请输入公司名称" autocomplete="off" class="layui-input">
         </div>
     </div>
-    <div align="" style="margin-left: 100px;">
+    <div align="" style="">
         <input type="hidden" name="mark">
         <input type="hidden" name="firm_num_upn">
         <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='5';this.form.firm_num_upn.value='<%=FirmID%>'">修改记录</button>
     </div>
 </form>
-    <form class="layui-form layui-form-pane" action="/FirmUpdateCity" method="post"  style="margin-left: 500px;">
+    <form class="layui-form layui-form-pane" lay-filter="example2" action="/FirmUpdateCity" method="post"  style="margin-left: 500px;">
         <fieldset class="layui-elem-field layui-field-title">
             <legend>修改城市</legend>
         </fieldset>
         <div class="layui-form-item">
             <label class="layui-form-label">修改城市</label>
             <div class="layui-input-inline">
-                <input type="text" name="firm_city_up" required lay-verify="required" placeholder="请输入所在城市" autocomplete="off" class="layui-input">
+                <input onkeyup="value=value.replace(/[\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\d]/g,''))" type="text" name="firm_city_up" required lay-verify="required" placeholder="请输入所在城市" autocomplete="off" class="layui-input">
             </div>
         </div>
-        <div align="" style="margin-left: 100px;">
+        <div align="" style="">
             <input type="hidden" name="mark">
             <input type="hidden" name="firm_num_upn">
             <button type="submit" class="layui-btn layui-btn-primary layui-btn-radius" onclick="this.form.mark.value='5';this.form.firm_num_upn.value='<%=FirmID%>'">修改记录</button>
         </div>
     </form>
 </div>
+<script src="../layui/layui.js" charset="UTF-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script type="text/javascript" charset="UTF-8">
+    layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 5){
+                    return '标题至少得5个字符啊';
+                }
+            }
+            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,content: function(value){
+                layedit.sync(editIndex);
+            }
+        });
+
+        //监听指定开关
+        form.on('switch(switchTest)', function(data){
+            layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });
+            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+
+        //监听提交
+        form.on('submit(demo1)', function(data){
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            })
+            return false;
+        });
+
+        //表单初始赋值
+        form.val('example1', {
+            "firm_name_up": "<%=name%>" // "name": "value"
+            <%--,"date": "<%=Filmdate%>"--%>
+            <%--,"FilmLength": "<%=FilmLength%>"--%>
+            <%--,"Firm": "<%=Firm%>"--%>
+            <%--,"FilmPlot": "<%=Plot%>"--%>
+        })
+        form.val('example2', {
+            "firm_city_up": "<%=city%>" // "name": "value"
+            <%--,"date": "<%=Filmdate%>"--%>
+            <%--,"FilmLength": "<%=FilmLength%>"--%>
+            <%--,"Firm": "<%=Firm%>"--%>
+            <%--,"FilmPlot": "<%=Plot%>"--%>
+        })
+
+    });
+</script>
 <div class="maincontainer">
     <script src='../afctf/js/TweenMax.min.js'></script>
     <script src="../afctf/js/index.js"></script>

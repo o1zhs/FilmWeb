@@ -3,7 +3,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="Servlet.film.FilmQueryServlet" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.sun.jdi.event.StepEvent" %>
 <%@ page import="Bean.*" %>
 <%--
   Created by IntelliJ IDEA.

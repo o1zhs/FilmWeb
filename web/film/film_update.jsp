@@ -95,8 +95,6 @@ layui.use('table', function(){
 </script>
 </div>-->
 <div class="maincontainer" style="margin-left: 20px;margin-right: 20px">
-    <div class="layui-row">
-        <div class="layui-col-xs6">
             <div style="margin:20px 0;"></div>
             <%
                 String username = "film";
@@ -117,7 +115,7 @@ layui.use('table', function(){
 
 
             %>
-            <table class="easyui-datagrid" title="电影信息" style="width:650px;height:480px"
+            <table class="easyui-datagrid" title="电影信息" style="width:1320px;height:480px"
                    data-options="rownumbers:true,singleSelect:true,pagination:true,method:'get'">
                 <thead>
                 <tr>
@@ -163,7 +161,7 @@ layui.use('table', function(){
                             this.form.FilmLength.value='<%=filmLength%>';
                             this.form.Firm.value='<%=firmName%>';
                             this.form.FilmPlot.value='<%=filmPlot%>';
-                                    ">改名字</button>
+                                    ">改信息</button>
                         </form>
                     </td>
                 </tr>
@@ -172,68 +170,65 @@ layui.use('table', function(){
                 %>
                 </tbody>
             </table>
-        </div>
-        <div class="layui-col-xs6" style="margin-top: 20px">
-            <form id="filmform" class="layui-form layui-form-pane" action="/FilmUpdate" method="post">
-                <div class="layui-form-item">
-                     <label class="layui-form-label">电影编号</label>
-                         <div class="layui-input-block">
-                             <input type="text" name="FilmID" autocomplete="off" placeholder="请输入编号" class="layui-input">
-                         </div>
-                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">电影名称</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="FilmName" required placeholder="请输入名称" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">电影日期</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">电影时长</label>
-                    <div class="layui-input-inline">
-                        <input type="number" name="FilmLength" lay-verify="required" placeholder="请输入时长" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
+        <%--<div class="layui-col-xs6" style="margin-top: 20px">--%>
+            <%--<form id="filmform" class="layui-form layui-form-pane" action="/FilmUpdate" method="post">--%>
+                <%--<div class="layui-form-item">--%>
+                     <%--<label class="layui-form-label">电影编号</label>--%>
+                         <%--<div class="layui-input-block">--%>
+                             <%--<input type="text" name="FilmID" autocomplete="off" placeholder="请输入编号" class="layui-input">--%>
+                         <%--</div>--%>
+                 <%--</div>--%>
+                <%--<div class="layui-form-item">--%>
+                    <%--<label class="layui-form-label">电影名称</label>--%>
+                    <%--<div class="layui-input-block">--%>
+                        <%--<input type="text" name="FilmName" required placeholder="请输入名称" autocomplete="off" class="layui-input">--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="layui-form-item">--%>
+                    <%--<label class="layui-form-label">电影日期</label>--%>
+                    <%--<div class="layui-input-inline">--%>
+                        <%--<input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="layui-form-item">--%>
+                    <%--<label class="layui-form-label">电影时长</label>--%>
+                    <%--<div class="layui-input-inline">--%>
+                        <%--<input type="number" name="FilmLength" lay-verify="required" placeholder="请输入时长" autocomplete="off" class="layui-input">--%>
+                    <%--</div>--%>
+                <%--</div>--%>
 
-                <div class="layui-form-item">
-                    <label class="layui-form-label">出品公司</label>
-                    <div class="layui-input-inline">
-                        <select name="Firm" lay-filter="aihao">
-                            <option value="" selected=""></option>
-                            <%
-                            for (Firm firmIndex: firmList){
-                            String FirmName = firmIndex.getFirmName();
-                            %>
-                            <option value="<%=FirmName%>"><%=FirmName%></option>
-                            <%
-                                }
-                            %>
-                        </select>
-                    </div>
-                </div>
-                <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">电影简介</label>
-                    <div class="layui-input-block">
-                        <textarea placeholder="请输入内容" name="FilmPlot" class="layui-textarea"></textarea>
-                    </div>
-                </div>
-                <div align="center">
-                    <input type="hidden" name="mark">
-                    <button id="1" type="submit" class="layui-btn layui-btn-normal layui-btn-radius" onclick="this.form.mark.value='3'">更新记录</button>
-                </div>
-            </form>
+                <%--<div class="layui-form-item">--%>
+                    <%--<label class="layui-form-label">出品公司</label>--%>
+                    <%--<div class="layui-input-inline">--%>
+                        <%--<select name="Firm" lay-filter="aihao">--%>
+                            <%--<option value="" selected=""></option>--%>
+                            <%--<%--%>
+                            <%--for (Firm firmIndex: firmList){--%>
+                            <%--String FirmName = firmIndex.getFirmName();--%>
+                            <%--%>--%>
+                            <%--<option value="<%=FirmName%>"><%=FirmName%></option>--%>
+                            <%--<%--%>
+                                <%--}--%>
+                            <%--%>--%>
+                        <%--</select>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="layui-form-item layui-form-text">--%>
+                    <%--<label class="layui-form-label">电影简介</label>--%>
+                    <%--<div class="layui-input-block">--%>
+                        <%--<textarea placeholder="请输入内容" name="FilmPlot" class="layui-textarea"></textarea>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div align="center">--%>
+                    <%--<input type="hidden" name="mark">--%>
+                    <%--<button id="1" type="submit" class="layui-btn layui-btn-normal layui-btn-radius" onclick="this.form.mark.value='3'">更新记录</button>--%>
+                <%--</div>--%>
+            <%--</form>--%>
             </br>
             </br>
             <div align="center">
                 <button id="2" class="layui-btn layui-btn-normal layui-btn-radius" onclick="window.location.href='alterFilmIndex.jsp'">返回</button>
             </div>
-        </div>
-    </div>
 </div>
 
 <script src="../layui/layui.js" charset="utf-8"></script>
@@ -255,6 +250,7 @@ layui.use('table', function(){
 
         //创建一个编辑器
         var editIndex = layedit.build('LAY_demo_editor');
+
 
 
     });

@@ -57,18 +57,22 @@
     </div>
 </div>
 <%
+    request.setCharacterEncoding("UTF-8");
     String PersonID = request.getParameter("PersonID");
+    String PersonName = request.getParameter("PersonName");
 %>
 <div style="text-align: center">
-    <form class="layui-form layui-form-pane" action="/PersonUpdateName" method="post">
+    <form class="layui-form layui-form-pane" lay-filter="example" action="/PersonUpdateName" method="post">
         <fieldset class="layui-elem-field layui-field-title">
             <legend>修改姓名</legend>
         </fieldset>
+        <div align="" style="margin-left: 100px;">
         <div class="layui-form-item">
             <label class="layui-form-label">人物姓名</label>
             <div class="layui-input-inline">
-                <input type="text" name="PersonName" required lay-verify="required" placeholder="请输入人物姓名" autocomplete="off" class="layui-input">
+                <input onkeyup="value=value.replace(/[\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\d]/g,''))" type="text" name="PersonName" required lay-verify="required" placeholder="请输入人物姓名" autocomplete="off" class="layui-input">
             </div>
+        </div>
         </div>
         <div align="" style="margin-left: 100px;">
             <input type="hidden" name="mark">
@@ -94,6 +98,66 @@
         </div>
     </div>
 </div>
+<script src="../layui/layui.js" charset="UTF-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script type="text/javascript" charset="UTF-8">
+    layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 5){
+                    return '标题至少得5个字符啊';
+                }
+            }
+            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,content: function(value){
+                layedit.sync(editIndex);
+            }
+        });
+
+        //监听指定开关
+        form.on('switch(switchTest)', function(data){
+            layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });
+            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+
+        //监听提交
+        form.on('submit(demo1)', function(data){
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            })
+            return false;
+        });
+
+        //表单初始赋值
+        form.val('example', {
+            "PersonName": "<%=PersonName%>" // "name": "value"
+            <%--,"date": "<%=Filmdate%>"--%>
+            <%--,"FilmLength": "<%=FilmLength%>"--%>
+            <%--,"Firm": "<%=Firm%>"--%>
+            <%--,"FilmPlot": "<%=Plot%>"--%>
+        })
+
+    });
+</script>
 <script type="text/javascript" color="0,0,139" count="175" opacity="0.5" src="../canvas-nest.min.js"></script>
 <script type="text/javascript">
     /* 鼠标特效 */

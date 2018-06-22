@@ -150,7 +150,7 @@ layui.use('table', function(){
                 <div class="layui-form-item">
                     <label class="layui-form-label">修改类别</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="kindc_late" required lay-verify="required" placeholder="请输入修改后的类别" autocomplete="off" class="layui-input">
+                        <input onkeyup="value=value.replace(/[\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\d]/g,''))" type="text" name="kindc_late" required lay-verify="required" placeholder="请输入修改后的类别" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div style="margin-left: 100px;">
@@ -166,7 +166,7 @@ layui.use('table', function(){
                 <div class="layui-form-item">
                     <label class="layui-form-label">添加类别</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="kind" required lay-verify="required" placeholder="请输入类别" autocomplete="off" class="layui-input">
+                        <input onkeyup="value=value.replace(/[\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\d]/g,''))" type="text" name="kind" required lay-verify="required" placeholder="请输入类别" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div style="margin-left: 100px;">

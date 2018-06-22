@@ -207,7 +207,7 @@ else{
                 <div class="layui-inline">
                     <label class="layui-form-label">输入演员</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmactor" required lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入演员">
+                        <input onkeyup="value=value.replace(/[\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\d]/g,''))" type="tel" name="Filmactor" required lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入演员">
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -275,7 +275,7 @@ else{
                 <div class="layui-inline">
                     <label class="layui-form-label">输入演员</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="Filmactor1" required lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入修改后的演员">
+                        <input onkeyup="value=value.replace(/[\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\d]/g,''))" type="text" name="Filmactor1" required lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入修改后的演员">
                     </div>
                 </div>
                 <div class="layui-inline">

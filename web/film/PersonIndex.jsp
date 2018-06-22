@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="Bean.Film" %>
 <%@ page import="Bean.Person" %>
+<%@ page import="javax.lang.model.element.PackageElement" %>
 <%--
   Created by IntelliJ IDEA.
   User: zhang
@@ -144,14 +145,17 @@ layui.use('table', function(){
                         <form action="Personbirth.jsp">
                             <input type="hidden" name="mark">
                             <input type="hidden" name="PersonID">
-                            <button type="submit" onclick="this.form.mark.value='4';this.form.PersonID.value='<%=PersonID%>'">改生日</button>
+                            <input type="hidden" name="Birth">
+                            <input type="hidden" name="name">
+                            <button type="submit" onclick="this.form.name.value='<%=PersonName%>';this.form.mark.value='4';this.form.PersonID.value='<%=PersonID%>';this.form.Birth.value='<%=PersonBirth%>'">改生日</button>
                         </form>
                     </td>
                     <td>
                         <form action="Personname.jsp">
                             <input type="hidden" name="mark">
                             <input type="hidden" name="PersonID">
-                            <button type="submit" onclick="this.form.mark.value='4';this.form.PersonID.value='<%=PersonID%>'">改名字</button>
+                            <input type="hidden" name="PersonName">
+                            <button type="submit" onclick="this.form.mark.value='4';this.form.PersonID.value='<%=PersonID%>';this.form.PersonName.value='<%=PersonName%>'">改名字</button>
                         </form>
                     </td>
                 </tr>
@@ -169,7 +173,7 @@ layui.use('table', function(){
                 <div class="layui-form-item">
                     <label class="layui-form-label">人物姓名</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="PersonName" required lay-verify="required" placeholder="请输入人物姓名" autocomplete="off" class="layui-input">
+                        <input onkeyup="value=value.replace(/[\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\d]/g,''))" type="text" name="PersonName" required lay-verify="required" placeholder="请输入人物姓名" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
