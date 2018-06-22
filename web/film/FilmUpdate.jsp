@@ -10,6 +10,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+
+%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -61,181 +64,94 @@
     </div>
 </div>
 <%
+    request.setCharacterEncoding("UTF-8");
+    String FilmID = request.getParameter("FilmID");
+    String FilmName = request.getParameter("FilmName");
+    String Filmdate = request.getParameter("date");
+    String FilmLength = request.getParameter("FilmLength");
+    String Firm = request.getParameter("Firm");
+    String Plot = request.getParameter("FilmPlot");
+
     String username = "film";
     String password = "123456";
+
     String operateObject2 = "firmIndex";
     String sql2 = "select * from Firm order by FirmID + 0";
     DBOperator dbOperator2 = new DBOperator(username,password,operateObject2);
     dbOperator2.query(sql2);
 
     List<Firm> firmList = dbOperator2.getFirmList();
-    String abc = request.getParameter("abc");
-    String FilmID = request.getParameter("FilmID");
-    String FilmName = request.getParameter("FilmName");
-    Object object = request.getAttribute("filmList");
-    List<Film> filmList = null;
-    if(object instanceof List) {
-        filmList = (List<Film>) object;
-    }
-    String filmname = "";
-    String filmyear = "";
-    String filmlength = "";
-    String filmfirm = "";
-    String filmplot = "";
-    List<Person> filmvoice = null;
-    for(Film film:filmList) {
-        filmname = film.getFilmName();
-        filmyear = film.getPublishYear();
-        filmlength = film.getLength();
-        filmfirm = film.getPublishFirm();
-        filmplot = film.getPlot();
-        filmvoice = film.getVoice();
-    }
-    if(abc.equals("1")){
+//    Object object = request.getAttribute("filmList");
+//
+//    List<Film> filmList = null;
+//    if(object instanceof List) {
+//        filmList = (List<Film>) object;
+//    }
+//    String filmname = "";
+//    String filmyear = "";
+//    String filmlength = "";
+//    String filmfirm = "";
+//    String filmplot = "";
+//    List<Person> filmvoice = null;
+//    for(Film film:filmList) {
+//        filmname = film.getFilmName();
+//        filmyear = film.getPublishYear();
+//        filmlength = film.getLength();
+//        filmfirm = film.getPublishFirm();
+//        filmplot = film.getPlot();
+//        filmvoice = film.getVoice();
+//    }
 %>
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-    <legend style="text-align: center;">电影名字</legend>
-</fieldset>
-<ul class="layui-timeline" style="margin-left: 120px;">
-    <li class="layui-timeline-item">
-        <i class="layui-icon layui-timeline-axis"></i>
-        <div class="layui-timeline-content layui-text">
-            <div class="layui-timeline-title">电影名称：<%=filmname%></div>
+<div class="maincontainer" style="margin-top: 20px">
+    <form id="filmform" class="layui-form layui-form-pane" lay-filter="example" action="/FilmUpdate" method="post">
+        <div class="layui-form-item">
+            <label class="layui-form-label">电影名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="FilmName" required placeholder="请输入名称" autocomplete="off" class="layui-input">
+            </div>
         </div>
-    </li>
-</ul>
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-    <legend style="text-align: center;">改名字</legend>
-</fieldset>
-<form id="filmform" class="layui-form layui-form-pane" action="/FilmUpdate" method="post">
-    <div class="layui-inline">
-        <label class="layui-form-label">新名字</label>
-        <div class="layui-input-inline">
-            <input type="tel" name="FilmName" placeholder="请输入新电影名" required lay-verify="required" autocomplete="off" class="layui-input">
+        <div class="layui-form-item">
+            <label class="layui-form-label">电影日期</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+            </div>
         </div>
-    </div>
-    <div style="text-align: center">
-        <button type="submit" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="">修改</button>
-    </div></form>
-<%
-    }
-    else if(abc.equals("2"))
-    {
-        %>
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-    <legend style="text-align: center;">电影日期</legend>
-</fieldset>
-<ul class="layui-timeline" style="margin-left: 120px;">
-    <li class="layui-timeline-item">
-        <i class="layui-icon layui-timeline-axis"></i>
-        <div class="layui-timeline-content layui-text">
-            <div class="layui-timeline-title">电影日期：<%=filmyear%></div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">电影时长</label>
+            <div class="layui-input-inline">
+                <input type="number" name="FilmLength" lay-verify="required" placeholder="请输入时长" autocomplete="off" class="layui-input">
+            </div>
         </div>
-    </li>
-</ul>
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-    <legend style="text-align: center;">改日期</legend>
-</fieldset>
-<form id="filmform" class="layui-form layui-form-pane" action="/FilmUpdate" method="post">
-    <div class="layui-inline">
-        <label class="layui-form-label">新日期</label>
-        <div class="layui-input-inline">
-            <input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">出品公司</label>
+            <div class="layui-input-inline">
+                <select name="Firm" lay-filter="aihao">
+                    <option value="" selected=""></option>
+                    <%
+                        for (Firm firmIndex: firmList){
+                            String FirmName = firmIndex.getFirmName();
+                    %>
+                    <option value="<%=FirmName%>"><%=FirmName%></option>
+                    <%
+                        }
+                    %>
+                </select>
+            </div>
         </div>
-    </div>
-    <div style="text-align: center">
-        <button type="submit" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="">修改</button>
-    </div></form>
-<%
-    }
-    else if (abc.equals("3")) {
-        %>
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-    <legend style="text-align: center;">电影时长</legend>
-</fieldset>
-<ul class="layui-timeline" style="margin-left: 120px;">
-<li class="layui-timeline-item">
-    <i class="layui-icon layui-timeline-axis"></i>
-    <div class="layui-timeline-content layui-text">
-        <div class="layui-timeline-title">电影时长：<%=filmlength%>分钟</div>
-    </div>
-</li>
-</ul>
-<form id="filmform" class="layui-form layui-form-pane" action="/FilmUpdate" method="post">
-<div class="layui-form-item">
-    <label class="layui-form-label">新时长</label>
-    <div class="layui-input-inline">
-        <input type="number" name="FilmLength" lay-verify="required" placeholder="请输入时长" autocomplete="off" class="layui-input">
-    </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">电影简介</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" name="FilmPlot" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div align="center">
+            <input type="hidden" name="mark">
+            <input type="hidden" name="FilmID">
+            <button id="1" type="submit" class="layui-btn layui-btn-normal layui-btn-radius" onclick="this.form.mark.value='3';this.form.FilmID.value='<%=FilmID%>'">更新记录</button>
+        </div>
+    </form>
 </div>
-    <div style="text-align: center">
-        <button type="submit" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="">修改</button>
-    </div></form>
-<%
-    }
-    else if (abc.equals("4"))
-    {
-        %>
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-    <legend style="text-align: center;">出品公司</legend>
-</fieldset>
-<ul class="layui-timeline" style="margin-left: 120px;">
-<li class="layui-timeline-item">
-    <i class="layui-icon layui-timeline-axis"></i>
-    <div class="layui-timeline-content layui-text">
-        <div class="layui-timeline-title">出品公司：<%=filmfirm%></div>
-    </div>
-</li>
-    </ul>
-<form id="filmform" class="layui-form layui-form-pane" action="/FilmUpdate" method="post">
-<div class="layui-form-item">
-    <label class="layui-form-label">出品公司</label>
-    <div class="layui-input-inline">
-        <select name="Firm" lay-filter="aihao">
-            <option value="" selected=""></option>
-            <%
-                for (Firm firmIndex: firmList){
-                    String FirmName = firmIndex.getFirmName();
-            %>
-            <option value="<%=FirmName%>"><%=FirmName%></option>
-            <%
-                }
-            %>
-        </select>
-    </div>
-</div>
-    <div style="text-align: center">
-        <button type="submit" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="">修改</button>
-    </div></form>
-<%
-    } else if(abc.equals("5")) {
-        %>
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-    <legend style="text-align: center;">电影简介</legend>
-</fieldset>
-<ul class="layui-timeline" style="margin-left: 120px;">
-    <li class="layui-timeline-item">
-        <i class="layui-icon layui-timeline-axis"></i>
-        <div class="layui-timeline-content layui-text">
-            <div class="layui-timeline-title">电影简介：</div>
-            <%=filmplot%>
-        </div>
-    </li>
-</ul>
-<form id="filmform" class="layui-form layui-form-pane" action="/FilmUpdate" method="post">
-    <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">新简介</label>
-        <div class="layui-input-block">
-            <textarea placeholder="请输入内容" name="FilmPlot" class="layui-textarea"></textarea>
-        </div>
-    </div>
-    <div style="text-align: center">
-    <button type="submit" class="layui-btn layui-btn-radius" style="margin-top: 30px;" onclick="">修改</button>
-    </div>
-</form>
-<%
-    }
-%>
 <div class="maincontainer">
     <script src='../afctf/js/TweenMax.min.js'></script>
     <script src="../afctf/js/index.js"></script>
@@ -253,9 +169,9 @@
         </div>
     </div>
 </div>
-<script src="../layui/layui.js" charset="utf-8"></script>
+<script src="../layui/layui.js" charset="UTF-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-<script>
+<script type="text/javascript" charset="UTF-8">
     layui.use(['form', 'layedit', 'laydate'], function(){
         var form = layui.form
             ,layer = layui.layer
@@ -273,6 +189,43 @@
         //创建一个编辑器
         var editIndex = layedit.build('LAY_demo_editor');
 
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 5){
+                    return '标题至少得5个字符啊';
+                }
+            }
+            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,content: function(value){
+                layedit.sync(editIndex);
+            }
+        });
+
+        //监听指定开关
+        form.on('switch(switchTest)', function(data){
+            layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });
+            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+
+        //监听提交
+        form.on('submit(demo1)', function(data){
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            })
+            return false;
+        });
+
+        //表单初始赋值
+        form.val('example', {
+            "FilmName": "<%=FilmName%>" // "name": "value"
+            ,"date": "<%=Filmdate%>"
+            ,"FilmLength": "<%=FilmLength%>"
+            ,"Firm": "<%=Firm%>"
+            ,"FilmPlot": "<%=Plot%>"
+        })
 
     });
 </script>

@@ -85,7 +85,8 @@
     if(object instanceof List) {
         Actorquery = (List<ActorQuery>) object;
     }
-    if(Actorquery == null)
+    out.println(Actorquery.size());
+    if(Actorquery.size() == 0)
     {
         %>
 <h1>对不起没有此演员</h1>

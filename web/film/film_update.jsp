@@ -126,12 +126,8 @@ layui.use('table', function(){
                     <th data-options="field:'listprice',width:80,align:'center'">出品日期</th>
                     <th data-options="field:'unitcost',width:70,align:'center'">电影时长</th>
                     <th data-options="field:'attr1',width:200,align:'center'">出品公司</th>
-                    <th data-options="field:'status',width:100">电影简介</th>
-                    <th data-options="field:'status1',width:100">改名字</th>
-                    <th data-options="field:'status2',width:100">改日期</th>
-                    <th data-options="field:'status3',width:100">改时长</th>
-                    <th data-options="field:'status5',width:100">改公司</th>
-                    <th data-options="field:'status4',width:100">改简介</th>
+                    <th data-options="field:'status',width:1000">电影简介</th>
+                    <th data-options="field:'status1',width:100">改信息</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -155,41 +151,19 @@ layui.use('table', function(){
                     <td>
                         <form action="FilmUpdate.jsp" method="post">
                             <input type="hidden" name="FilmID">
-                            <input type="hidden" name="abc">
                             <input type="hidden" name="FilmName">
-                            <button class="layui-btn layui-btn-radius" type="submit" onclick="this.form.FilmID.value='<%=filmID%>';this.form.abc.value='1';this.form.FilmName.value='<%=filmName%>'">改名字</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="FilmUpdate.jsp" method="post">
-                            <input type="hidden" name="FilmID">
-                            <input type="hidden" name="abc">
-                            <input type="hidden" name="FilmName">
-                            <button class="layui-btn layui-btn-radius" type="submit" onclick="this.form.FilmID.value='<%=filmID%>';this.form.abc.value='2';this.form.FilmName.value='<%=filmName%>'">改日期</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="FilmUpdate.jsp" method="post">
-                            <input type="hidden" name="FilmID">
-                            <input type="hidden" name="abc">
-                            <input type="hidden" name="FilmName">
-                            <button class="layui-btn layui-btn-radius" type="submit" onclick="this.form.FilmID.value='<%=filmID%>';this.form.abc.value='3';this.form.FilmName.value='<%=filmName%>'">改时长</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="FilmUpdate.jsp" method="post">
-                            <input type="hidden" name="FilmID">
-                            <input type="hidden" name="abc">
-                            <input type="hidden" name="FilmName">
-                            <button class="layui-btn layui-btn-radius" type="submit" onclick="this.form.FilmID.value='<%=filmID%>';this.form.abc.value='4';this.form.FilmName.value='<%=filmName%>'">改公司</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="FilmUpdate.jsp" method="post">
-                            <input type="hidden" name="FilmID">
-                            <input type="hidden" name="abc">
-                            <input type="hidden" name="FilmName">
-                            <button class="layui-btn layui-btn-radius" type="submit" onclick="this.form.FilmID.value='<%=filmID%>';this.form.abc.value='5';this.form.FilmName.value='<%=filmName%>'">改简介</button>
+                            <input type="hidden" name="date">
+                            <input type="hidden" name="FilmLength">
+                            <input type="hidden" name="Firm">
+                            <input type="hidden" name="FilmPlot">
+                            <button type="submit" onclick="
+                            this.form.FilmID.value='<%=filmID%>';
+                            this.form.FilmName.value='<%=filmName%>';
+                            this.form.date.value='<%=filmYear%>';
+                            this.form.FilmLength.value='<%=filmLength%>';
+                            this.form.Firm.value='<%=firmName%>';
+                            this.form.FilmPlot.value='<%=filmPlot%>';
+                                    ">改名字</button>
                         </form>
                     </td>
                 </tr>
