@@ -1,10 +1,7 @@
 package database;
 
 
-import Bean.Actor;
-import Bean.Film;
-import Bean.Firm;
-import Bean.Person;
+import Bean.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -30,6 +27,7 @@ public class DBOperator {
     private List<Film> filmList = new ArrayList<>();
     private List<Firm> firmList = new ArrayList<>();
     private List<String> categoryList = new ArrayList<>();
+    private List<ActorQuery> actorQueryList = new ArrayList<>();
     private Firm firm;
     private int queryID;
 
@@ -235,6 +233,16 @@ public class DBOperator {
                         Firm firm = new Firm(firmID, firmName, firmCity, null);
                         this.firmList.add(firm);
                     }
+                case "Actor":
+                    while(resultSet.next()){
+                        String personName = resultSet.getString("PersonName");
+                        String birth = resultSet.getString("PersonBirth");
+                        String film = resultSet.getString("FilmName");
+                        String role = resultSet.getString("Role");
+
+                        ActorQuery actorQuery = new ActorQuery(role,film,personName,birth);
+                        this.actorQueryList.add(actorQuery);
+                    }
                     break;
             }
         } catch (SQLException e) {
@@ -398,5 +406,9 @@ public class DBOperator {
 
     public List<String> getCategoryList() {
         return categoryList;
+    }
+
+    public List<ActorQuery> getActorQueryList() {
+        return actorQueryList;
     }
 }

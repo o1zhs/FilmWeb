@@ -81,12 +81,13 @@
 </div>
 <%
     Object object = request.getAttribute("information");
+    Boolean isNull = (Boolean) request.getAttribute("isNull");
     List<ActorQuery> Actorquery = null;
     if(object instanceof List) {
         Actorquery = (List<ActorQuery>) object;
     }
     out.println(Actorquery.size());
-    if(Actorquery.size() == 0)
+    if(isNull)
     {
         %>
 <h1>对不起没有此演员</h1>
