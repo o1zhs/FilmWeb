@@ -1,6 +1,7 @@
 package Servlet.film;
 
 import Bean.VoiceQuery;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import database.DB;
 
 import javax.servlet.ServletException;
@@ -43,9 +44,12 @@ public class voiceQueryServlet extends HttpServlet {
                 System.out.println(rs.getString("PersonBirth"));
                 System.out.println(rs.getString("FilmName"));
             }
+            Boolean isNull = false;
+            if(information.size()>0)
+                isNull = true;
+            request.setAttribute("isNull",isNull);
             request.setAttribute("information", information);
             request.getRequestDispatcher("/film/voice_QueryResult.jsp").forward(request,response);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

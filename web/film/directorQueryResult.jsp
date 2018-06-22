@@ -81,11 +81,12 @@
 </div>
 <%
     Object object = request.getAttribute("information");
+    Boolean isNull = (Boolean) request.getAttribute("isNull");
     List<DirectorQuery> Directorquery = null;
     if(object instanceof List) {
         Directorquery = (List<DirectorQuery>) object;
     }
-    if(Directorquery == null){
+    if(isNull){
         %>
 <h1>对不起没有此导演</h1>
 <%

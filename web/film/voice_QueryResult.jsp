@@ -79,11 +79,12 @@
 </div>
 <%
     Object object = request.getAttribute("information");
+    Boolean isNull = (Boolean) request.getAttribute("isNull");
     List<VoiceQuery> voicequery = null;
     if(object instanceof List){
         voicequery = (List<VoiceQuery>) object;
     }
-    if(voicequery == null){
+    if(isNull){
         %>
 <h1>对不起没有此旁白</h1>
 <%

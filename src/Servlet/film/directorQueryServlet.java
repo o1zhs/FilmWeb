@@ -43,6 +43,11 @@ public class directorQueryServlet extends HttpServlet {
                 System.out.println(rs.getString("PersonBirth"));
                 System.out.println(rs.getString("FilmName"));
             }
+            System.out.println(information.size());
+            Boolean isNull = false;
+            if(information.size()>0)
+                isNull = true;
+            request.setAttribute("isNull",isNull);
             request.setAttribute("information", information);
             request.getRequestDispatcher("/film/directorQueryResult.jsp").forward(request,response);
 
