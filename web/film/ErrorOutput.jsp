@@ -61,6 +61,93 @@
     String errorObject = (String) request.getAttribute("errorObject");
     String errorOperation = (String) request.getAttribute("errorOperation");
 
+    String errorInfo;
+    if(isExisted){
+        errorInfo = errorOperation + errorObject + "在表内有冲突！";
+        %>
+<h1><%=errorInfo%></h1>
+        <%
+    }
+    else{
+        errorInfo = errorOperation + errorObject + "在对象不存在！";
+        %>
+<h1><%=errorInfo%></h1>
+<%
+    }
+%>
+<%
+    String label = request.getParameter("label");
+    String mark = request.getParameter("mark");
+    String FilmName = request.getParameter("FilmName");
+    String ID = request.getParameter("FilmID");
+    if(label != null){
+%>
+<div>
+    <div style="text-align: center;">
+        <form action="/FilmQuery" method="post">
+            <input type="hidden" name="FilmName">
+            <input type="hidden" name="abc">
+            <input type="hidden" name="FilmID">
+            <button type="submit" class="layui-btn layui-btn-radius" onclick="this.form.FilmName.value='<%=FilmName%>';this.form.abc.value='<%=label%>';this.form.FilmID.value='<%=ID%>'">返回</button>
+        </form>
+    </div>
+</div>
+<%
+}
+else if(mark != null && mark.equals("1")){
+%>
+<div>
+    <div style="text-align: center;">
+        <button type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/film_insert.jsp'">返回</button>
+    </div>
+</div>
+<%
+}
+else if(mark != null && mark.equals("2")){
+%>
+<div>
+    <div style="text-align: center;">
+        <button type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/film_delete.jsp'">返回</button>
+    </div>
+</div>
+<%
+}
+else if(mark != null && mark.equals("3")){
+%>
+<div>
+    <div style="text-align: center;">
+        <button type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/film_update.jsp'">返回</button>
+    </div>
+</div>
+<%
+}
+else if(mark != null && mark.equals("4")) {
+%>
+<div>
+    <div style="text-align: center;">
+        <button type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/PersonIndex.jsp'">返回</button>
+    </div>
+</div>
+<%
+}
+else if(mark != null && mark.equals("5")) {
+%>
+<div>
+    <div style="text-align: center;">
+        <button type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/FirmIndex.jsp'">返回</button>
+    </div>
+</div>
+<%
+}
+else if(mark != null && mark.equals("6")) {
+%>
+<div>
+    <div style="text-align: center;">
+        <button type="submit" class="layui-btn layui-btn-radius" onclick="window.location.href='/film/KindManage.jsp'">返回</button>
+    </div>
+</div>
+<%
+    }
 %>
 <div class="maincontainer">
     <script src='../afctf/js/TweenMax.min.js'></script>
