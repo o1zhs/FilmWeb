@@ -63,13 +63,13 @@
 
     String errorInfo;
     if(isExisted){
-        errorInfo = errorOperation + errorObject + "在表内有冲突！";
+        errorInfo = errorOperation + errorObject + "在表内有重复！";
         %>
 <h1><%=errorInfo%></h1>
         <%
     }
     else{
-        errorInfo = errorOperation + errorObject + "在对象不存在！";
+        errorInfo = errorOperation + errorObject + "人物不存在！";
         %>
 <h1><%=errorInfo%></h1>
 <%

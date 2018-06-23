@@ -82,7 +82,7 @@ public class FirmInsertServlet extends HttpServlet {
                 request.setAttribute("isExisted",isExisted);
                 request.setAttribute("errorObject",errorObject);
                 request.setAttribute("errorOperation",errorOperation);
-
+                request.getRequestDispatcher("film/ErrorOutput.jsp").forward(request,response);
             }
             stmt.close();
             conn.close();
