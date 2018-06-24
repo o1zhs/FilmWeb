@@ -29,4 +29,4 @@ request.setCharacterEncoding("utf-8");
 
 　　1.就多创建几个stmt,一个stmt对应一个rs;
 
-　　2.若用一个stmt对应多个rs的话,那只能得到一个rs后就操作,处理完第一个rs后再处理其他的,如上"正确代码".
+　　2.若用一个stmt对应多个rs的话,那只能得到一个rs后就操作,处理完第一个rs后再处理其他的,如上"正确代码".# Refer_git
